@@ -1,0 +1,35 @@
+﻿ALTER TABLE examen ADD FOREIGN KEY(id_laboratorio) REFERENCES laboratorio(id_laboratorio)
+
+
+ALTER TABLE examen CHANGE descrpcion descripcion varchar(100);
+
+
+
+SELECT productos.id_producto, productos.codigo_interno,productos.nombre,productos.descripcion,productos.unidades_disponible,productos.porcentaje_ganancia, categoria.nombre as categoria,proveedor.nombre AS proveedor FROM productos INNER JOIN categoria ON productos.id_categoria = categoria.id_categoria
+INNER JOIN proveedor ON productos.id_proveedor = proveedor.id_proveedor
+
+
+SELECT proveedor.id_proveedor,proveedor.nombre,proveedor.direccion,proveedor.telefono,proveedor.contacto,proveedor.observacion, tipo_proveedor.nombre FROM proveedor INNER JOIN tipo_proveedor ON proveedor.id_tipo_proveedor = tipo_proveedor.id_tipo_proveedor
+
+
+
+// consulta de producto 4 tablas
+SELECT p.id_producto, p.codigo_interno, p.nombre, p.descripcion, p.unidades_disponible, p.porcentaje_ganancia, c.nombre AS Categoria, pv.nombre as Proveedor,
+dt.fecha_vencimiento, dt.precio_venta, dt.precio_compra
+FROM productos  as p INNER JOIN categoria as c ON(p.id_categoria=c.id_categoria) INNER JOIN proveedor as pv
+ON(p.id_proveedor=pv.id_proveedor) INNER JOIN detalle_producto as dt ON(p.id_producto = dt.id_producto)
+
+
+// Equipo
+SELECT p.id_producto, p.codigo_interno, p.nombre, p.descripcion, p.unidades_disponible, te.nombre AS tipo_equipo,
+e.precio_venta
+FROM productos  as p INNER JOIN equipo as e ON(p.id_producto=e.id_producto) INNER JOIN tipo_equipo as te
+ON(te.id_tipo_equipo=e.id_tipo_equipo) 
+
+
+//consulta 5 tablas 
+SELECT p.idproducto, p.cod_interno, p.nombre, p.descripcion, p.porcentaje_ganancia, c.nombre AS Categoria, ps.nombre AS Presentacion, ps.valor,st.cantidad,st.fecha_movimiento,pv.nombre as proveedor
+
+FROM productos  as p INNER JOIN categoria as c ON(p.idcategoria=c.idcategoria) INNER JOIN presentacion as ps
+ON(p.id_presentacion=ps.id_presentacion) INNER JOIN stock_movimiento as st ON(p.idStock_movimiento = st.idStock_movimiento)
+INNER JOIN proveedor as pv ON(st.idproveedor=pv.idproveedor)

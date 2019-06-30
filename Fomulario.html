@@ -1,0 +1,829 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title> | Partes de Formulario</title>
+    <link rel="shortcut icon" href="img/Univo-logo.png" />
+    <link rel="stylesheet" type="text/css" href="css/vendors/bootstrap/dist/css/bootstrap.min.css">
+    <link rel="stylesheet" type="text/css" href="css/vendors/font-awesome/css/font-awesome.min.css">
+    <link rel="stylesheet" type="text/css" href="css/vendors/nprogress/nprogress.css">
+    <link rel="stylesheet" type="text/css" href="css/vendors/bootstrap-daterangepicker/daterangepicker.css">
+    <link rel="stylesheet" type="text/css" href="css/build/css/custom.min.css">
+    <!-- Form¿ulario -->
+    <link rel="stylesheet" type="text/css" href="css/vendors/iCheck/skins/flat/green.css">
+    <link rel="stylesheet" type="text/css" href="css/vendors/google-code-prettify/bin/prettify.min.css">
+    <link rel="stylesheet" type="text/css" href="css/vendors/select2/dist/css/select2.css">
+    <link rel="stylesheet" type="text/css" href="css/vendors/switchery/dist/switchery.min.css">
+    <link rel="stylesheet" type="text/css" href="css/vendors/starrr/dist/starrr.css">
+    
+    <link rel="stylesheet" type="text/css" href="css/vendors/bootstrap-datetimepicker/build/css/bootstrap-datetimepicker.css">
+    <link rel="stylesheet" type="text/css" href="css/vendors/normalize-css/normalize.css">
+    <link rel="stylesheet" type="text/css" href="css/vendors/ion-rangeSlider/css/ion.rangeSlider.css">
+    <link rel="stylesheet" type="text/css" href="css/vendors/cropper/dist/cropper.min.css">
+    <meta charset="utf-8">
+</head>
+<body class="nav-md">
+  <div class="container body">
+    <div class="main_container">
+      <div class="col-md-3 left_col">
+        <div class="left_col scroll-view">
+          <div class="navbar nav_title" style="border: 0;">
+            <a href="index.html" class="site_title"><img src="img/Univo-logo.png" style="height: 50px; width: 45px;"> <span> Veterinaria Univo</span></a>
+          </div>
+            
+          <div class="clearfix"></div>
+            <div class="profile clearfix">
+              <div class="profile_pic">
+                <img src="img/user_admin.png" alt="..." class="img-circle profile_img">
+              </div>
+              <div class="profile_info">
+                <span>Bienvenido</span>
+                <h2>Administrador</h2>
+                <h5>Clinica Veterinaria Univo</h5>
+              </div>
+            </div>
+            <br/>
+
+            <div id="sidebar-menu" class="main_menu_side hidden-print main_menu">
+              <div class="menu_section">
+                <h3>Menu</h3>
+                <ul class="nav side-menu">
+                  <li>
+                  	<a>
+                  		<i class="fa fa-home"></i> 
+                      <b> Inicio</b> 
+                  	</a>
+                  </li>
+
+                  <li>
+                    <a>
+                      <i class="fa fa-user"></i> 
+                      <b> Usuario </b>
+                      <span class="fa fa-chevron-right"></span>
+                    </a>
+                    <ul class="nav child_menu">
+                      <li>
+                        <a href="#">
+                          <i class="fa fa-user-plus"></i> 
+                          <b> Nuevo Usuario</b>
+                        </a>
+                      </li>
+
+                      <li>
+                        <a href="#">
+                          <i class="fa fa-list-alt"></i> 
+                          <b> Listado de Usuarios</b>
+                        </a>
+                      </li>
+                    </ul>
+                  </li>
+
+                  <li>
+                    <a>
+                      <i class="fa fa-users"></i>
+                      <b> Conctatos </b>  
+                      <span class="fa fa-chevron-right"></span>
+                    </a>
+                    <ul class="nav child_menu">
+                      <li>
+                        <a>
+                          <i class="fa  fa-user-secret"></i> 
+                          <b> Proveedor </b> 
+                          <span class="fa fa-chevron-right"></span>
+                        </a>
+                        <ul class="nav child_menu">
+                          <li class="sub_menu">
+                            <a href="#">
+                              <i class="fa fa-pencil-square-o"></i> 
+                              <b> Nuevo Proveedor</b> 
+                            </a>
+                          </li>
+                          <li>
+                            <a href="#">
+                              <i class="fa fa-list-alt"></i> 
+                              <b> Listado de Proveedores</b>
+                            </a>
+                          </li>
+                        </ul>
+                      </li>
+
+                      <li>
+                        <a>
+                          <i class="fa fa-hospital-o"></i> 
+                          <b> Laboratorio </b> 
+                          <span class="fa fa-chevron-right"></span>
+                        </a>
+                        <ul class="nav child_menu">
+                          <li class="sub_menu">
+                            <a href="#">
+                              <i class="fa fa-pencil-square-o"></i> 
+                              <b> Nuevo Laboratorio</b> 
+                            </a>
+                          </li>
+                          <li>
+                            <a href="#">
+                              <i class="fa fa-list-alt"></i> 
+                              <b> Listado de Laboratorios</b>
+                            </a>
+                          </li>
+                        </ul>
+                      </li>
+
+                    </ul>
+                  </li> 
+
+                  <li>
+                    <a>
+                      <i class="fa fa-shopping-basket"></i> 
+                      <b> Insumos </b> 
+                      <span class="fa fa-chevron-right"></span>
+                    </a>
+                    <ul class="nav child_menu">
+                      <li>
+                        <a>
+                          <i class="fa fa-stethoscope"></i> 
+                          <b> Productos Medicinales </b>
+                          <span class="fa fa-chevron-right"></span>
+                        </a>
+                        <ul class="nav child_menu">
+                          <li class="sub_menu">
+                            <a href="#">
+                              <i class="fa fa-pencil-square-o"></i> 
+                              <b> Nuevo Producto</b> 
+                            </a>
+                          </li>
+
+                          <li>
+                            <a href="#">
+                              <i class="fa fa-list-alt"></i>
+                              <b> Listado de Productos</b>
+                            </a>
+                          </li>
+                        </ul>
+                      </li>
+
+                      <li>
+                        <a>
+                          <i class="fa fa-dashboard"></i> 
+                          <b> Materiales </b>
+                            <span class="fa fa-chevron-right"></span>
+                          </a>
+                            <ul class="nav child_menu">
+                              <li class="sub_menu">
+                                <a href="#">
+                                  <i class="fa fa-pencil-square-o"></i> 
+                                  <b> Nuevo Material</b> 
+                                </a>
+                              </li>
+
+                              <li>
+                                <a href="#">
+                                  <i class="fa fa-list-alt"></i>
+                                  <b> Listado de Materiales</b>
+                                </a>
+                              </li>
+                            </ul>
+                          </li>
+                        </ul>
+                      </li>
+
+                      <li>
+                        <a>
+                          <i class="fa fa-ambulance"></i> 
+                          <b> Equipos </b> 
+                      <span class="fa fa-chevron-right"></span>
+                    </a>
+                    <ul class="nav child_menu">
+                      <li>
+                        <a>
+                          <i class="fa fa-cart-plus"></i> 
+                          <b> Generales </b>
+                          <span class="fa fa-chevron-right"></span>
+                        </a>
+                        <ul class="nav child_menu">
+                          <li class="sub_menu">
+                            <a href="#">
+                              <i class="fa fa-pencil-square-o"></i> 
+                              <b> Nuevo Equipo</b> 
+                            </a>
+                          </li>
+
+                          <li>
+                            <a href="#">
+                              <i class="fa fa-list-alt"></i>
+                              <b> Listado de Equipos</b>
+                            </a>
+                          </li>
+                        </ul>
+                      </li>
+
+                      <li>
+                        <a>
+                          <i class="fa fa-stethoscope"></i> 
+                          <b> Intrumentales </b>
+                            <span class="fa fa-chevron-right"></span>
+                          </a>
+                            <ul class="nav child_menu">
+                              <li class="sub_menu">
+                                <a href="#">
+                                  <i class="fa fa-pencil-square-o"></i> 
+                                  <b> Nuevo Equipo</b> 
+                                </a>
+                              </li>
+
+                              <li>
+                                <a href="#">
+                                  <i class="fa fa-list-alt"></i>
+                                  <b> Listado de Equipos</b>
+                                </a>
+                              </li>
+                            </ul>
+                          </li>
+                        </ul>
+                      </li>  
+
+                      <li>
+                        <a>
+                          <i class="fa fa-medkit"></i> 
+                          <b> Botiquín </b>
+                          <span class="fa fa-chevron-right"></span>
+                        </a>
+                        <ul class="nav child_menu">
+                          <li>
+                            <a href="#">
+                              <i class="fa fa-pencil-square-o"></i>
+                              <b> Nuevo Medicamento</b>
+                            </a>
+                          </li>
+                          <li>
+                            <a href="#">
+                              <i class="fa fa-list-alt"></i> 
+                              <b> Listado de Medicamnetos</b>
+                            </a>
+                          </li>
+                        </ul>
+                      </li>
+
+                      <li>
+                        <a>
+                          <i class="fa fa-user-md"></i> 
+                          <b> Consultas </b>
+                          <span class="fa fa-chevron-right"></span>
+                        </a>
+                        <ul class="nav child_menu">
+                          <li>
+                            <a href="#">
+                              <i class="fa fa-pencil-square-o"></i>
+                              <b> Nuevo Consulta</b>
+                            </a>
+                          </li>
+                          <li>
+                            <a href="#">
+                              <i class="fa fa-list-alt"></i> 
+                              <b> Listado de Constas</b>
+                            </a>
+                          </li>
+                        </ul>
+                      </li>
+
+                      <li>
+                        <a>
+                          <i class="fa fa-heartbeat"></i> 
+                          <b> Examenes </b>
+                          <span class="fa fa-chevron-right"></span>
+                        </a>
+                        <ul class="nav child_menu">
+                          <li>
+                            <a href="#">
+                              <i class="fa fa-pencil-square-o"></i>
+                              <b> Nuevo Examen</b>
+                            </a>
+                          </li>
+                          <li>
+                            <a href="#">
+                              <i class="fa fa-list-alt"></i> 
+                              <b> Listado de Examenes</b>
+                            </a>
+                          </li>
+                        </ul>
+                      </li>
+
+                      <li>
+                        <a>
+                          <i class="fa fa-money"></i> 
+                          <b> Ventas </b>
+                          <span class="fa fa-chevron-right"></span>
+                        </a>
+                        <ul class="nav child_menu">
+                          <li>
+                            <a href="#">
+                              <i class="fa fa-pencil-square-o"></i>
+                              <b> Nueva Venta</b>
+                            </a>
+                          </li>
+                          <li>
+                            <a href="#">
+                              <i class="fa fa-list-alt"></i> 
+                              <b> Listado de Ventas</b>
+                            </a>
+                          </li>
+                        </ul>
+                      </li>
+
+                      <li>
+                        <a>
+                          <i class="fa fa-cubes"></i> 
+                          <b> Inventario </b>
+                          <span class="fa fa-chevron-right"></span>
+                        </a>
+                        <ul class="nav child_menu">
+                          <li>
+                            <a href="#">
+                              <i class="fa fa-medkit"></i>
+                              <b> Inventario de Botiquín</b>
+                            </a>
+                          </li>
+                          <li>
+                            <a href="#">
+                              <i class="fa fa-eyedropper"></i> 
+                              <b> Inventario de Medicamnetos</b>
+                            </a>
+                          </li>
+                          <li>
+                            <a href="#">
+                              <i class="fa fa-ambulance"></i> 
+                              <b> Inventario de Equipo</b>
+                            </a>
+                          </li>
+                          <li>
+                            <a href="#">
+                              <i class="fa fa-stethoscope"></i> 
+                              <b> Inventario Instrumental</b>
+                            </a>
+                          </li>
+                        </ul>
+                      </li>
+
+                      <li>
+                        <a>
+                          <i class="fa fa-file-pdf-o"></i>
+                          <b>  Repostes </b>  
+                          <span class="fa fa-chevron-right"></span>
+                        </a>
+                          <ul class="nav child_menu">
+                            <li>
+                              <a href="#" >
+                                <i class="fa fa-money"></i>
+                                <b>Resporte de Ventas</b> 
+                              </a>
+                            </li>
+                            <li>
+                              <a href="#" >
+                                <i class="fa fa-line-chart"></i>
+                                <b>Resporte de Existencias</b> 
+                              </a>
+                            </li>
+                            <li>
+                              <a href="#" >
+                                <i class="fa fa-briefcase"></i>
+                                <b>Resporte de Producto Vencido</b> 
+                              </a>
+                            </li>
+                            <li>
+                              <a href="#" >
+                               <i class="fa fa-heartbeat"></i>
+                                <b>Resporte de Examenes</b> 
+                              </a>
+                            </li> 
+                            <li>
+                              <a href="#" >
+                               <i class="fa fa-dashboard"></i>
+                                <b>Resporte de Materiales</b> 
+                              </a>
+                            </li> 
+                            <li>
+                              <a href="#" >
+                               <i class="fa fa-shopping-basket"></i>
+                                <b>Resporte de Insumos</b> 
+                              </a>
+                            </li>
+                            <li>
+                              <a href="#" >
+                               <i class="fa fa-pie-chart"></i>
+                                <b>Resporte General</b> 
+                              </a>
+                            </li>
+                          </ul>
+                        </li>
+
+                        <li>
+                          <a>
+                            <i class="fa fa-book"></i> 
+                            <b> Manuales </b> 
+                            <span class="fa fa-chevron-right"></span>
+                          </a>
+                          <ul class="nav child_menu">
+                          <li>
+                              <a href="#">
+                                <i class="fa fa-user-secret"></i> 
+                                <b> Manual de Administrador </b>
+                              </a>
+                            </li>
+                            <li>
+                              <a href="#">
+                                <i class="fa fa-user"></i> 
+                                <b> Manual de Usuario </b>
+                              </a>
+                            </li>
+                          </ul>
+                        </li>
+
+                        <li>
+                          <a>
+                            <i class="fa fa-cog"></i> 
+                            <b> Configuración </b> 
+                            <span class="fa fa-chevron-right"></span>
+                          </a>
+                          <ul class="nav child_menu">
+                            <li>
+                              <a href="#">
+                                <i class="fa fa-lock"></i> 
+                                <b> Respaldo de Datos </b>
+                              </a>
+                            </li>
+                          </ul>
+                        </li>
+                      </ul>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <div class="top_nav">
+                <div class="nav_menu">
+                  <nav>
+                    <div class="nav toggle">
+                      <a id="menu_toggle"><i class="fa fa-bars"></i></a>
+                    </div>
+
+                    <ul class="nav navbar-nav navbar-right">
+                      <li class="">
+                        <a href="#" class="user-profile dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
+                          <img src="img/user_admin.png" alt="">Administrador  
+                          <span class=" fa fa-angle-down"></span>
+                        </a>
+                        <ul class="dropdown-menu dropdown-usermenu pull-right">
+                          <li>
+                            <a href="Login.html">
+                              <i class="fa fa-sign-out pull-right"></i> 
+                              <b>Cerrar Seción</b>
+                            </a>
+                          </li>
+                        </ul>
+                      </li>
+                    </ul>
+                  </nav>
+                </div>
+              </div>
+
+              <div class="right_col" role="main">
+                <div class="row">
+                  <div class="col-md-12">
+                    <div class="x_panel">
+                      <section class="content-header">
+                        <h1>Nuevo Usuario</h1>
+                        <ol class="breadcrumb">
+                          <li><a href="index.html"><i class="fa fa-home"></i> Home</a></li>
+                          <li class="active">Nuevo Usuario</li>
+                        </ol>
+                      </section>
+                    </div>
+                  </div>
+                </div>
+
+                <div class="">
+                  <div class="row">
+                    <div class="col-md-12">
+                      <div class="x_panel">
+                        <form class="form-horizontal form-label-left" novalidate>
+                          <span class="section">Formulario</span>
+                          <div class="item form-group">
+                            <label class="control-label col-md-3 col-sm-3 col-xs-12" for="texto">texto </label>
+                            <div class="col-md-6 col-sm-6 col-xs-12">
+                              <input id="ntexto" class="form-control col-md-7 col-xs-12" data-validate-length-range="6" data-validate-words="2" name="texto"  required="required" type="text">
+                            </div>
+                          </div>
+
+                          <div class="item form-group">
+                            <label class="control-label col-md-3 col-sm-3 col-xs-12" for="telefono">Telefono</label>
+                            <div class="col-md-6 col-sm-6 col-xs-12">
+                              <input type="tel" id="telefono" name="telefono" required="required" data-validate-length-range="8,20" class="form-control col-md-7 col-xs-12">
+                            </div>
+                          </div>
+
+                          <div class="item form-group">
+                            <label for="password" class="control-label col-md-3">Contraseña</label>
+                            <div class="col-md-6 col-sm-6 col-xs-12">
+                              <input id="password" type="password" name="password" data-validate-length="6,8" class="form-control col-md-7 col-xs-12" required="required">
+                            </div>
+                          </div>
+
+                          <div class="item form-group">
+                            <label class="control-label col-md-3 col-sm-3 col-xs-12" for="email">Correo Electronicó</label>
+                            <div class="col-md-6 col-sm-6 col-xs-12">
+                              <input type="email" id="email" name="email" required="required" class="form-control col-md-7 col-xs-12">
+                            </div>
+                          </div>
+
+                          <div class="form-group">
+                            <label class="control-label col-md-3 col-sm-3 col-xs-12">Genero</label>
+                            <div class="col-md-6 col-sm-6 col-xs-12">
+                              <div id="genero" class="btn-group" data-toggle="buttons">
+                                <label class="btn btn-default" data-toggle-class="btn-primary" data-toggle-passive-class="btn-default">
+                                  <input type="radio" name="genero" value="masculino"> &nbsp; Masculino &nbsp;
+                                </label>
+                                <label class="btn btn-primary" data-toggle-class="btn-primary" data-toggle-passive-class="btn-default">
+                                  <input type="radio" name="genero" value="femenino"> femenino
+                                </label>
+                              </div>
+                            </div>
+                          </div>
+
+                          <div class="item form-group">
+                            <label class="control-label col-md-3 col-sm-3 col-xs-12" for="numero">Numero</label>
+                            <div class="col-md-6 col-sm-6 col-xs-12">
+                              <input type="number" id="numero" name="numero" required="required" data-validate-minmax="10,100" class="form-control col-md-7 col-xs-12">
+                            </div>
+                          </div>
+
+                          <div class="item form-group">
+                            <label class="control-label col-md-3 col-sm-3 col-xs-12" for="textarea">Textarea</label>
+                            <div class="col-md-6 col-sm-6 col-xs-12">
+                              <textarea id="textarea" required="required" name="textarea" class="form-control col-md-7 col-xs-12"></textarea>
+                            </div>
+                          </div>
+
+                          <div class="item form-group">
+                            <label class="control-label col-md-3 col-sm-3 col-xs-12" for="nombre">Nombre</label>
+                            <div class="col-md-6 col-sm-6 col-xs-12">
+                              <input type="text" class="form-control has-feedback-left" id="inputSuccess2">
+                              <span class="fa fa-user form-control-feedback left" aria-hidden="true"></span>       
+                            </div>
+                          </div>
+
+                          <div class="item form-group">
+                            <label class="control-label col-md-3 col-sm-3 col-xs-12" for="nombre">Nombre</label>
+                            <div class="col-md-6 col-sm-6 col-xs-12">
+                              <input type="text" class="form-control has-feedback-left" id="inputSuccess2">
+                              <span class="fa fa-user form-control-feedback right" aria-hidden="true"></span>       
+                            </div>
+                          </div>
+
+                          <div class="item form-group">
+                            <label class="control-label col-md-3 col-sm-3 col-xs-12" for="email">Email</label>
+                            <div class="col-md-6 col-sm-6 col-xs-12">
+                              <input type="emai" class="form-control has-feedback-left" id="inputSuccess4">
+                              <span class="fa fa-envelope form-control-feedback left" aria-hidden="true"></span>   
+                            </div>
+                          </div>
+
+                          <div class="item form-group">
+                            <label class="control-label col-md-3 col-sm-3 col-xs-12" for="email">Email</label>
+                            <div class="col-md-6 col-sm-6 col-xs-12">
+                              <input type="email" class="form-control has-feedback-left" id="inputSuccess4">
+                              <span class="fa fa-envelope form-control-feedback right" aria-hidden="true"></span>   
+                            </div>
+                          </div>
+
+                          <div class="item form-group">
+                            <label class="control-label col-md-3 col-sm-3 col-xs-12" for="telefono">Telefono</label>
+                            <div class="col-md-6 col-sm-6 col-xs-12">
+                              <input type="tel" class="form-control" id="inputSuccess5">
+                              <span class="fa fa-phone form-control-feedback left" aria-hidden="true"></span>
+                            </div>
+                          </div>
+
+                          <div class="item form-group">
+                            <label class="control-label col-md-3 col-sm-3 col-xs-12" for="telefono">Telefono</label>
+                            <div class="col-md-6 col-sm-6 col-xs-12">
+                              <input type="tel" class="form-control" id="inputSuccess5">
+                              <span class="fa fa-phone form-control-feedback right" aria-hidden="true"></span>
+                            </div>
+                          </div>
+
+                        <div class="item form-group">
+                          <label class="control-label col-md-3 col-sm-3 col-xs-12" for="texto">Entrada desabilitada</label>
+                            <div class="col-md-6 col-sm-6 col-xs-12">
+                              <input type="text" class="form-control" disabled="disabled">
+                            </div>
+                          </div>
+
+                          <div class="item form-group">
+                            <label class="control-label col-md-3 col-sm-3 col-xs-12" for="texto">Entrada de lectura</label>
+                            <div class="col-md-6 col-sm-6 col-xs-12">
+                              <input type="text" class="form-control" readonly="readonly">
+                            </div>
+                          </div>
+
+                          <div class="form-group">
+                            <label class="control-label col-md-3 col-sm-3 col-xs-12" for="texto">Select</label>
+                            <div class="col-md-6 col-sm-6 col-xs-12">
+                              <select class="select2_single form-control">
+                                <option>Selccione su Opcion</option>
+                                <option>Opcion uno</option>
+                                <option>Opcion dos</option>
+                                <option>Opcion tres</option>
+                              </select>
+                            </div>
+                          </div>
+
+                          <div class="form-group">
+                            <label class="control-label col-md-3 col-sm-3 col-xs-12" for="texto">Autocomplementar</label>
+                            <div class="col-md-6 col-sm-6 col-xs-12">
+                              <input type="text" name="country" id="autocomplete-custom-append" class="form-control col-md-10"/>
+                            </div>
+                          </div>
+
+
+                          <div class="form-group">
+                            <label class="control-label col-md-3 col-sm-3 col-xs-12" for="texto">Cambiar</label>
+                            <div class="col-md-6 col-sm-6 col-xs-12">
+                              <div class="">
+                                <label>
+                                  <input type="checkbox" class="js-switch"/> Si
+                                </label>
+                              </div>
+                              <div class="">
+                                <label>
+                                  <input type="checkbox" class="js-switch" /> No
+                                </label>
+                              </div>
+                            </div>
+                          </div>
+
+                          <div class="item form-group">
+                            <label class="control-label col-md-3 col-sm-3 col-xs-12" for="telefono">Telefono</label>
+                            <div class="col-md-6 col-sm-6 col-xs-12">
+                              <input type="text" class="form-control" data-inputmask="'mask' : '9999-9999'">
+                              <span class="fa fa-phone form-control-feedback right" aria-hidden="true"></span>
+                            </div>
+                          </div>
+
+                          <div class="item form-group">
+                            <label class="control-label col-md-3 col-sm-3 col-xs-12" for="telefono">Telefono</label>
+                            <div class="col-md-6 col-sm-6 col-xs-12">
+                              <input type="text" class="form-control" data-inputmask="'mask' : '         9999-9999'">
+                              <span class="fa fa-phone form-control-feedback left" aria-hidden="true"></span>
+                            </div>
+                          </div> 
+
+                          <div class="item form-group">
+                            <label class="control-label col-md-3 col-sm-3 col-xs-12" for="fecha">Fecha</label>
+                            <div class="col-md-6 col-sm-6 col-xs-12">
+                                <div class='input-group date' id='myDatepicker2'>
+                                  <input type='text' class="form-control" />
+                                    <span class="input-group-addon">
+                                      <span class="glyphicon glyphicon-calendar"></span>
+                                    </span>
+                                </div>
+                              </div>
+                            </div>
+
+                            <div class="item form-group">
+                              <label class="control-label col-md-3 col-sm-3 col-xs-12" for="hora">Hora</label>
+                                <div class="col-md-6 col-sm-6 col-xs-12">
+                                  <div class='input-group date' id='myDatepicker3'>
+                                    <input type='text' class="form-control" />
+                                      <span class="input-group-addon">
+                                        <span class="glyphicon glyphicon-time"></span>
+                                      </span>
+                                  </div>
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                              <label class="control-label col-md-3 col-sm-3 col-xs-12">Radios</label>
+                                <div class="col-md-6 col-sm-6 col-xs-12">
+                                  <p>
+                                    Si <input type="radio" class="flat" name="si" id="gsi" value="si"> 
+                                    No <input type="radio" class="flat" name="si" id="si" value="no">
+                                  </p>
+                                </div>
+                              </div>
+
+                              <div class="form-group">
+                              <label class="control-label col-md-3 col-sm-3 col-xs-12">Checkbox</label>
+                                <div class="col-md-6 col-sm-6 col-xs-12">
+                                  <p style="padding: 5px;">
+                                    <input type="checkbox" name="" id="" value="" data-parsley-mincheck="2" class="flat"/> 1
+                                    <br />
+                                    <input type="checkbox" name="" id="" value="" class="flat"/> 2
+                                    <br/>
+                                    <input type="checkbox" name="" id="" value="" class="flat" /> 3
+                                    <br/>
+                                    <input type="checkbox" name="" id="" value="" class="flat"/> 4
+                                    <br />
+                                  </p>
+                                </div>
+                              </div>
+
+
+
+
+                            <div class="ln_solid"></div>
+                            <div class="form-group">
+                              <div class="col-md-6 col-md-offset-3">
+                                <button type="submit" class="btn btn-success">Cancelar</button>
+                                <button id="send" type="submit" class="btn btn-primary">Registrar</button>
+                              </div>
+                            </div>
+                          </form>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              
+              <footer>
+                <div class="pull-right">
+                  <small>Copyright © Universidad de Oriente 2017</small>          
+                </div>
+                  div class="clearfix"></div>
+              </footer>
+        </div>
+    </div>
+
+    <script type="text/javascript" src="js/vendors/jquery/dist/jquery.min.js"></script>
+    <script type="text/javascript" src="js/vendors/bootstrap/dist/js/bootstrap.min.js"></script>
+    <script type="text/javascript" src="js/vendors/fastclick/lib/fastclick.js"></script>
+    <script type="text/javascript" src="js/vendors/nprogress/nprogress.js"></script>
+    <script type="text/javascript" src="js/vendors/Chart-js/dist/Chart.min.js"></script>
+    <script type="text/javascript" src="js/vendors/jquery-sparkline/dist/jquery.sparkline.min.js"></script>
+    <script type="text/javascript" src="js/vendors/Flot/jquery.flot.js"></script>
+    <script type="text/javascript" src="js/vendors/Flot/jquery.flot.pie.js"></script>
+    <script type="text/javascript" src="js/vendors/Flot/jquery.flot.time.js"></script>
+    <script type="text/javascript" src="js/vendors/Flot/jquery.flot.stack.js"></script>
+    <script type="text/javascript" src="js/vendors/Flot/jquery.flot.resize.js"></script>
+    <script type="text/javascript" src="js/vendors/flot-orderbars/js/jquery.flot.orderBars.js"></script>
+    <script type="text/javascript" src="js/vendors/flot-spline/js/jquery.flot.spline.min.js"></script>
+    <script type="text/javascript" src="js/vendors/flot-curvedlines/curvedLines.js"></script>
+    <script type="text/javascript" src="js/vendors/DateJS/build/date.js"></script>
+    <script type="text/javascript" src="js/vendors/moment/min/moment.min.js"></script>
+    <script type="text/javascript" src="js/vendors/bootstrap-datetimepicker/daterangepicker.js"></script>
+    <script type="text/javascript" src="js/build/js/custom.min.js"></script>
+    <!-- Form¿ulario -->
+    <script type="text/javascript" src="js/vendors/bootstrap-progressbar/bootstrap-progressbar.min.js"></script>
+    <script type="text/javascript" src="js/vendors/iCheck/icheck.min.js"></script>
+    <script type="text/javascript" src="js/vendors/bootstrap-wysiwyg/js/bootstrap-wysiwyg.min.js"></script>
+    <script type="text/javascript" src="js/vendors/jquery-hotkeys/jquery.hotkeys.js"></script>
+    <script type="text/javascript" src="js/vendors/google-code-prettify/src/prettify.js"></script>
+    <script type="text/javascript" src="js/vendors/jquery-tagsinput/src/jquery.tagsinput.js"></script>
+    <script type="text/javascript" src="js/vendors/switchery/dist/switchery.min.js"></script>
+    <script type="text/javascript" src="js/vendors/select2/dist/js/select2.full.min.js"></script>
+    <script type="text/javascript" src="js/vendors/parsleyjs/dist/parsley.min.js"></script>
+    <script type="text/javascript" src="js/vendors/autosize/dist/autosize.min.js"></script>
+    <script type="text/javascript" src="js/vendors/devbridge-autocomplete/dist/jquery.autocomplete.min.js"></script>
+    <script type="text/javascript" src="js/vendors/starrr/dist/starrr.js"></script>
+    <script type="text/javascript" src="js/vendors/moment/min/moment.min.js"></script>
+    <script type="text/javascript" src="js/vendors/bootstrap-daterangepicker/daterangepicker.js"></script>
+  
+    <script type="text/javascript" src="js/vendors/bootstrap-datetimepicker/build/js/bootstrap-datetimepicker.min.js"></script>
+    <script type="text/javascript" src="js/vendors/ion-rangeSlider/js/ion.rangeSlider.min.js"></script>
+    <script type="text/javascript" src="js/vendors/jquery-inputmask/dist/min/jquery.inputmask.bundle.min.js"></script>
+    <script type="text/javascript" src=""></script>
+    <script type="text/javascript" src="js/vendors/jquery-knob/dist/jquery.knob.min.js"></script>
+    <script type="text/javascript" src="js/vendors/"></script>
+    <script type="text/javascript" src="js/vendors/cropper/dist/cropper.min.js"></script>
+
+        <!-- Initialize datetimepicker -->
+    <script>
+      $('#myDatepicker').datetimepicker();
+    
+      $('#myDatepicker2').datetimepicker({
+        format: 'DD.MM.YYYY'
+      });
+    
+      $('#myDatepicker3').datetimepicker({
+        format: 'hh:mm A'
+      });
+    
+      $('#myDatepicker4').datetimepicker({
+        ignoreReadonly: true,
+        allowInputToggle: true
+      });
+
+      $('#datetimepicker6').datetimepicker();
+    
+      $('#datetimepicker7').datetimepicker({
+        useCurrent: false
+      });
+    
+      $("#datetimepicker6").on("dp.change", function(e) {
+        $('#datetimepicker7').data("DateTimePicker").minDate(e.date);
+      });
+    
+      $("#datetimepicker7").on("dp.change", function(e) {
+        $('#datetimepicker6').data("DateTimePicker").maxDate(e.date);
+      });
+  </script>
+</body>
+</html>

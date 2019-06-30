@@ -1,0 +1,12 @@
+﻿ALTER TABLE examen ADD FOREIGN KEY(id_laboratorio) REFERENCES laboratorio(id_laboratorio)
+
+
+ALTER TABLE examen CHANGE descrpcion descripcion varchar(100);
+
+
+
+SELECT productos.id_producto, productos.codigo_interno,productos.nombre,productos.descripcion,productos.unidades_disponible,productos.porcentaje_ganancia, categoria.nombre as categoria,proveedor.nombre AS proveedor FROM productos INNER JOIN categoria ON productos.id_categoria = categoria.id_categoria
+INNER JOIN proveedor ON productos.id_proveedor = proveedor.id_proveedor
+
+
+SELECT proveedor.id_proveedor,proveedor.nombre,proveedor.direccion,proveedor.telefono,proveedor.contacto,proveedor.observacion, tipo_proveedor.nombre FROM proveedor INNER JOIN tipo_proveedor ON proveedor.id_tipo_proveedor = tipo_proveedor.id_tipo_proveedor
