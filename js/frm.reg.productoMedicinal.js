@@ -3,7 +3,6 @@ $(document).ready(function(){ //si el documento se carga hacer las siguientes in
 	$('#frm_NuevoProductoMedicinal').validate({ //dentro de los parentesis de coloca el nombre del formulario a afectar con el script
 	    rules: { //inician las reglas de jquery.validate
 	      codigointerno: { //nombre del campo a evaluar
-	        minlength: 2, //número mínimo de caracteres
 	        required: true // es un campo requerido ! de null
 	      },
 	     nombre : {
@@ -13,31 +12,19 @@ $(document).ready(function(){ //si el documento se carga hacer las siguientes in
 	      descripcionproducto: {
 	        required: true
 	      },
-	      unidadesdisponibles: {
-	        required: true,
-      		number: true
-	      },
+	   
 
-	      porcentajeganacia: {
-	      	required: true
-	      },
 
 				 categoria: {
 				 required: true
        },
 
-		 	 stock: {
-       required: true,
-			 number: true
-		 	},
-
+		
 		   proveedor: {
 			required: true
 			},
 
-			servicio: {
-				required: true
-			}
+		
 
 	    },
 

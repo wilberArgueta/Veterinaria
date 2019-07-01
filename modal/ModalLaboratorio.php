@@ -81,7 +81,7 @@
 
 
 <?php
- if (isset($_POST)) {
+ if (isset($_POST['submit'])) {
      $nombre=$_POST["nombre"];
      $direccion=$_POST["direccion"];
      $telefono=$_POST["telefono"];

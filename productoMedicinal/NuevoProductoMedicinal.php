@@ -1,13 +1,19 @@
-i<?php include 'conectar.php' ?>
+<?php 
+session_start();
+if (!$_SESSION['acceso']) {
+  header("Location:../login/");
+}
+ ?>
+<?php include '../conectar.php' ?>
 <!DOCTYPE html>
 <html>
 <head>
   <title> | Clinica Veterinaria | Registrar Producto Medicinal</title>
-  <?php include 'includes/head.php' ?>
+  <?php include '../includes/head.php' ?>
 </head>
 <body class="nav-md">
-  <?php include 'includes/nav.php' ?>
-  <?php include 'includes/cerrarSesion.php' ?>
+  <?php include '../includes/nav.php' ?>
+  <?php include '../includes/cerrarSesion.php' ?>
   <div class="right_col" role="main">
     <div class="row">
       <div class="col-md-12">
@@ -15,7 +21,7 @@ i<?php include 'conectar.php' ?>
           <section class="content-header">
             <h1>Nuevo Producto Medicinal</h1>
             <ol class="breadcrumb">
-              <li><a href="inicio.php"><i class="fa fa-home"></i> Home</a></li>
+              <li><a href="../home/"><i class="fa fa-home"></i> Home</a></li>
               <li>Insumos</li>
               <li>Producto Medicinal</li>
               <li class="active">Nuevo Producto Medicinal</li>
@@ -81,7 +87,7 @@ i<?php include 'conectar.php' ?>
     									include ('conectar.php');
                       $consulta_categoria= mysqli_query($link, "SELECT * FROM categoria");
     									echo "<div class=\"col-md-6 col-sm-6 col-xs-12\">";
-    									echo "<select class=\"form-control col-md-7 col-xs-12\" id=\"categoria\" name=\"categoria\" >";
+    									echo "<select class=\"form-control js-example-basic-single col-md-7 col-xs-12\" id=\"categoria\" name=\"categoria\" >";
                       while ($fila= mysqli_fetch_array($consulta_categoria)) {
     										echo "<option value='".$fila['idcategoria']."'>".$fila['nombre']."</option>";
     									}
@@ -104,7 +110,7 @@ i<?php include 'conectar.php' ?>
     									include ('conectar.php');
                       $consulta_proveedor= mysqli_query($link, "SELECT * FROM proveedor");
     									echo "<div class=\"col-md-6 col-sm-6 col-xs-12\">";
-    									echo "<select class=\"form-control col-md-7 col-xs-12\" id=\"proveedor\" name=\"proveedor\" >";
+    									echo "<select class=\"form-control js-example-basic-single col-md-7 col-xs-12\" id=\"proveedor\" name=\"proveedor\" >";
                       while ($fila= mysqli_fetch_array($consulta_proveedor)) {
     										echo "<option value='".$fila['idproveedor']."'>".$fila['nombre']."</option>";
     									}
@@ -184,8 +190,9 @@ i<?php include 'conectar.php' ?>
 
       </div>
     </div>
-    <?php include 'includes/footer.php' ?>
-  <?php include 'includes/script.php' ?>
+    <?php include '../includes/footer.php' ?>
+  <?php include '../includes/script.php' ?>
+  <script type="text/javascript" src="../js/frm.reg.productoMedicinal.js"></script>
   
 
   </script>
@@ -193,7 +200,7 @@ i<?php include 'conectar.php' ?>
 </body>
 </html>
 <?php
- if ($_POST) {
+ if (isset($_POST['submit'])) {
      $codigoInterno=$_POST["codigointerno"];
      $nombre=$_POST["nombre"];
      $descripcion=$_POST["descripcion"];
@@ -231,17 +238,30 @@ i<?php include 'conectar.php' ?>
          
           if ($insertar3) {
              echo "<script>
-                location.replace('ListadoProductoMedicinal.php');
+                location.replace('../productoMedicinal/ListadoProductoMedicinal.php');
                </script>";
           }
            
             }
         }
-          else {
-             echo "<script>alert('Error al insertar');</script>";
+         else {
+            
+             echo "<script>
+                 swal(
+              'Oops...',
+               'Error al insertar!',
+               'error'
+             )</script>";
          }
      } else {
-         echo "<script>alert('El producto ya existe');</script>";
+         
+          echo "<script>
+           swal(
+               'Oops...',
+               'El Producto Medicinal ya existe!',
+               'error'
+               )</script>";
+
          mysqli_close($link);
      }
  }

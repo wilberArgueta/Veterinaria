@@ -1,3 +1,9 @@
+<?php 
+session_start();
+if (!$_SESSION['acceso']) {
+  header("Location:../login/");
+}
+ ?>
 <?php include '../conectar.php' ?>
 <!DOCTYPE html>
 <html>
@@ -17,7 +23,7 @@
           <section class="content-header">
             <h1>Nuevo Usuario</h1>
             <ol class="breadcrumb">
-              <li><a href="../inicio.php"><i class="fa fa-home"></i> Home</a></li>
+              <li><a href="../home/"><i class="fa fa-home"></i> Home</a></li>
               <li>Usuario</li>
               <li class="active">Nuevo Usuario</li>
             </ol>
@@ -123,7 +129,7 @@
 </html>
 
 <?php
- if ($_POST) {
+ if (isset($_POST['submit'])) {
      $nombreUsuario=$_POST["nombreUsuario"];
      $nombre=$_POST["nombreCompleto"];
      $apellido=$_POST["apellidoCompleto"];
@@ -141,11 +147,21 @@
              echo "<script>
                    location.replace('usuario/ListadoUsuarios.php?q=$nombreUsuario&info=add');
               </script>";
-         } else {
-             echo "<script>alert('Error al insertar');</script>";
+         }  else {
+             echo "<script>
+                 swal(
+              'Oops...',
+               'Error al insertar!',
+               'error'
+             )</script>";
          }
      } else {
-         echo "<script>alert('El usuario ya existe');</script>";
+         echo "<script>
+           swal(
+               'Oops...',
+               'El registro ya existe!',
+               'error'
+               )</script>";
          mysqli_close($link);
      }
  }

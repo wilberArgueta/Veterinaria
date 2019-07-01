@@ -97,7 +97,7 @@ if (!$_SESSION['acceso']) {
     									include ('../conectar.php');
                       $consulta_proveedor= mysqli_query($link, "SELECT * FROM proveedor");
     									echo "<div class=\"col-md-6 col-sm-6 col-xs-12\">";
-    									echo "<select class=\"form-control col-md-7 col-xs-12\" id=\"proveedor\" name=\"proveedor\" >";
+    									echo "<select class=\"form-control js-example-basic-single col-md-7 col-xs-12\" id=\"proveedor\" name=\"proveedor\" >";
                       while ($fila= mysqli_fetch_array($consulta_proveedor)) {
                     
     										echo "<option value='".$fila['idproveedor']."'>".$fila['nombre']."</option>";

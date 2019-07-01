@@ -26,7 +26,7 @@ if (!$_SESSION['acceso']) {
                         <ol class="breadcrumb">
                           <li><a href="../home/"><i class="fa fa-home"></i> Home</a></li>
                           <li>Expediente</li>
-                          <li>Examenes</li>
+                          <li>Exámenes</li>
                           <li class="active">Nuevo Examen</li>
                         </ol>
                       </section>
@@ -39,10 +39,10 @@ if (!$_SESSION['acceso']) {
                     <div class="col-md-12">
                       <div class="x_panel">
                         <form method="post" role="form" id="frm_registroExamen" class="form-horizontal form-label-left" novalidate>
-                          <span class="section">Datos de el Examen</span>
+                          <span class="section">Datos de el Exámen</span>
 
                             <div class="item form-group">
-                              <label class="control-label col-md-3 col-sm-3 col-xs-12" for="tipo_examen">Tipo de Éxamen</label>
+                              <label class="control-label col-md-3 col-sm-3 col-xs-12" for="tipo_examen">Tipo de Exámen</label>
                               <div class="col-md-6 col-sm-6 col-xs-12">
                                 <textarea id="tipo_examen" required="required" name="tipo_examen" class="form-control col-md-7 col-xs-12"></textarea>
 

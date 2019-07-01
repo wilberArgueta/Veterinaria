@@ -1,4 +1,5 @@
-<?php include 'conectar.php' ?>
+<?php include '../conectar.php' ?>
+<?php include '../includes/head.php' ?>
 
 <div class="modal fade" id="ModalAgregarUsuario" tabindex="-1" role="dialog">
   <div class="modal-dialog">
@@ -83,7 +84,7 @@
 	      <div class="modal-footer">
 	        <button type="button" class="btn btn-default" data-dismiss="modal">Cerrar</button>
 	        
-	        <button type="submit" class="btn btn-primary" id="createBrandBtn" data-loading-text="Loading..." autocomplete="off">Agregar</button>
+	        <button type="submit"  name="submit" class="btn btn-primary" id="createBrandBtn" data-loading-text="Loading..." autocomplete="off">Agregar</button>
 	      </div>
 	      <!-- /modal-footer -->
      	</form>
@@ -94,13 +95,13 @@
   <!-- /modal-dailog -->
 </div>
 <!-- / add modal -->
-
-<script src="js/frm.reg.usuario.js"></script>
+ <?php include '../includes/script.php' ?>
+<script src="../js/frm.reg.usuario.js"></script>
 
 
 
 <?php
- if ($_POST) {
+ if (isset($_POST['submit'])) {
      $nombreUsuario=$_POST["nombreUsuario"];
      $nombre=$_POST["nombreCompleto"];
      $apellido=$_POST["apellidoCompleto"];
@@ -116,13 +117,23 @@
          $insertar=mysqli_query($link,"INSERT INTO usuario (idUsuario,nombreUsuario,nombre,apellido,telefono,direccion,clave,correo) values('','$nombreUsuario','$nombre','$apellido','$telefono','$direccion','$clave','$correo')");
          if ($insertar) {
              echo "<script>
-                   location.replace('ListadoUsuarios.php?q=$nombreUsuario&info=add');
+                   location.replace('../usuari/ListadoUsuarios.php?q=$nombreUsuario&info=add');
               </script>";
-         } else {
-             echo "<script>alert('Error al insertar');</script>";
+         }else {
+             echo "<script>
+                 swal(
+              'Oops...',
+               'Error al insertar!',
+               'error'
+             )</script>";
          }
      } else {
-         echo "<script>alert('El usuario ya existe');</script>";
+         echo "<script>
+           swal(
+               'Oops...',
+               'El registro ya existe!',
+               'error'
+               )</script>";
          mysqli_close($link);
      }
  }

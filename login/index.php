@@ -10,7 +10,7 @@ session_start();
 	<link rel="stylesheet" href="../css/css-login/estilo-login.css">
 	<link rel="stylesheet" type="text/css" href="../css/css-login/bootstrap.min.css">
 	<link rel="stylesheet" type="text/css" href="../css/css-login/AdminLTE.min.css">
-	<script src="js/sweetalert2.all.js"></script>
+	<script src="../js/sweetalert2.all.js"></script>
 	<link rel="shortcut icon" href="../img/Univo-logo.png">
 </head>
 <body class="login-page bg-login">

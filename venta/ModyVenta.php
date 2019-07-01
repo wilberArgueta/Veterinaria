@@ -1,12 +1,19 @@
-<?php include 'conectar.php' ?>
+<?php 
+session_start();
+if (!$_SESSION['acceso']) {
+  header("Location:../login/");
+}
+ ?>
+<?php include '../conectar.php' ?>
 <!DOCTYPE html>
 <html>
 <head>
   <title> | Clinica Veterinaria | Modificar de Venta</title>
-  <?php include 'includes/head.php' ?>
+  <?php include '../includes/head.php' ?>
 </head>
 <body class="nav-md">
-  <?php include 'includes/nav.php' ?>
+  <?php include '../includes/nav.php' ?>
+   <?php include '../includes/cerrarSesion.php' ?>
   <div class="right_col" role="main">
     <div class="row">
       <div class="col-md-12">
@@ -14,7 +21,7 @@
           <section class="content-header">
             <h1>Modificar Venta</h1>
             <ol class="breadcrumb">
-              <li><a href="inicio.php"><i class="fa fa-home"></i> Home</a></li>
+              <li><a href="../home/"><i class="fa fa-home"></i> Home</a></li>
               <li>Ventas</li>
               <li class="active">Modificar Venta</li>
             </ol>
@@ -61,7 +68,7 @@
                       include ('conectar.php');
                       $consulta_cliente= mysqli_query($link, "SELECT * FROM cliente");
                       echo "<div class=\"col-md-6 col-sm-6 col-xs-12\">";
-                      echo "<select class=\"form-control col-md-7 col-xs-12\" id=\"idcliente\" name=\"idcliente\">";  
+                      echo "<select class=\"form-control js-example-basic-single col-md-7 col-xs-12\" id=\"idcliente\" name=\"idcliente\">";  
                       echo "<option value=''>Seleccione</option>";
                       while ($fila= mysqli_fetch_array($consulta_cliente)) {
                         if ($tipo==$fila['idcliente']) {
@@ -87,7 +94,7 @@
                       include ('conectar.php');
                       $consulta_producto= mysqli_query($link, "SELECT * FROM productos ORDER BY idproducto ASC");
                       echo "<div class=\"col-md-6 col-sm-6 col-xs-12\">";
-                      echo "<select class=\"form-control col-md-7 col-xs-12\" id=\"idproducto\" name=\"idproducto\">";  
+                      echo "<select class=\"form-control js-example-basic-single  col-md-7 col-xs-12\" id=\"idproducto\" name=\"idproducto\">";  
                       echo "<option value=''>Seleccione</option>";
                       while ($fila= mysqli_fetch_array($consulta_producto)) {
                         if ($tipo==$fila['idproducto']) {
@@ -216,11 +223,11 @@
 
       </div>
     </div>
-    <?php include 'includes/footer.php' ?>
+    <?php include '../includes/footer.php' ?>
 
     </div>
   </div>
-  <?php include 'includes/script.php' ?>
+  <?php include '../includes/script.php' ?>
 
 </body>
 </html>

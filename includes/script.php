@@ -5,7 +5,7 @@
     <script type="text/javascript" src="../js/vendors/Chart-js/dist/Chart.min.js"></script>
     <script type="text/javascript" src="../vendors/jquery-sparkline/dist/jquery.sparkline.min.js"></script>
     <script type="text/javascript" src="../js/vendors/Flot/jquery.flot.js"></script>
-    <script type="text/javascript" src="..//vendors/Flot/jquery.flot.pie.js"></script>
+    <script type="text/javascript" src="../vendors/Flot/jquery.flot.pie.js"></script>
     <script type="text/javascript" src="../js/vendors/Flot/jquery.flot.time.js"></script>
     <script type="text/javascript" src="../js/vendors/Flot/jquery.flot.stack.js"></script>
     <script type="text/javascript" src="../js/vendors/Flot/jquery.flot.resize.js"></script>
