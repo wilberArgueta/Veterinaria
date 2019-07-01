@@ -1,7 +1,14 @@
+<?php 
+session_start();
+if (!$_SESSION['acceso']) {
+  header("Location:../login/");
+}
+ ?>
+
 <?php
 if($_GET)
 {
- include("conectar.php");
+ include("../conectar.php");
  $id=$_GET["id"];
  $sql=mysqli_query($link,"SELECT * FROM consulta WHERE idconsulta='$id'");
  $row=mysqli_fetch_array($sql);
@@ -31,7 +38,8 @@ if($_GET)
 </head>
 
   <body class="nav-md">
-  <?php include 'includes/nav.php' ?>
+  <?php include '../includes/nav.php' ?>
+  <?php include '../includes/cerrarSesion.php' ?>
 
               <div class="right_col" role="main">
                 <div class="row">
@@ -40,7 +48,7 @@ if($_GET)
                       <section class="content-header">
                         <h1>Modificar Consulta</h1>
                         <ol class="breadcrumb">
-                          <li><a href="inicio.php"><i class="fa fa-home"></i> Home</a></li>
+                          <li><a href="../home/"><i class="fa fa-home"></i> Home</a></li>
                           <li>Expediente</li>
                           <li>Consultas</li>
                           <li class="active">Modificar Consulta</li>
@@ -61,15 +69,15 @@ if($_GET)
                 <label class="control-label col-md-3 col-sm-3 col-xs-12" for="idcliente">Cliente</label>
 
                 <?php
-                  include ('conectar.php');
+                  include ('../conectar.php');
                   $consulta_cliente= mysqli_query($link, "SELECT * FROM cliente");
                   echo "<div class=\"col-md-6 col-sm-6 col-xs-12\">";
-                  echo "<select class=\"form-control col-md-7 col-xs-12\" id=\"idcliente\" name=\"idcliente\" >";
+                  echo "<select class=\"form-control js-example-basic-single col-md-7 col-xs-12\" id=\"idcliente\" name=\"idcliente\" >";
                   while ($fila= mysqli_fetch_array($consulta_cliente)) {
                     if ($tipo==$fila['idcliente']) {
-                    echo "<option value='".$fila['idcliente']."' selected>".$fila['nombre']."</option>";
+                    echo "<option value='".$fila['idcliente']."' selected>".$fila['nombre'].$fila['apellido']."</option>";
                     }
-                    echo "<option value='".$fila['idcliente']."'>".$fila['nombre']."</option>";
+                    echo "<option value='".$fila['idcliente']."'>".$fila['nombre'].$fila['apellido']."</option>";
                   }
                   echo "  </select>";
                   echo "  </div>";
@@ -110,45 +118,6 @@ if($_GET)
                               </div>
                             </div>
 
-                            <!-- 
-                              <div class="item form-group">
-                              <label class="control-label col-md-3 col-sm-3 col-xs-12" for="porcentajeganancia">Porsentaje Ganancia</label>
-                              <div class="col-md-6 col-sm-6 col-xs-12">
-                                <input id="porcentajeganancia" class="form-control col-md-7 col-xs-12" data-validate-length-range="6" data-validate-words="2" name="porcentajeganancia"  required="required" type="text"  id="inputSuccess5"/>
-                                  <span class="fa fa-percent form-control-feedback right" aria-hidden="true"></span>
-
-                              </div>
-                            </div>
-
-                            <div class="item form-group">
-                              <label class="control-label col-md-3 col-sm-3 col-xs-12" for="examen">Examen</label>
-                              <div class="col-md-6 col-sm-6 col-xs-12">
-                              <?php
-                              /*
-                                $consulta_examen=mysqli_query($link,"SELECT * FROM tipo_examen ORDER BY idtipo_examen ASC ");
-
-                                 echo " <select  class=\"form-control\" id=\"examen\" title=\"Has clic para desplegar\" name=\"examen\" >";
-                                 echo "<option value=''>Seleccione..</option>";
-
-                                while($fila=mysqli_fetch_array($consulta_examen)){
-                                     echo "<option value='".$fila['idtipo_examen']."'>".$fila['nombre']."</option>";
-                                 }
-                                 echo "  </select>";
-                                 */
-                              ?>
-    
-                               
-                                </div>
-                              
-                              <a href="#">
-                                  <button type="button" class="btn btn-light" style="width: 220px; ">
-                                    <i class="fa fa-plus"> Agregar nuevo examen</i>
-                                  </button> 
-                                </a>
-                            </div>
-                             -->
-                            
-
                             
 
                           <div class="item form-group">
@@ -158,39 +127,6 @@ if($_GET)
                               <span class="fa fa-usd form-control-feedback right" aria-hidden="true"></span>
                             </div>
                           </div>
-
-                          <!-- 
-                            <div class="item form-group">
-                            <label class="control-label col-md-3 col-sm-3 col-xs-12" for="producto">Producto</label>
-                              <div class="col-md-6 col-sm-6 col-xs-12">
-                              <?php
-                              /*
-                                $consulta_producto=mysqli_query($link,"SELECT * FROM productos ORDER BY idproducto ASC ");
-
-                                 echo " <select  class=\"form-control\" id=\"producto\" title=\"Has clic para desplegar\" name=\"producto\" >";
-                                 echo "<option value=''>Seleccione..</option>";
-
-                                while($fila=mysqli_fetch_array($consulta_producto)){
-                                     echo "<option value='".$fila['idproducto']."'>".$fila['nombre']."</option>";
-                                 }
-                                 echo "  </select>";
-                                 */
-                              ?>
-    
-                               
-                                </div>
-
-                              <a href="#">
-                                  <button type="button" class="btn btn-light" style="width: 220px; ">
-                                    <i class="fa fa-plus"> Agregar nuevo producto</i>
-                                  </button> 
-                                </a>
-
-                          </div>
-                           -->
-                          
-
-                          
 
                         <div class="ln_solid"></div>
                         <div class="form-group">
@@ -209,16 +145,16 @@ if($_GET)
 
           </div>
         </div>
-      <?php include 'includes/footer.php' ?>
+      <?php include '../includes/footer.php' ?>
       </div>
     </div>
 
-    <?php include 'includes/script.php' ?>
-    <script type="text/javascript" src="js/frm.reg.consulta.js"></script>
+    <?php include '../includes/script.php' ?>
+    <script type="text/javascript" src="../js/frm.reg.consulta.js"></script>
   </body>
 </html>
 <?php
- if ($_POST) {
+ if (isset($_POST['submit'])) {
    $idcliente=$_POST["idcliente"];
    $descripcion=$_POST["descripcion"];
    $c_fisiologica=$_POST["c_fisiologica"];
@@ -230,7 +166,7 @@ if($_GET)
      if($update)
      {
       echo "<script>
-     location.replace('ListadoConsultas.php?q=$idcliente&info=modificar');
+     location.replace('../consulta/ListadoConsultas.php?q=$idcliente&info=modificar');
             </script>";
 
      }

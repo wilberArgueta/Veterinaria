@@ -1,7 +1,14 @@
+<?php 
+session_start();
+if (!$_SESSION['acceso']) {
+  header("Location:../login/");
+}
+ ?>
+ 
 <?php
 if($_GET)
 {
- include("conectar.php");
+ include("../conectar.php");
  $id=$_GET["id"];
  $sql=mysqli_query($link,"SELECT * FROM cliente WHERE idcliente='$id'");
 
@@ -26,11 +33,11 @@ $direccion=$row["direccion"];
 <head>
   <title> | Clinica Veterinaria | Modificar Cliente</title>
 
-  <?php include 'includes/head.php' ?>
+  <?php include '../includes/head.php' ?>
 </head>
 <body class="nav-md">
-  <?php include 'includes/nav.php' ?>
-  <?php include 'includes/cerrarSesion.php' ?>
+  <?php include '../includes/nav.php' ?>
+  <?php include '../includes/cerrarSesion.php' ?>
   <div class="right_col" role="main">
     <div class="row">
       <div class="col-md-12">
@@ -38,7 +45,7 @@ $direccion=$row["direccion"];
           <section class="content-header">
             <h1>Modificar Cliente</h1>
             <ol class="breadcrumb">
-              <li><a href="inicio.php"><i class="fa fa-home"></i> Home</a></li>
+              <li><a href="../home/"><i class="fa fa-home"></i> Home</a></li>
               <li>Clientes</li>
               <li>Cliente</li>
               <li class="active">Modificar Cliente</li>
@@ -92,10 +99,10 @@ $direccion=$row["direccion"];
                 <label class="control-label col-md-3 col-sm-3 col-xs-12" for="mascota">Nombre de la mascota</label>
 
                 <?php
-                  include ('conectar.php');
+                  include ('../conectar.php');
                   $consulta_tipo_equipo= mysqli_query($link, "SELECT * FROM mascota");
                   echo "<div class=\"col-md-6 col-sm-6 col-xs-12\">";
-                  echo "<select class=\"form-control col-md-7 col-xs-12\" id=\"mascota\" name=\"mascota\" >";
+                  echo "<select class=\"form-control js-example-basic-single col-md-7 col-xs-12\" id=\"mascota\" name=\"mascota\" >";
                   while ($fila= mysqli_fetch_array($consulta_tipo_equipo)) {
                     if ($tipo==$fila['idmascota']) {
                     echo "<option value='".$fila['idmascota']."' selected>".$fila['nombre']."</option>";
@@ -123,15 +130,15 @@ $direccion=$row["direccion"];
 
       </div>
     </div>
-    <?php include 'includes/footer.php' ?>
-  <?php include 'includes/script.php' ?>
-  <script type="text/javascript" src="js/frm.reg.cliente.js"></script>
+    <?php include '../includes/footer.php' ?>
+  <?php include '../includes/script.php' ?>
+  <script type="text/javascript" src="../js/frm.reg.cliente.js"></script>
 
 </body>
 </html>
 
 <?php
- if ($_POST) {
+ if (isset($_POST['submit'])) {
      $nombre=$_POST["nombre"];
      $apellido=$_POST["apellido"];
      $direccion=$_POST["direccion"];

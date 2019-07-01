@@ -24,7 +24,7 @@
             <h3>Menu</h3>
             <ul class="nav side-menu">
               <li>
-                <a href="inicio.php">
+                <a href="../home/">
                   <i class="fa fa-home"></i>
                   <b> Inicio</b>
                 </a>
@@ -45,7 +45,7 @@
                   </li>
 
                   <li>
-                    <a href="usuario/ListadoUsuarios.php?q=">
+                    <a href="../usuario/ListadoUsuarios.php?q=">
                       <i class="fa fa-list"></i>
                       <b> Listado de Usuarios</b>
                     </a>
@@ -68,13 +68,13 @@
                     </a>
                     <ul class="nav child_menu">
                       <li class="sub_menu">
-                        <a href="proveedor/NuevoProveedor.php">
+                        <a href="../proveedor/NuevoProveedor.php">
                           <i class="fa fa-plus"></i>
                           <b> Nuevo Proveedor</b>
                         </a>
                       </li>
                       <li>
-                        <a href="proveedor/ListadoProveedores.php?q=">
+                        <a href="../proveedor/ListadoProveedores.php?q=">
                           <i class="fa fa-list"></i>
                           <b> Listado de Proveedores</b>
                         </a>
@@ -90,13 +90,13 @@
                     </a>
                     <ul class="nav child_menu">
                       <li class="sub_menu">
-                        <a href="laboratorio/NuevoLaboratorio.php">
+                        <a href="../laboratorio/NuevoLaboratorio.php">
                           <i class="fa fa-plus"></i>
                           <b> Nuevo Laboratorio</b>
                         </a>
                       </li>
                       <li>
-                        <a href="laboratorio/ListadoLaboratorio.php?q=">
+                        <a href="../laboratorio/ListadoLaboratorio.php?q=">
                           <i class="fa fa-list"></i>
                           <b> Listado de Laboratorios</b>
                         </a>
@@ -124,14 +124,14 @@
                     </a>
                     <ul class="nav child_menu">
                       <li>
-                        <a href="mascota/NuevaMascota.php">
+                        <a href="../mascota/NuevaMascota.php">
                           <i class="fa fa-plus"></i>
                           <b> Nueva Mascota</b>
                         </a>
                       </li>
 
                       <li>
-                        <a href="mascota/ListadoMascota.php?q=">
+                        <a href="../mascota/ListadoMascota.php?q=">
                           <i class="fa fa-list"></i>
                           <b> Listado de Mascotas</b>
                         </a>
@@ -148,13 +148,13 @@
                 </a>
                 <ul class="nav child_menu">
                   <li>
-                    <a href="cliente/NuevoCliente.php">
+                    <a href="../cliente/NuevoCliente.php">
                       <i class="fa fa-plus"></i>
                       <b> Nuevo Cliente</b>
                     </a>
                   </li>
                   <li>
-                    <a href="cliente/ListadoCliente.php?q=">
+                    <a href="../cliente/ListadoCliente.php?q=">
                       <i class="fa fa-list"></i>
                       <b> Listado de Clientes</b>
                     </a>
@@ -182,13 +182,13 @@
                   </a>
                   <ul class="nav child_menu">
                     <li>
-                      <a href="consulta/RegistrarConsulta.php">
+                      <a href="../consulta/RegistrarConsulta.php">
                         <i class="fa fa-plus"></i>
                         <b> Nuevo Consulta</b>
                       </a>
                     </li>
                     <li>
-                      <a href="consulta/ListadoConsultas.php?q=">
+                      <a href="../consulta/ListadoConsultas.php?q=">
                         <i class="fa fa-list"></i>
                         <b> Listado de Consultas</b>
                       </a>
@@ -204,13 +204,13 @@
                   </a>
                   <ul class="nav child_menu">
                     <li>
-                      <a href="examen/RegistrarExamen.php">
+                      <a href="../examen/RegistrarExamen.php">
                         <i class="fa fa-plus"></i>
                         <b> Nuevo Examen</b>
                       </a>
                     </li>
                     <li>
-                      <a href="examen/ListadoExamenes.php?q=">
+                      <a href="../examen/ListadoExamenes.php?q=">
                         <i class="fa fa-list"></i>
                         <b> Listado de Examenes</b>
                       </a>
@@ -226,13 +226,13 @@
                   </a>
                   <ul class="nav child_menu">
                     <li>
-                      <a href="servicio/NuevoServicio.php">
+                      <a href="../servicio/NuevoServicio.php">
                         <i class="fa fa-plus"></i>
                         <b> Nuevo Servicio</b>
                       </a>
                     </li>
                     <li>
-                      <a href="servicio/ListadoServicios.php?q=">
+                      <a href="../servicio/ListadoServicios.php?q=">
                         <i class="fa fa-list"></i>
                         <b> Listado de Servicios</b>
                       </a>
@@ -262,13 +262,13 @@
                         </a>
                         <ul class="nav child_menu">
                           <li class="sub_menu">
-                            <a href="productoMedicinal/NuevoProductoMedicinal.php">
+                            <a href="../productoMedicinal/NuevoProductoMedicinal.php">
                               <i class="fa fa-plus"></i>
                               <b> Nuevo Producto</b>
                             </a>
                           </li>
                           <li>
-                            <a href="productoMedicinal/ListadoProductoMedicinal.php?q=">
+                            <a href="../productoMedicinal/ListadoProductoMedicinal.php?q=">
                               <i class="fa fa-list"></i>
                               <b> Listado de Productos</b>
                             </a>
@@ -283,13 +283,13 @@
                         </a>
                         <ul class="nav child_menu">
                           <li class="sub_menu">
-                            <a href="material/NuevoMaterial.php">
+                            <a href="../material/NuevoMaterial.php">
                               <i class="fa fa-plus"></i>
                               <b> Nuevo Material</b>
                             </a>
                           </li>
                           <li>
-                            <a href="material/ListadoMateriales.php?q=">
+                            <a href="../material/ListadoMateriales.php?q=">
                               <i class="fa fa-list"></i>
                               <b> Listado de Materiales</b>
                             </a>
@@ -304,13 +304,13 @@
                   </a>
                   <ul class="nav child_menu">
                     <li>
-                      <a href="botiquin/RegistrarBotiquin.php">
+                      <a href="../botiquin/RegistrarBotiquin.php">
                         <i class="fa fa-plus"></i>
                         <b> Nuevo Medicamento</b>
                       </a>
                       </li>
                       <li>
-                        <a href="botiquin/ListadoBotiquin.php">
+                        <a href="../botiquin/ListadoBotiquin.php">
                           <i class="fa fa-list"></i>
                           <b> Listado de Medicamentos</b>
                         </a>
@@ -326,13 +326,13 @@
                     </a>
                     <ul class="nav child_menu">
                       <li class="sub_menu">
-                        <a href="equipo/NuevoEquipo.php">
+                        <a href="../equipo/NuevoEquipo.php">
                           <i class="fa fa-plus"></i>
                           <b> Nuevo Equipo</b>
                         </a>
                       </li>
                       <li>
-                        <a href="equipo/ListadoEquipo.php?q=">
+                        <a href="../equipo/ListadoEquipo.php?q=">
                           <i class="fa fa-list"></i>
                           <b> Listado de Equipos</b>
                         </a>
@@ -350,13 +350,13 @@
                     </a>
                     <ul class="nav child_menu">
                       <li>
-                        <a href="venta/RegistrarVenta.php">
+                        <a href="../venta/RegistrarVenta.php">
                           <i class="fa fa-plus"></i>
                           <b> Nueva Venta</b>
                         </a>
                       </li>
                       <li>
-                        <a href="venta/ListadoVentas.php">
+                        <a href="../venta/ListadoVentas.php">
                           <i class="fa fa-list"></i>
                           <b> Listado de Ventas</b>
                         </a>
@@ -405,7 +405,7 @@
                     </a>
                       <ul class="nav child_menu">
                         <li>
-                          <a href="ReporteUsuarios.php" >
+                          <a href="../ReporteUsuarios.php" >
                             <i class="fa fa-user"></i>
                             <b>Reporte de Usuarios</b>
                           </a>
@@ -429,19 +429,19 @@
                           </a>
                         </li>
                         <li>
-                          <a href="reportes/ReporteConsultas.php" >
+                          <a href="../reportes/ReporteConsultas.php" >
                            <i class="fa fa-user-md"></i>
                             <b>Reporte de Consultas</b>
                           </a>
                         </li>
                         <li>
-                          <a href="reportes/ReporteServicios.php" >
+                          <a href="../reportes/ReporteServicios.php" >
                            <i class="fa fa-shopping-bag"></i>
                             <b>Reporte de Servicios</b>
                           </a>
                         </li>
                         <li>
-                          <a href="reportes/ReporteExamen.php" >
+                          <a href="../reportes/ReporteExamen.php" >
                            <i class="fa fa-heartbeat"></i>
                             <b>Reporte de Examenes</b>
                           </a>
@@ -482,7 +482,7 @@
                       </a>
                       <ul class="nav child_menu">
                       <li>
-                          <a href="manual/ManualUsuario.php">
+                          <a href="../manual/ManualUsuario.php">
                             <i class="fa fa-user"></i>
                             <b> Manual de usuario </b>
                           </a>
@@ -505,7 +505,7 @@
                       </a>
                       <ul class="nav child_menu">
                         <li>
-                          <a href="backup/backup.php">
+                          <a href="../backup/backup.php">
                             <i class="fa fa-database"></i>
                             <b> Respaldo de Datos </b>
                           </a>

@@ -1,13 +1,19 @@
-<?php include 'conectar.php' ?>
-<?php include('modal/ModalMascota.php');?>
+<?php 
+session_start();
+if (!$_SESSION['acceso']) {
+  header("Location:../login/");
+}
+ ?>
+<?php include '../conectar.php' ?>
+<?php include('../modal/ModalMascota.php');?>
 <!DOCTYPE html>
 <html>
 <head>
   <title> | Clinica Veterinaria | Listado de Mascota</title>
-  <?php include 'includes/head.php' ?>
+  <?php include '../includes/head.php' ?>
 </head>
 <body class="nav-md">
-  <?php include 'includes/nav.php' ?>
+  <?php include '../includes/nav.php' ?>
   <div class="right_col" role="main">
     <div class="row">
       <div class="col-md-12">
@@ -15,7 +21,7 @@
           <section class="content-header">
             <h1>Listado de mascotas</h1>
             <ol class="breadcrumb">
-              <li><a href="inicio.php"><i class="fa fa-home"></i> Home</a></li>
+              <li><a href="../home/"><i class="fa fa-home"></i> Home</a></li>
               <li>Clientes</li>
               <li>Mascota</li>
               <li class="active">Listado de mascota</li>
@@ -138,12 +144,12 @@
       <td>
         </a>
 
-        <a href='ModyMascota.php?id=$data[0]'><img src='img/editar.png' border=0 title='Modificar' style='width: 40px; font-size:20px' title='Modificar'></a>
+        <a href='ModyMascota.php?id=$data[0]'><img src='../img/editar.png' border=0 title='Modificar' style='width: 40px; font-size:20px' title='Modificar'></a>
 
 
         <a href=# onclick=\"javascript:if(window.confirm('¿Desea eliminar el usuario $data[0]?q=$q'))
         {location.replace('$_SERVER[PHP_SELF]?action=del&id=$data[0]&q=$q')}\">
-        <img src='img/eliminar.png' border=0 title='Eliminar' style='width: 40px; font-size:20px' title='Eliminar'></a>
+        <img src='../img/eliminar.png' border=0 title='Eliminar' style='width: 40px; font-size:20px' title='Eliminar'></a>
 </td>
 
       </tr> ";

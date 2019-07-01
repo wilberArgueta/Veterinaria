@@ -1,4 +1,5 @@
-<?php include 'conectar.php' ?>
+<?php include '../conectar.php' ?>
+<?php include '../includes/head.php' ?>
 
 <div class="modal fade" id="ModalAgregarConsulta" tabindex="-1" role="dialog">
   <div class="modal-dialog">
@@ -17,15 +18,15 @@
 	        	<label for="brandName" class="col-sm-3 control-label">Cliente </label>
 	        	<label class="col-sm-1 control-label">: </label>
 				   <?php
-                  include ('conectar.php');
-                  $consulta_tipo_equipo= mysqli_query($link, "SELECT * FROM cliente");
+                  include ('../conectar.php');
+                  $consulta= mysqli_query($link, "SELECT * FROM cliente");
                   echo "<div class=\"col-sm-8\">";
-                  echo "<select class=\"form-control\" id=\"idcliente\" name=\"idcliente\" \"required\">";
-                  while ($fila= mysqli_fetch_array($consulta_tipo_equipo)) {
+                  echo "<select class=\"form-control js-example-basic-single\" id=\"idcliente\" name=\"idcliente\" \"required\">";
+                  while ($fila= mysqli_fetch_array($consulta)) {
                     if ($tipo==$fila['idcliente']) {
-                    echo "<option value='".$fila['idcliente']."' selected>".$fila['nombre']."</option>";
+                    echo "<option value='".$fila['idcliente']."' selected>".$fila['nombre'].$fila['apellido']."</option>";
                     }
-                    echo "<option value='".$fila['idcliente']."'>".$fila['nombre']."</option>";
+                    echo "<option value='".$fila['idcliente']."'>".$fila['nombre'].$fila['apellido']."</option>";
                   }
                   echo "  </select>";
                   echo "  </div>";
@@ -82,7 +83,7 @@
 	      <div class="modal-footer">
 	        <button type="button" class="btn btn-default" data-dismiss="modal">Cerrar</button>
 	        
-	        <button type="submit" class="btn btn-primary" id="createBrandBtn" data-loading-text="Loading..." autocomplete="off">Agregar</button>
+	        <button type="submit" name="submit" class="btn btn-primary" id="createBrandBtn" data-loading-text="Loading..." autocomplete="off">Agregar</button>
 	      </div>
 	      <!-- /modal-footer -->
      	</form>
@@ -92,8 +93,8 @@
   </div>
   <!-- /modal-dailog -->
 </div>
-
-<script type="text/javascript" src="js/frm.reg.consulta.js"></script>
+  <?php include '../includes/script.php' ?>
+<script type="text/javascript" src="../js/frm.reg.consulta.js"></script>
 
 <!-- / add modal -->
 
@@ -101,7 +102,7 @@
 
 
 <?php
- if ($_POST) {
+ if (isset($_POST['submit'])) {
      $idcliente=$_POST["idcliente"];
      $descripcion=$_POST["descripcion"];
      $c_fisiologica=$_POST["c_fisiologica"];
@@ -116,7 +117,7 @@
          $insertar=mysqli_query($link,"INSERT INTO consulta (idconsulta,idcliente,descripcion,c_fisiologica,tratamiento,fecha_ingreso,precio) values('','$idcliente','$descripcion','$c_fisiologica','$tratamiento','$fecha_ingreso','$precio')");
          if ($insertar) {
              echo "<script>
-               location.replace('ListadoConsultas.php?q=$idcliente&info=add');
+               location.replace('../consulta/ListadoConsultas.php?q=$idconsulta&info=add');
               </script>";
          } else {
              echo "<script>alert('Error al insertar');</script>";

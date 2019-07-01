@@ -1,10 +1,10 @@
-<?php include 'conectar.php' ?>
-
+<?php include '../conectar.php' ?>
+  <?php include '../includes/head.php' ?>
 <div class="modal fade" id="ModalAgregarMascota" tabindex="-1" role="dialog">
   <div class="modal-dialog">
     <div class="modal-content">
     	
-    	<form class="form-horizontal" id="frm_registrolaboratorio" method="POST">
+    	<form class="form-horizontal" id="frm_nuevaMascota" method="POST">
 	      <div class="modal-header">
 	        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
 	        <h4 class="modal-title"><i class="fa fa-plus"></i> Agregar mascota</h4>
@@ -17,7 +17,7 @@
 	        	<label for="brandName" class="col-sm-3 control-label">Expediente </label>
 	        	<label class="col-sm-1 control-label">: </label>
 				    <div class="col-sm-8">
-				      <input type="text" class="form-control" id="expedienteMascota" name="expedienteMascota" autocomplete="off" required>
+				      <input type="text" class="form-control" id="expedienteMascota" name="expedienteMascota" autocomplete="off" >
 				    </div>
 	        </div> <!-- /form-group-->
 	 
@@ -26,7 +26,7 @@
 	        	<label for="brandName" class="col-sm-3 control-label">Nombre </label>
 	        	<label class="col-sm-1 control-label">: </label>
 				    <div class="col-sm-8">
-				      <input type="text" class="form-control" id="nombremascota" name="nombremascota" autocomplete="off" required>
+				      <input type="text" class="form-control" id="nombremascota" name="nombremascota" autocomplete="off" >
 				    </div>
 	        </div> <!-- /form-group-->
 
@@ -34,7 +34,7 @@
 	        	<label for="brandName" class="col-sm-3 control-label">Raza </label>
 	        	<label class="col-sm-1 control-label">: </label>
 				    <div class="col-sm-8">
-				      <input type="text" class="form-control" id="raza" name="raza" autocomplete="off" required>
+				      <input type="text" class="form-control" id="raza" name="raza" autocomplete="off" >
 				    </div>
 	        </div> <!-- /form-group-->
 	
@@ -43,7 +43,7 @@
 	        	<label for="brandName" class="col-sm-3 control-label">Edad </label>
 	        	<label class="col-sm-1 control-label">: </label>
 				    <div class="col-sm-8">
-				      <input type="text" class="form-control" id="edadMascota" name="edadMascota" autocomplete="off" required>
+				      <input type="text" class="form-control" id="edadMascota" name="edadMascota" autocomplete="off" >
 				    </div>
 	        </div> <!-- /form-group-->		
 
@@ -51,7 +51,7 @@
 	        	<label for="brandName" class="col-sm-3 control-label">Peso </label>
 	        	<label class="col-sm-1 control-label">: </label>
 				    <div class="col-sm-8">
-				      <input type="text" class="form-control" id="peso" name="peso" autocomplete="off" required>
+				      <input type="text" class="form-control" id="peso" name="peso" autocomplete="off" >
 				    </div>
 	        </div> <!-- /form-group-->	
 
@@ -59,7 +59,7 @@
 	        	<label for="brandName" class="col-sm-3 control-label">Talla </label>
 	        	<label class="col-sm-1 control-label">: </label>
 				    <div class="col-sm-8">
-				      <input type="text" class="form-control" id="talla" name="talla" autocomplete="off" required>
+				      <input type="text" class="form-control" id="talla" name="talla" autocomplete="off" >
 				    </div>
 	        </div> <!-- /form-group-->	
 
@@ -67,7 +67,7 @@
 	        	<label for="brandName" class="col-sm-3 control-label">Genero </label>
 	        	<label class="col-sm-1 control-label">: </label>
 				    <div class="col-sm-8">
-				      <input type="text" class="form-control" id="genero" name="genero" autocomplete="off" required>
+				      <input type="text" class="form-control" id="genero" name="genero" autocomplete="off" >
 				    </div>
 	        </div> <!-- /form-group-->	
 
@@ -77,7 +77,7 @@
 	      <div class="modal-footer">
 	        <button type="button" class="btn btn-default" data-dismiss="modal">Cerrar</button>
 	        
-	        <button type="submit" class="btn btn-primary" id="createBrandBtn" data-loading-text="Loading..." autocomplete="off">Agregar</button>
+	        <button type="submit" name="submit" class="btn btn-primary" id="createBrandBtn" data-loading-text="Loading..." autocomplete="off">Agregar</button>
 	      </div>
 	      <!-- /modal-footer -->
      	</form>
@@ -87,8 +87,8 @@
   </div>
   <!-- /modal-dailog -->
 </div>
-
-<script type="text/javascript" src="js/frm.reg.mascota.js"></script>
+ <?php include '../includes/script.php' ?>
+<script type="text/javascript" src="../js/frm.reg.mascota.js"></script>
 
 <!-- / add modal -->
 
@@ -96,7 +96,7 @@
 
 
 <?php
- if ($_POST) {
+ if (isset($_POST['submit'])) {
      $expediente=$_POST["expedienteMascota"];
      $nombremascota=$_POST["nombremascota"];
      $raza=$_POST["raza"];
@@ -110,7 +110,7 @@
      if($update)
      {
       echo "<script>
-     location.replace('ListadoMascota.php?q=$nombremascota&info=modificar');
+     location.replace('../cliente/NuevoCliente.php');
             </script>";
 
      }

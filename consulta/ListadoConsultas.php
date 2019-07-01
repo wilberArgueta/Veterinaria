@@ -1,16 +1,23 @@
-<?php include 'conectar.php' ?>
-<?php include('modal/ModalConsulta.php');?>
-<?php include('modal/DescripcionConsulta.php');?>
-<?php include('modal/ConstanciaFConsulta.php');?>
-<?php include('modal/TratamientoConsulta.php');?>
+<?php 
+session_start();
+if (!$_SESSION['acceso']) {
+  header("Location:../login/");
+}
+ ?>
+<?php include '../conectar.php' ?>
+<?php include('../modal/ModalConsulta.php');?>
+<?php include('../modal/DescripcionConsulta.php');?>
+<?php include('../modal/ConstanciaFConsulta.php');?>
+<?php include('../modal/TratamientoConsulta.php');?>
 <!DOCTYPE html>
 <html>
 <head>
   <title> | Clinica Veterinaria | Listado de Consultas</title>
-  <?php include 'includes/head.php' ?>
+  <?php include '../includes/head.php' ?>
 </head>
 <body class="nav-md">
-  <?php include 'includes/nav.php' ?>
+  <?php include '../includes/nav.php' ?>
+  <?php include '../includes/cerrarSesion.php' ?>
   <div class="right_col" role="main">
     <div class="row">
       <div class="col-md-12">
@@ -18,7 +25,7 @@
           <section class="content-header">
             <h1>Listado de Consultas</h1>
             <ol class="breadcrumb">
-              <li><a href="inicio.php"><i class="fa fa-home"></i> Home</a></li>
+              <li><a href="../home/"><i class="fa fa-home"></i> Home</a></li>
               <li>Expediente</li>
               <li>Consulta</li>
               <li class="active">Listado de Consultas</li>
@@ -140,7 +147,7 @@
                  </td>
 
         <td align='center'>
-                 <button type='button' class='btn btn-link' data-toggle='modal' data-target='#TratamientoConsulta'><img src='img/detalles.png' border=0 title='Detalles' style='width: 40px; font-size:20px' title='Detalles'></button>
+                 <button type='button' class='btn btn-link' data-toggle='modal' data-target='#TratamientoConsulta'><img src='../img/detalles.png' border=0 title='Detalles' style='width: 40px; font-size:20px' title='Detalles'></button>
                  </td>
 
          <td>$data[fecha_ingreso]</td>
@@ -149,12 +156,12 @@
          <td>
           </a>
 
-          <a href='ModyConsulta.php?id=$data[0]'><img src='img/editar.png' border=0 title='Modificar' style='width: 40px; font-size:20px' title='Modificar'></a>
+          <a href='ModyConsulta.php?id=$data[0]'><img src='../img/editar.png' border=0 title='Modificar' style='width: 40px; font-size:20px' title='Modificar'></a>
 
 
           <a href=# onclick=\"javascript:if(window.confirm('¿Desea eliminar el equipo $data[0]?q=$q'))
           {location.replace('$_SERVER[PHP_SELF]?action=del&id=$data[0]&q=$q')}\">
-          <img src='img/eliminar.png' border=0 title='Eliminar' style='width: 40px; font-size:20px' title='Eliminar'></a>
+          <img src='../img/eliminar.png' border=0 title='Eliminar' style='width: 40px; font-size:20px' title='Eliminar'></a>
    </td>
 
         </tr> ";
@@ -174,11 +181,11 @@
 
 </div>
 
-<?php include 'includes/footer.php' ?>
+<?php include '../includes/footer.php' ?>
 
 </div>
 </div>
-<?php include 'includes/script.php' ?>
+<?php include '../includes/script.php' ?>
 
 </body>
 </html>

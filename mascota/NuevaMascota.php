@@ -1,14 +1,20 @@
-<?php include ('conectar.php') ?>
+<?php 
+session_start();
+if (!$_SESSION['acceso']) {
+  header("Location:../login/");
+}
+ ?>
+<?php include ('../conectar.php') ?>
 <!DOCTYPE html>
 <html>
 <head>
   <title> | Clinica Veterinaria | Registrar Mascota</title>
 
-  <?php include 'includes/head.php' ?>
+  <?php include '../includes/head.php' ?>
 </head>
 <body class="nav-md">
-  <?php include 'includes/nav.php' ?>
-  <?php include 'includes/cerrarSesion.php' ?>
+  <?php include '../includes/nav.php' ?>
+  <?php include '../includes/cerrarSesion.php' ?>
   <div class="right_col" role="main">
     <div class="row">
       <div class="col-md-12">
@@ -16,7 +22,7 @@
           <section class="content-header">
             <h1>Nueva Mascota</h1>
             <ol class="breadcrumb">
-              <li><a href="inicio.php"><i class="fa fa-home"></i> Home</a></li>
+              <li><a href="../home/"><i class="fa fa-home"></i> Home</a></li>
               <li>Cliente</li>
               <li>Mascota</li>
               <li class="active">Nueva Mascota</li>
@@ -81,15 +87,7 @@
                   <span class="fa fa-paw form-control-feedback right" aria-hidden="true"></span>
                 </div>
               </div>
-              <!--
-                <div class="item form-group">
-                <label class="control-label col-md-3 col-sm-3 col-xs-12" for="genero">Genero de la Mascota</label>
-                <div class="col-md-6 col-sm-6 col-xs-12">
-                  <input id="genero" class="form-control col-md-7 col-xs-12"  name="genero" type="text">
-                  <span class="fa fa-paw form-control-feedback right" aria-hidden="true"></span>
-                </div>
-              </div>
-               -->
+            
               
               <div class="form-group">
                 <label class="control-label col-md-3 col-sm-3 col-xs-12">Genero</label>
@@ -127,16 +125,16 @@
     </div>
 
    
-    <?php include 'includes/footer.php' ?>
-    <?php include 'includes/script.php' ?>
+    <?php include '../includes/footer.php' ?>
+    <?php include '../includes/script.php' ?>
    
-  <script src="js/frm.reg.mascota.js"></script>
+  <script src="../js/frm.reg.mascota.js"></script>
 
 </body>
 </html>
 
 <?php
- if ($_POST) {
+ if (isset($_POST['submit'])) {
      $expediente=$_POST["expedienteMascota"];
      $nombremascota=$_POST["nombremascota"];
      $raza=$_POST["raza"];
@@ -153,13 +151,23 @@
          $insertar=mysqli_query($link,"INSERT INTO mascota (idmascota,expediente,nombre,raza,edad,peso,talla,genero) values('','$expediente','$nombremascota','$raza','$edad','$peso','$talla','$genero')");
          if ($insertar) {
              echo "<script>
-                   location.replace('ListadoMascota.php?q=$nombremascota&info=add');
+                   location.replace('../mascota/ListadoMascota.php?q=$nombremascota&info=add');
               </script>";
          } else {
-             echo "<script>alert('Error al insertar');</script>";
+             echo "<script>
+                 swal(
+              'Oops...',
+               'Error al insertar!',
+               'error'
+             )</script>";
          }
      } else {
-         echo "<script>alert('El usuario ya existe');</script>";
+         echo "<script>
+           swal(
+               'Oops...',
+               'El registro ya existe!',
+               'error'
+               )</script>";
          mysqli_close($link);
      }
  }
