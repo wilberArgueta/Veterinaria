@@ -1,19 +1,22 @@
-<?php 
+<?php
 session_start();
 if (!$_SESSION['acceso']) {
-  header("Location:../login/");
+    header("Location:../login/");
 }
- ?>
-<?php include '../conectar.php' ?>
+include '../conectar.php';
+?>
+
 <!DOCTYPE html>
 <html>
 <head>
   <title> | Clinica Veterinaria | Registrar Laboratorio</title>
-  <?php include '../includes/head.php' ?>
+  <?php include '../includes/head.php'?>
 </head>
 <body class="nav-md">
-  <?php include '../includes/nav.php' ?>
-  <?php include '../includes/cerrarSesion.php' ?>
+  <?php
+include '../includes/nav.php';
+include '../includes/cerrarSesion.php';
+?>
   <div class="right_col" role="main">
     <div class="row">
       <div class="col-md-12">
@@ -94,45 +97,53 @@ if (!$_SESSION['acceso']) {
 
     </div>
   </div>
-  <?php include '../includes/footer.php' ?>
-  <?php include '../includes/script.php' ?>
+  <?php
+include '../includes/footer.php';
+include '../includes/script.php';
+?>
 <script type="text/javascript" src="../js/frm.reg.laboratorio.js"></script>
 
 </body>
 </html>
 <?php
- if (isset($_POST['submit'])) {
-     $nombre=$_POST["nombre"];
-     $direccion=$_POST["direccion"];
-     $telefono=$_POST["telefono"];
-     $correo=$_POST["email"];
-     $descripcion=$_POST["descripcion"];
+if (isset($_POST['submit'])) {
+    $nombre = $_POST["nombre"];
+    $direccion = $_POST["direccion"];
+    $telefono = $_POST["telefono"];
+    $correo = $_POST["email"];
+    $descripcion = $_POST["descripcion"];
 
-     $sql_comprueba_laboratorio="SELECT nombre FROM laboratorio where nombre='$nombre'";
-     $ejecuta_sql_laboratorio=mysqli_query($link,$sql_comprueba_laboratorio);
-     $comprueba_laaboratorio=mysqli_num_rows($ejecuta_sql_laboratorio);
-     if ($comprueba_laaboratorio==0) {
-         $insertar=mysqli_query($link,"INSERT INTO laboratorio (idlaboratorio,nombre,direccion,telefono,correo,descripcion) values('','$nombre','$direccion','$telefono','$correo','$descripcion')");
-         if ($insertar) {
-             echo "<script>
-               location.replace('ListadoLaboratorio.php?q=$nombre&info=add');
+    try {
+        $sql_comprueba_laboratorio = "SELECT nombre FROM laboratorio where nombre='$nombre'";
+        $ejecuta_sql_laboratorio = mysqli_query($link, $sql_comprueba_laboratorio);
+        $comprueba_laaboratorio = mysqli_num_rows($ejecuta_sql_laboratorio);
+        if ($comprueba_laaboratorio == 0) {
+            $query = "INSERT INTO laboratorio (nombre,direccion,telefono,correo,descripcion)
+              values('$nombre','$direccion','$telefono','$correo','$descripcion')";
+            $insertar = mysqli_query($link, $query);
+            if ($insertar) {
+                echo "<script>
+               location.replace('index.php?q=$nombre&info=add');
               </script>";
-         } else {
-             echo "<script>
+            } else {
+                echo "<script>
                  swal(
               'Oops...',
                'Error al insertar!',
                'error'
              )</script>";
-         }
-     } else {
-         echo "<script>
+            }
+        } else {
+            echo "<script>
            swal(
                'Oops...',
                'El registro ya existe!',
                'error'
                )</script>";
-         mysqli_close($link);
-     }
- }
- ?>
+            mysqli_close($link);
+        }
+    } catch (\Throwable $th) {
+        echo $th->getMessage();
+    }
+}
+?>

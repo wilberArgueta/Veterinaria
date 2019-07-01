@@ -1,41 +1,36 @@
-<?php 
+<?php
 session_start();
 if (!$_SESSION['acceso']) {
-  header("Location:../login/");
+    header("Location:../login/");
 }
- ?>
-<?php
-if($_GET)
-{
- include("../conectar.php");
- $id=$_GET["id"];
- $sql=mysqli_query($link,"SELECT * FROM laboratorio WHERE idlaboratorio='$id'");
- $row=mysqli_fetch_array($sql);
+if (isset($_GET['id'])) {
+    include "../conectar.php";
+    $id = $_GET["id"];
+    $sql = mysqli_query($link, "SELECT * FROM laboratorio WHERE idlaboratorio='$id'");
+    $row = mysqli_fetch_array($sql);
 
- $nombre=$row["nombre"];
- $direccion=$row["direccion"];
- $telefono=$row["telefono"];
- $correo=$row["correo"];
- $descripcion=$row["descripcion"];
+    $nombre = $row["nombre"];
+    $direccion = $row["direccion"];
+    $telefono = $row["telefono"];
+    $correo = $row["correo"];
+    $descripcion = $row["descripcion"];
 
- }
- else
- {
-  $nombre="";
- echo "<br><div class=\"alert alert alert-danger\" role=\"alert\">
+} else {
+    $nombre = "";
+    echo "<br><div class=\"alert alert alert-danger\" role=\"alert\">
  <strong>Error</strong> No se han enviado variables</div>";
- }
+}
 
 ?>
 <!DOCTYPE html>
 <html>
 <head>
   <title> | Clinica Veterinaria | Modificar Laboratorio</title>
-  <?php include '../includes/head.php' ?>
+  <?php include '../includes/head.php'?>
 </head>
 <body class="nav-md">
-  <?php include '../includes/nav.php' ?>
-  <?php include '../includes/cerrarSesion.php' ?>
+  <?php include '../includes/nav.php'?>
+  <?php include '../includes/cerrarSesion.php'?>
   <div class="right_col" role="main">
     <div class="row">
       <div class="col-md-12">
@@ -116,39 +111,38 @@ if($_GET)
 
     </div>
   </div>
-  <?php include '../includes/footer.php' ?>
-<?php include '../includes/script.php' ?>
+  <?php include '../includes/footer.php'?>
+<?php include '../includes/script.php'?>
 <script type="text/javascript" src="../js/frm.reg.laboratorio.js"></script>
 
 </body>
 </html>
 <?php
- if isset(($_POST['submit'])) {
+if (isset($_POST['submit'])) {
 
-     $nombre=$_POST["nombre"];
-		 $direccion=$_POST["direccion"];
-		 $telefono=$_POST["telefono"];
-     $correo=$_POST["email"];
-     $descripcion=$_POST["descripcion"];
-
-     $update=mysqli_query($link, "UPDATE laboratorio SET nombre='$nombre',direccion='$direccion',telefono='$telefono',correo='$correo',descripcion='$descripcion' WHERE idlaboratorio='$id'");
-     if($update)
-     {
-      echo "<script>
- 	   location.replace('../laboratorio/ListadoLaboratorio.php?q=$nombre&info=modificar');
+    $nombre = $_POST["nombre"];
+    $direccion = $_POST["direccion"];
+    $telefono = $_POST["telefono"];
+    $correo = $_POST["email"];
+    $descripcion = $_POST["descripcion"];
+    $query = "UPDATE laboratorio
+    SET nombre='$nombre',direccion='$direccion',telefono='$telefono',correo='$correo',descripcion='$descripcion'
+     WHERE idlaboratorio='$id'";
+    $update = mysqli_query($link, $query);
+    if ($update) {
+        echo "<script>
+ 	   location.replace('../laboratorio/index.php?q=$nombre&info=modificar');
             </script>";
 
-     }
-     else
-     {
-       
-       echo "<script>
+    } else {
+
+        echo "<script>
                  swal(
               'Oops...',
                'Error al insertar!',
                'error'
              )</script>";
-     }
+    }
 
-  }
-  ?>
+}
+?>

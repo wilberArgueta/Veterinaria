@@ -69,13 +69,13 @@
                     </a>
                     <ul class="nav child_menu">
                       <li class="sub_menu">
-                        <a href="../proveedor/NuevoProveedor.php">
+                        <a href="../proveedor/nuevo.php">
                           <i class="fa fa-plus"></i>
                           <b> Nuevo Proveedor</b>
                         </a>
                       </li>
                       <li>
-                        <a href="../proveedor/ListadoProveedores.php?q=">
+                        <a href="../proveedor/">
                           <i class="fa fa-list"></i>
                           <b> Listado de Proveedores</b>
                         </a>
@@ -91,13 +91,13 @@
                     </a>
                     <ul class="nav child_menu">
                       <li class="sub_menu">
-                        <a href="../laboratorio/NuevoLaboratorio.php">
+                        <a href="../laboratorio/nuevo.php">
                           <i class="fa fa-plus"></i>
                           <b> Nuevo Laboratorio</b>
                         </a>
                       </li>
                       <li>
-                        <a href="../laboratorio/ListadoLaboratorio.php?q=">
+                        <a href="../laboratorio/">
                           <i class="fa fa-list"></i>
                           <b> Listado de Laboratorios</b>
                         </a>

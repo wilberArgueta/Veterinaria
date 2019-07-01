@@ -146,7 +146,7 @@ if($_GET)
      if($update)
      {
       echo "<script>
- 	   location.replace('../proveedor/ListadoProveedores.php?q=$nombre&info=modificar');
+ 	   location.replace('../proveedor/index.php?q=$nombre&info=modificar');
             </script>";
 
      }
