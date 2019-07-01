@@ -1,7 +1,13 @@
+<?php 
+session_start();
+if (!$_SESSION['acceso']) {
+  header("Location:../login/");
+}
+ ?>
 <?php
 if($_GET)
 {
- include("conectar.php");
+ include("../conectar.php");
  $id=$_GET["id"];
  $sql=mysqli_query($link,"SELECT * FROM laboratorio WHERE idlaboratorio='$id'");
  $row=mysqli_fetch_array($sql);
@@ -25,11 +31,11 @@ if($_GET)
 <html>
 <head>
   <title> | Clinica Veterinaria | Modificar Laboratorio</title>
-  <?php include 'includes/head.php' ?>
+  <?php include '../includes/head.php' ?>
 </head>
 <body class="nav-md">
-  <?php include 'includes/nav.php' ?>
-  <?php include 'includes/cerrarSesion.php' ?>
+  <?php include '../includes/nav.php' ?>
+  <?php include '../includes/cerrarSesion.php' ?>
   <div class="right_col" role="main">
     <div class="row">
       <div class="col-md-12">
@@ -37,7 +43,7 @@ if($_GET)
           <section class="content-header">
             <h1>Modificar Laboratorio</h1>
             <ol class="breadcrumb">
-              <li><a href="inicio.php"><i class="fa fa-home"></i> Home</a></li>
+              <li><a href="../home/"><i class="fa fa-home"></i> Home</a></li>
               <li>Contactos</li>
               <li>Laboratorio</li>
               <li class="active">Modificar Laboratorio</li>
@@ -99,7 +105,7 @@ if($_GET)
               <div class="form-group">
                 <div class="col-md-6 col-md-offset-3">
                   <button type="submit" class="btn btn-success">Cancelar</button>
-                  <button id="registrar" type="submit" class="btn btn-primary">Registrar</button>
+                  <button id="registrar" name="submit" type="submit" class="btn btn-primary">Registrar</button>
                 </div>
               </div>
             </form>
@@ -110,14 +116,14 @@ if($_GET)
 
     </div>
   </div>
-  <?php include 'includes/footer.php' ?>
-<?php include 'includes/script.php' ?>
-<script type="text/javascript" src="js/frm.reg.laboratorio.js"></script>
+  <?php include '../includes/footer.php' ?>
+<?php include '../includes/script.php' ?>
+<script type="text/javascript" src="../js/frm.reg.laboratorio.js"></script>
 
 </body>
 </html>
 <?php
- if ($_POST) {
+ if isset(($_POST['submit'])) {
 
      $nombre=$_POST["nombre"];
 		 $direccion=$_POST["direccion"];
@@ -129,13 +135,19 @@ if($_GET)
      if($update)
      {
       echo "<script>
- 	   location.replace('ListadoLaboratorio.php?q=$nombre&info=modificar');
+ 	   location.replace('../laboratorio/ListadoLaboratorio.php?q=$nombre&info=modificar');
             </script>";
 
      }
      else
      {
-       echo "<script>alert('Error al actualizar el registro');</script>";
+       
+       echo "<script>
+                 swal(
+              'Oops...',
+               'Error al insertar!',
+               'error'
+             )</script>";
      }
 
   }

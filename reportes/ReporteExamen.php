@@ -1,15 +1,21 @@
-<?php include 'conectar.php' ?>
+<?php 
+session_start();
+if (!$_SESSION['acceso']) {
+  header("Location:../login/");
+}
+ ?>
+<?php include '../conectar.php' ?>
 <!DOCTYPE html>
 <html>
 <head>
   <title> | Clinica Veterinaria | Reporte de Examen</title>
 
-  <?php include 'includes/head.php' ?>
+  <?php include '../includes/head.php' ?>
 
 </head>
 <body class="nav-md">
-  <?php include 'includes/nav.php' ?>
-  <?php include 'includes/cerrarSesion.php' ?>
+  <?php include '../includes/nav.php' ?>
+  <?php include '../includes/cerrarSesion.php' ?>
   <div class="right_col" role="main">
     <div class="row">
       <div class="col-md-12">
@@ -17,7 +23,7 @@
           <section class="content-header">
             <h1>Reporte de Examen</h1>
             <ol class="breadcrumb">
-              <li><a href="inicio.php"><i class="fa fa-home"></i> Home</a></li>
+              <li><a href="../home/"><i class="fa fa-home"></i> Home</a></li>
               <li>/ Reporte</li>
               <li class="active">Reporte de Examen</li>
             </ol>
@@ -55,7 +61,7 @@
                     <?php
                       $consulta_laboratorio=mysqli_query($link,"SELECT * FROM laboratorio ORDER BY idlaboratorio ASC ");
                       echo "<option value=''>Seleccione un laboratorio</option>";
-                      echo " <select  class=\"form-control\" id=\"idlaboratorio\" title=\"Has clic para desplegar\" name=\"idlaboratorio\" >";
+                      echo " <select  class=\"form-control js-example-basic-single \" id=\"idlaboratorio\" title=\"Has clic para desplegar\" name=\"idlaboratorio\" >";
                       while($fila=mysqli_fetch_array($consulta_laboratorio)){
                         echo "<option value='".$fila['idlaboratorio']."'>".$fila['nombre']."</option>";
                       }
@@ -78,8 +84,8 @@
 
       </div>
     </div>
-    <?php include 'includes/footer.php' ?>
-  <?php include 'includes/script.php' ?>
+    <?php include '../includes/footer.php' ?>
+  <?php include '../includes/script.php' ?>
   
 
 </body>

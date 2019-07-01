@@ -1,4 +1,5 @@
-<?php include 'conectar.php' ?>
+<?php include '../conectar.php' ?>
+  <?php include '../includes/head.php' ?>
 
 <div class="modal fade" id="ModalAgregarServicio" tabindex="-1" role="dialog">
   <div class="modal-dialog">
@@ -37,7 +38,7 @@
                   include ('conectar.php');
                   $consulta_tipo_equipo= mysqli_query($link, "SELECT * FROM cliente");
                   echo "<div class=\"col-sm-8\">";
-                  echo "<select class=\"form-control\" id=\"idcliente\" name=\"idcliente\" \"required\">";
+                  echo "<select class=\"form-control js-example-basic-single\" id=\"idcliente\" name=\"idcliente\" \"required\">";
                   while ($fila= mysqli_fetch_array($consulta_tipo_equipo)) {
                     if ($tipo==$fila['idcliente']) {
                     echo "<option value='".$fila['idcliente']."' selected>".$fila['nombre']."</option>";
@@ -66,7 +67,7 @@
 	      <div class="modal-footer">
 	        <button type="button" class="btn btn-default" data-dismiss="modal">Cerrar</button>
 	        
-	        <button type="submit" class="btn btn-primary" id="createBrandBtn" data-loading-text="Loading..." autocomplete="off">Agregar</button>
+	        <button type="submit" name="submit" class="btn btn-primary" id="createBrandBtn" data-loading-text="Loading..." autocomplete="off">Agregar</button>
 	      </div>
 	      <!-- /modal-footer -->
      	</form>
@@ -76,14 +77,14 @@
   </div>
   <!-- /modal-dailog -->
 </div>
-
- <script type="text/javascript" src="js/frm.reg.servicio.js"></script>
+ <?php include '../includes/script.php' ?>
+ <script type="text/javascript" src="../js/frm.reg.servicio.js"></script>
 <!-- / add modal -->
 
 
 
 <?php 
-if ($_POST) {
+if isset(($_POST['submit'])) {
   $tipo_servicio=$_POST["tipo_servicio"];
   $descripcion=$_POST["descripcion"];
   $idcliente=$_POST["idcliente"];
@@ -97,19 +98,25 @@ if ($_POST) {
     $insertar=mysqli_query($link, "INSERT INTO servicios(id_servicio,tipo_servicio,descripcion,idcliente,precio) values ('','$tipo_servicio','$descripcion','$idcliente','$precio')");
     if ($insertar) {
       echo "<script>
-        location.replace('ListadoServicios.php?q=$tipo_servicio&info=add');
+        location.replace('../servicios/ListadoServicios.php?q=$tipo_servicio&info=add');
       </script>";
-    } else {
-      echo "<script>
-      alert('Error al insertar');
-      </script>";
-    }
-  } else {
-    echo "<script>
-    alert('El servicio ya existe');
-    </script>";
-    mysqli_close($link);
-  }
+    }else {
+             echo "<script>
+                 swal(
+              'Oops...',
+               'Error al insertar!',
+               'error'
+             )</script>";
+         }
+     } else {
+         echo "<script>
+           swal(
+               'Oops...',
+               'El registro ya existe!',
+               'error'
+               )</script>";
+         mysqli_close($link);
+     }
 
 }
  ?>

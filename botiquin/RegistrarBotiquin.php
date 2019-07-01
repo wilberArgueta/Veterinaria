@@ -1,13 +1,21 @@
-<?php include 'conectar.php' ?>
+
+<?php 
+session_start();
+if (!$_SESSION['acceso']) {
+  header("Location:../login/");
+}
+ ?>
+ <?php include '../conectar.php' ?>
 
 <!DOCTYPE html>
 <html>
 <head>
   <title> | Clinica Veterinaria | Registro de Botiquín</title>
-  <?php include 'includes/head.php' ?>
+  <?php include '../includes/head.php' ?>
 </head>
 <body class="nav-md">
-  <?php include 'includes/nav.php' ?>
+  <?php include '../includes/nav.php' ?>
+  <?php include '../includes/cerrarSesion.php' ?>
   <div class="right_col" role="main">
     <div class="row">
       <div class="col-md-12">
@@ -15,7 +23,7 @@
           <section class="content-header">
             <h1>Nuevo medicamento de botiquín</h1>
             <ol class="breadcrumb">
-              <li><a href="inicio.php"><i class="fa fa-home"></i> Home</a></li>
+              <li><a href="../home/"><i class="fa fa-home"></i> Home</a></li>
               <li>Insumos</li>
               <li>Botiquín</li>
               <li class="active">Nuevo medicamento de botiquín</li>
@@ -106,11 +114,11 @@
 
       </div>
     </div>
-    <?php include 'includes/footer.php' ?>
+    <?php include '../includes/footer.php' ?>
 
     </div>
   </div>
-  <?php include 'includes/script.php' ?>
+  <?php include '../includes/script.php' ?>
 
 </body>
 </html>
@@ -143,7 +151,7 @@
     <tbody>
      <?php 
 
-     include 'conectar.php';
+     include '../conectar.php';
 
      $query= mysqli_query($link, "SELECT p.idproducto as id, p.cod_interno as cod_interno, p.nombre as producto, p.descripcion as descripcion, p.cantidad as cantidad,c.nombre AS categoria
       FROM productos  as p INNER JOIN categoria as c ON(p.idcategoria=c.idcategoria) where p.idcategoria=4");

@@ -1,4 +1,4 @@
-<?php include 'conectar.php' ?>
+<?php include '../conectar.php' ?>
 
 <div class="modal fade" id="ModalAgregarExamen" tabindex="-1" role="dialog">
   <div class="modal-dialog">
@@ -34,10 +34,10 @@
 	        	<label for="brandName" class="col-sm-3 control-label">Laboratorio </label>
 	        	<label class="col-sm-1 control-label">: </label>
 				   <?php
-                  include ('conectar.php');
+                  include ('../conectar.php');
                   $consulta_tipo_equipo= mysqli_query($link, "SELECT * FROM laboratorio");
                   echo "<div class=\"col-sm-8\">";
-                  echo "<select class=\"form-control\" id=\"idlaboratorio\" name=\"idlaboratorio\" \"required\">";
+                  echo "<select class=\"form-control js-example-basic-single\" id=\"idlaboratorio\" name=\"idlaboratorio\" >";
                   while ($fila= mysqli_fetch_array($consulta_tipo_equipo)) {
                     if ($tipo==$fila['idlaboratorio']) {
                     echo "<option value='".$fila['idlaboratorio']."' selected>".$fila['nombre']."</option>";
@@ -73,7 +73,7 @@
 	      <div class="modal-footer">
 	        <button type="button" class="btn btn-default" data-dismiss="modal">Cerrar</button>
 	        
-	        <button type="submit" class="btn btn-primary" id="createBrandBtn" data-loading-text="Loading..." autocomplete="off">Agregar</button>
+	        <button type="submit" name="submit" class="btn btn-primary" id="createBrandBtn" data-loading-text="Loading..." autocomplete="off">Agregar</button>
 	      </div>
 	      <!-- /modal-footer -->
      	</form>
@@ -83,8 +83,8 @@
   </div>
   <!-- /modal-dailog -->
 </div>
-
-<script type="text/javascript" src="js/frm.reg.examen.js"></script>
+<?php include '../includes/script.php' ?>
+<script type="text/javascript" src="../js/frm.reg.examen.js"></script>
 
 <!-- / add modal -->
 
@@ -92,7 +92,7 @@
 
 
 <?php
- if ($_POST) {
+ if (isset($_POST['submit'])) {
      $tipo_examen=$_POST["tipo_examen"];
      $descripcion=$_POST["descripcion"];
      $idlaboratorio=$_POST["idlaboratorio"];
@@ -108,14 +108,25 @@
          $insertar=mysqli_query($link,"INSERT INTO examen (   idexamen,tipo_examen,descripcion,idlaboratorio,fecha_examen,precio) values('','$tipo_examen','$descripcion','$idlaboratorio','$fecha_examen','$precio')");
          if ($insertar) {
              echo "<script>
-                   location.replace('ListadoExamenes.php?q=$tipo_examen&info=add');
+                   location.replace('../examen/ListadoExamenes.php?q=$tipo_examen&info=add');
               </script>";
          } else {
-             echo "<script>alert('Error al insertar');</script>";
-         }
-     } else {
-         echo "<script>alert('El registro ya existe');</script>";
-         mysqli_close($link);
-     }
+      echo "<script>
+        swal(
+               'Oops...',
+               'Error al insertar!',
+               'error'
+      )</script>";
+    }
+  } else {
+    echo "<script>
+      swal(
+               'Oops...',
+               'El equipo ya existe!',
+               'error'
+    )</script>";
+    mysqli_close($link);
+  }
+
  }
  ?>

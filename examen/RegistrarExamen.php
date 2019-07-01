@@ -1,14 +1,21 @@
-<?php include 'conectar.php' ?>
-<?php include('modal/ModalCliente.php');?>
+<?php 
+session_start();
+if (!$_SESSION['acceso']) {
+  header("Location:../login/");
+}
+ ?>
+<?php include '../conectar.php' ?>
+<?php include('../modal/ModalLaboratorio.php');?>
 <!DOCTYPE html>
 <html>
 <head>
 	<title> | Clinica Veterinaria | Registrar Examen</title>
-  <?php include 'includes/head.php' ?>
+  <?php include '../includes/head.php' ?>
 </head>
 
   <body class="nav-md">
-  <?php include 'includes/nav.php' ?>
+  <?php include '../includes/nav.php' ?>
+    <?php include '../includes/cerrarSesion.php' ?>
 
               <div class="right_col" role="main">
                 <div class="row">
@@ -17,9 +24,9 @@
                       <section class="content-header">
                         <h1>Nuevo Examen</h1>
                         <ol class="breadcrumb">
-                          <li><a href="inicio.php"><i class="fa fa-home"></i> Home</a></li>
+                          <li><a href="../home/"><i class="fa fa-home"></i> Home</a></li>
                           <li>Expediente</li>
-                          <li>Examenes</li>
+                          <li>Exámenes</li>
                           <li class="active">Nuevo Examen</li>
                         </ol>
                       </section>
@@ -32,10 +39,10 @@
                     <div class="col-md-12">
                       <div class="x_panel">
                         <form method="post" role="form" id="frm_registroExamen" class="form-horizontal form-label-left" novalidate>
-                          <span class="section">Datos de el Examen</span>
+                          <span class="section">Datos de el Exámen</span>
 
                             <div class="item form-group">
-                              <label class="control-label col-md-3 col-sm-3 col-xs-12" for="tipo_examen">Tipo de Éxamen</label>
+                              <label class="control-label col-md-3 col-sm-3 col-xs-12" for="tipo_examen">Tipo de Exámen</label>
                               <div class="col-md-6 col-sm-6 col-xs-12">
                                 <textarea id="tipo_examen" required="required" name="tipo_examen" class="form-control col-md-7 col-xs-12"></textarea>
 
@@ -56,7 +63,7 @@
                               <?php
                               $consulta_laboratorio=mysqli_query($link,"SELECT * FROM laboratorio");
 
-                               echo " <select  class=\"form-control\" id=\"idlaboratorio\" title=\"Has clic para desplegar\" name=\"idlaboratorio\" >";
+                               echo " <select  class=\"form-control js-example-basic-single\" id=\"idlaboratorio\" title=\"Has clic para desplegar\" name=\"idlaboratorio\" >";
                                echo "<option value=''>Seleccione..</option>";
 
                               while($fila=mysqli_fetch_array($consulta_laboratorio)){
@@ -66,7 +73,7 @@
                                ?>
                             </div>
 
-                           <button class="btn btn-primary button1" data-toggle="modal" data-target="#ModalAgregarCliente"> <i class="glyphicon glyphicon-plus-sign"></i> Agregar laboratorio </button>
+                           <button class="btn btn-primary button1" data-toggle="modal" data-target="#ModalAgregarLaboratorio"> <i class="glyphicon glyphicon-plus-sign"></i> Agregar laboratorio </button>
                           </div>
 
                           
@@ -106,17 +113,17 @@
 
           </div>
         </div>
-      <?php include 'includes/footer.php' ?>
+      <?php include '../includes/footer.php' ?>
       </div>
     </div>
 
-    <?php include 'includes/script.php' ?>
-    <script type="text/javascript" src="js/frm.reg.examen.js"></script>
+    <?php include '../includes/script.php' ?>
+    <script type="text/javascript" src="../js/frm.reg.examen.js"></script>
   </body>
 </html>
 
 <?php
- if ($_POST) {
+ if (isset($_POST['submit'])) {
      $tipo_examen=$_POST["tipo_examen"];
      $descripcion=$_POST["descripcion"];
      $idlaboratorio=$_POST["idlaboratorio"];
@@ -132,13 +139,23 @@
          $insertar=mysqli_query($link,"INSERT INTO examen (   idexamen,tipo_examen,descripcion,idlaboratorio,fecha_examen,precio) values('','$tipo_examen','$descripcion','$idlaboratorio','$fecha_examen','$precio')");
          if ($insertar) {
              echo "<script>
-                   location.replace('ListadoExamenes.php?q=$tipo_examen&info=add');
+                   location.replace('../examen/ListadoExamenes.php?q=$tipo_examen&info=add');
               </script>";
          } else {
-             echo "<script>alert('Error al insertar');</script>";
+             echo "<script>
+                 swal(
+              'Oops...',
+               'Error al insertar!',
+               'error'
+             )</script>";
          }
      } else {
-         echo "<script>alert('El registro ya existe');</script>";
+         echo "<script>
+           swal(
+               'Oops...',
+               'El registro ya existe!',
+               'error'
+               )</script>";
          mysqli_close($link);
      }
  }

@@ -1,7 +1,13 @@
+<?php 
+session_start();
+if (!$_SESSION['acceso']) {
+  header("Location:../login/");
+}
+ ?>
 <?php
 if($_GET)
 {
- include("conectar.php");
+ include("../conectar.php");
  $id=$_GET["id"];
  $sql=mysqli_query($link,"SELECT p.idproducto, p.cod_interno as cod_interno, p.nombre as producto, p.descripcion as descripcion, p.cantidad as cantidad,c.nombre AS categoria, pv.nombre as proveedor,m.idmaterial as idmaterial,m.precio_venta as precio_venta, st.idStock_movimiento as idStock_movimiento
 FROM productos  as p INNER JOIN categoria as c ON(p.idcategoria=c.idcategoria) INNER JOIN stock_movimiento as st ON (p.idproducto =st.idproducto) INNER JOIN proveedor as pv ON (st.idproveedor= pv.idproveedor )INNER JOIN material as m ON (st.idStock_movimiento=m.idstockMovimiento) WHERE p.idproducto='$id'");
@@ -31,11 +37,11 @@ FROM productos  as p INNER JOIN categoria as c ON(p.idcategoria=c.idcategoria) I
 <html>
 <head>
   <title> | Clinica Veterinaria | Registrar Material</title>
-  <?php include 'includes/head.php' ?>
+  <?php include '../includes/head.php' ?>
 </head>
 <body class="nav-md">
-  <?php include 'includes/nav.php' ?>
-  <?php include 'includes/cerrarSesion.php' ?>
+  <?php include '../includes/nav.php' ?>
+  <?php include '../includes/cerrarSesion.php' ?>
   <div class="right_col" role="main">
     <div class="row">
       <div class="col-md-12">
@@ -43,7 +49,7 @@ FROM productos  as p INNER JOIN categoria as c ON(p.idcategoria=c.idcategoria) I
           <section class="content-header">
             <h1>Nuevo Producto Material</h1>
             <ol class="breadcrumb">
-              <li><a href="inicio.php"><i class="fa fa-home"></i> Home</a></li>
+              <li><a href="../home/"><i class="fa fa-home"></i> Home</a></li>
               <li>Insumos</li>
               <li>Materiales</li>
               <li class="active">Nuevo producto material</li>
@@ -66,8 +72,8 @@ FROM productos  as p INNER JOIN categoria as c ON(p.idcategoria=c.idcategoria) I
                   <label class="control-label col-md-3 col-sm-3 col-xs-12" for="codigoproducto">Codigo Interno del Producto</label>
                   <div class="col-md-6 col-sm-6 col-xs-12">
                   <input id="codigointerno" class="form-control col-md-7 col-xs-12"  name="codigointerno" type="text" value="<?php echo $codigoInterno?>">
-                  <input id="idStock_movimiento" class="form-control col-md-7 col-xs-12"  name="idStock_movimiento" type="text" value="<?php echo $idStock_movimiento?>" >
-                  <input id="idmaterial" class="form-control col-md-7 col-xs-12"  name="idmaterial" type="text" value="<?php echo $idmaterial?>">
+                  <input id="idStock_movimiento" class="form-control col-md-7 col-xs-12"  name="idStock_movimiento" type="hidden" value="<?php echo $idStock_movimiento?>" >
+                  <input id="idmaterial" class="form-control col-md-7 col-xs-12"  name="idmaterial" type="hidden" value="<?php echo $idmaterial?>">
                     <span class="fa fa-barcode form-control-feedback right" aria-hidden="true"></span>
                   </div>
                 </div>
@@ -97,7 +103,7 @@ FROM productos  as p INNER JOIN categoria as c ON(p.idcategoria=c.idcategoria) I
                       include ('conectar.php');
                       $consulta_categoria= mysqli_query($link, "SELECT * FROM categoria");
                       echo "<div class=\"col-md-6 col-sm-6 col-xs-12\">";
-                      echo "<select class=\"form-control col-md-7 col-xs-12\" id=\"categoria\" name=\"categoria\" >";
+                      echo "<select class=\"form-control js-example-basic-single col-md-7 col-xs-12\" id=\"categoria\" name=\"categoria\" >";
                       while ($fila= mysqli_fetch_array($consulta_categoria)) {
                     if ($tipo==$fila['idcategoria']) {
                     echo "<option value='".$fila['idcategoria']."' selected>".$fila['nombre']."</option>";
@@ -120,12 +126,12 @@ FROM productos  as p INNER JOIN categoria as c ON(p.idcategoria=c.idcategoria) I
                   <label class="control-label col-md-3 col-sm-3 col-xs-12" for="id_proveedor">Proveedor</label>
 
                     <?php
-                      include ('conectar.php');
+                      include ('../conectar.php');
                       $consulta_proveedor= mysqli_query($link, "SELECT * FROM proveedor");
                       echo "<div class=\"col-md-6 col-sm-6 col-xs-12\">";
-                      echo "<select class=\"form-control col-md-7 col-xs-12\" id=\"proveedor\" name=\"proveedor\" >";
+                      echo "<select class=\"form-control js-example-basic-single col-md-7 col-xs-12\" id=\"proveedor\" name=\"proveedor\" >";
                        while ($fila= mysqli_fetch_array($consulta_proveedor)) {
-                    if ($tipo==$fila['idcategoria']) {
+                    if ($tipo==$fila['idproveedor']) {
                     echo "<option value='".$fila['idproveedor']."' selected>".$fila['nombre']."</option>";
                     }
                     echo "<option value='".$fila['idproveedor']."'>".$fila['nombre']."</option>";
@@ -166,7 +172,7 @@ FROM productos  as p INNER JOIN categoria as c ON(p.idcategoria=c.idcategoria) I
                 <div class="form-group">
                   <div class="col-md-6 col-md-offset-3">
                     <button type="submit" class="btn btn-success">Cancelar</button>
-                    <button id="registrar" type="submit" class="btn btn-primary">Registrar</button>
+                    <button id="registrar" type="submit" name="submit" class="btn btn-primary">Registrar</button>
                   </div>
                 </div>
               </form>
@@ -177,14 +183,14 @@ FROM productos  as p INNER JOIN categoria as c ON(p.idcategoria=c.idcategoria) I
 
       </div>
     </div>
-    <?php include 'includes/footer.php' ?>
-  <?php include 'includes/script.php' ?>
-  <script type="text/javascript" src="js/frm.reg.material.js"></script>
+    <?php include '../includes/footer.php' ?>
+  <?php include '../includes/script.php' ?>
+  <script type="text/javascript" src="../js/frm.reg.material.js"></script>
 </body>
 </html>
 
 <?php
-if ($_POST) {
+if (isset($_POST['submit'])) {
     $idStock_movimiento=$_POST["idStock_movimiento"];
     $idmaterial=$_POST["idmaterial"];
     $codigoInterno=$_POST["codigointerno"];
@@ -209,11 +215,17 @@ if ($_POST) {
       } if($update3)
      {
       echo "<script>
-     location.replace('ListadoMateriales.php?q=$nombre&info=modificar');
+     location.replace('../material/ListadoMateriales.php?q=$nombre&info=modificar');
             </script>";
      }} else
      {
-       echo "<script>alert('Error al actualizar el registro');</script>";
+       
+        echo "<script>
+                 swal(
+              'Oops...',
+               'Error al actualizar el registro!',
+               'error'
+             )</script>";
      }
 
   }

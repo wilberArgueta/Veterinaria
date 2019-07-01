@@ -21,7 +21,7 @@
         <table class="page_header" >
                 <tr>
                   <td align=right style="width: 10%; color: #444444;" >
-                      <img style="width: 10%;" src="./img/logo2.jpg">
+                      <img style="width: 10%;" src="../img/logo2.jpg">
                   </td>
                 </tr>
                 
@@ -71,7 +71,7 @@
       return $fecha;
   }
 
-   include('conectar.php');
+   include('../conectar.php');
     $fecha1= $_GET['fecha1'];
 
 
@@ -93,7 +93,7 @@
     </table>
 
 <?php
-    include('conectar.php');
+    include('../conectar.php');
     $sql= "SELECT consulta.descripcion, consulta.c_fisiologica, consulta.tratamiento, consulta.fecha_ingreso, consulta.precio, cliente.nombre
         FROM consulta, cliente
         WHERE cliente.idcliente = consulta.idcliente

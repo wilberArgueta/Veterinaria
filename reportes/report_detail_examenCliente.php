@@ -22,7 +22,7 @@
         <table class="page_header" >
                 <tr>
                   <td align=right style="width: 10%; color: #444444;" >
-                      <img style="width: 10%;" src="./img/logo2.jpg">
+                      <img style="width: 10%;" src="../img/logo2.jpg">
                   </td>
                 </tr>
                 <tr>
@@ -78,7 +78,7 @@
     </table>
 
 <?php
-    include('conectar.php');
+    include('../conectar.php');
     $sql= "SELECT examen.idexamen,examen.tipo_examen,examen.descripcion,examen.fecha_examen,examen.precio, laboratorio.nombre as laboratorio FROM examen INNER JOIN laboratorio on examen.idlaboratorio = laboratorio.idlaboratorio WHERE laboratorio.nombre";
 
     $query=mysqli_query($link, $sql);

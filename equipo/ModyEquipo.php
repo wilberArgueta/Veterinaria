@@ -1,7 +1,14 @@
+<?php 
+session_start();
+if (!$_SESSION['acceso']) {
+  header("Location:../login/");
+}
+ ?>
+
 <?php
 if($_GET)
 {
- include("conectar.php");
+ include("../conectar.php");
  $id=$_GET["id"];
  $sql=mysqli_query($link,"SELECT * FROM productos WHERE idproducto='$id'");
  $row=mysqli_fetch_array($sql);
@@ -25,11 +32,11 @@ if($_GET)
 <html>
 <head>
   <title> | Clinica Veterinaria | Modificar Equipo</title>
-  <?php include 'includes/head.php' ?>
+  <?php include '../includes/head.php' ?>
 </head>
 <body class="nav-md">
-  <?php include 'includes/nav.php' ?>
-  <?php include 'includes/cerrarSesion.php' ?>
+  <?php include '../includes/nav.php' ?>
+  <?php include '../includes/cerrarSesion.php' ?>
   <div class="right_col" role="main">
     <div class="row">
       <div class="col-md-12">
@@ -37,7 +44,7 @@ if($_GET)
           <section class="content-header">
             <h1>Modificar Equipo</h1>
             <ol class="breadcrumb">
-              <li><a href="inicio.php"><i class="fa fa-home"></i> Home</a></li>
+              <li><a href="../home/"><i class="fa fa-home"></i> Home</a></li>
               <li>Insumos</li>
               <li>Equipo</li>
               <li class="active">Modificar Equipo</li>
@@ -78,10 +85,10 @@ if($_GET)
                 <label class="control-label col-md-3 col-sm-3 col-xs-12" for="idcategoria">Tipo de Equipo</label>
                 <div class="col-md-6 col-sm-6 col-xs-12">
                   <?php
-                  include ('conectar.php');
+                  include ('../conectar.php');
                   $consulta_equipo= mysqli_query($link, "SELECT * FROM categoria");
-                  echo "<div class=\"col-md-6 col-sm-6 col-xs-12\">";
-                  echo "<select class=\"form-control col-md-7 col-xs-12\" id=\"idcategoria\" name=\"idcategoria\" >";
+                    
+                  echo "<select class=\"form-control js-example-basic-single col-md-7 col-xs-12\" id=\"idcategoria\" name=\"idcategoria\" >";
                   while ($fila= mysqli_fetch_array($consulta_equipo)) {
                     if ($tipo==$fila['idcategoria']) {
                     echo "<option value='".$fila['idcategoria']."' selected>".$fila['nombre']."</option>";
@@ -89,7 +96,7 @@ if($_GET)
                     echo "<option value='".$fila['idcategoria']."'>".$fila['nombre']."</option>";
                   }
                   echo "  </select>";
-                  echo "  </div>";
+                    
                 ?>
                 </div>
             </div>
@@ -117,7 +124,7 @@ if($_GET)
                 <div class="ln_solid"></div>
                 <div class="form-group">
                   <div class="col-md-6 col-md-offset-3">
-                    <button type="submit" class="btn btn-success">Cancelar</button>
+                    <button type="submit" class="btn btn-success" >Cancelar</button>
                     <button id="registrar" type="submit" class="btn btn-primary">Registrar</button>
                   </div>
                 </div>
@@ -129,14 +136,14 @@ if($_GET)
 
       </div>
     </div>
-    <?php include 'includes/footer.php' ?>
-  <?php include 'includes/script.php' ?>
-    <script type="text/javascript" src="js/frm.reg.equipo.js"></script>
+    <?php include '../includes/footer.php' ?>
+  <?php include '../includes/script.php' ?>
+    <script type="text/javascript" src="../js/frm.reg.equipo.js"></script>
 
 </body>
 </html>
 <?php
- if ($_POST) {
+ if (isset($_POST['submit'])) {
    $cod_interno=$_POST["cod_interno"];
   $nombre=$_POST["nombre"];
   $idcategoria=$_POST["idcategoria"];
@@ -147,7 +154,7 @@ if($_GET)
      if($update)
      {
       echo "<script>
-     location.replace('ListadoEquipo.php?q=$nombre&info=modificar');
+     location.replace('../equipo/ListadoEquipo.php?q=$nombre&info=modificar');
             </script>";
 
      }

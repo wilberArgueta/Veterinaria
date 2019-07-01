@@ -1,7 +1,13 @@
+<?php 
+session_start();
+if (!$_SESSION['acceso']) {
+  header("Location:../login/");
+}
+ ?>
 <?php
 if($_GET)
 {
- include("conectar.php");
+ include("../conectar.php");
  $id=$_GET["id"];
  $sql=mysqli_query($link,"SELECT *FROM mascota WHERE idmascota='$id'");
  $row=mysqli_fetch_array($sql);
@@ -28,11 +34,11 @@ if($_GET)
 <head>
 	<title> | Clinica Veterinaria | Modificar Mascota</title>
 
-  <?php include 'includes/head.php' ?>
+  <?php include '../includes/head.php' ?>
 </head>
 <body class="nav-md">
-  <?php include 'includes/nav.php' ?>
-  <?php include 'includes/cerrarSesion.php' ?>
+  <?php include '../includes/nav.php' ?>
+  <?php include '../includes/cerrarSesion.php' ?>
   <div class="right_col" role="main">
     <div class="row">
       <div class="col-md-12">
@@ -40,7 +46,7 @@ if($_GET)
           <section class="content-header">
             <h1>Modificar Mascota</h1>
             <ol class="breadcrumb">
-              <li><a href="inicio.php"><i class="fa fa-home"></i> Home</a></li>
+              <li><a href="../home/"><i class="fa fa-home"></i> Home</a></li>
               <li>Mascota</li>
               <li class="active">Modificar Mascota</li>
             </ol>
@@ -129,15 +135,15 @@ if($_GET)
 
       </div>
     </div>
-    <?php include 'includes/footer.php' ?>
-  <?php include 'includes/script.php' ?>
-  <script type="text/javascript" src="js/frm.reg.mascota.js"></script>
+    <?php include '../includes/footer.php' ?>
+  <?php include '../includes/script.php' ?>
+  <script type="text/javascript" src="../js/frm.reg.mascota.js"></script>
 
 </body>
 </html>
 
 <?php
- if ($_POST) {
+ if (isset($_POST['submit'])) {
      $expediente=$_POST["expedienteMascota"];
      $nombremascota=$_POST["nombremascota"];
      $raza=$_POST["raza"];
@@ -151,14 +157,19 @@ if($_GET)
      if($update)
      {
       echo "<script>
-     location.replace('ListadoMascota.php?q=$nombremascota&info=modificar');
+     location.replace('../mascota/ListadoMascota.php?q=$nombremascota&info=modificar');
             </script>";
 
      }
      else
      {
-       echo "<script>alert('Error al actualizar el registro');</script>";
+       
+     echo "<script>
+                 swal(
+              'Oops...',
+               'Error al actualizar el registro!',
+               'error'
+             )</script>";
      }
 
   }
-  ?>

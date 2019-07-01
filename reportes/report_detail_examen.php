@@ -22,7 +22,7 @@
         <table class="page_header" >
                 <tr>
                   <td align=right style="width: 10%; color: #444444;" >
-                      <img style="width: 10%;" src="./img/logo2.jpg">
+                      <img style="width: 10%;" src="../img/logo2.jpg">
                   </td>
                 </tr>
                 <tr>
@@ -78,7 +78,7 @@
     </table>
 
 <?php
-    include('conectar.php');
+    include('../conectar.php');
     $sql= "SELECT examen.tipo_examen, examen.descripcion, examen.precio, examen.fecha_examen, laboratorio.nombre
         FROM examen, laboratorio
         WHERE examen.idlaboratorio = laboratorio.idlaboratorio";

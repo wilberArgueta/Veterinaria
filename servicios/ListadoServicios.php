@@ -1,15 +1,23 @@
-<?php include 'conectar.php' ?>
-<?php include('modal/ModalServicio.php');?>
-<?php include('modal/ModalTipoServicio.php');?>
-<?php include('modal/ModalDescripcionServicio.php');?>
+<?php 
+session_start();
+if (!$_SESSION['acceso']) {
+  header("Location:../login/");
+}
+ ?>
+<?php include '../conectar.php' ?>
+<?php include('../modal/ModalServicio.php');?>
+<?php include('../modal/ModalTipoServicio.php');?>
+<?php include('../modal/ModalDescripcionServicio.php');?>
 <!DOCTYPE html>
 <html>
 <head>
   <title> | Clinica Veterinaria | Listado de Servicios</title>
-  <?php include 'includes/head.php' ?>
+  <?php include '../includes/head.php' ?>
 </head>
 <body class="nav-md">
-  <?php include 'includes/nav.php' ?>
+  <?php include '../includes/nav.php' ?>
+  <?php include '../includes/cerrarSesion.php' ?>
+
   <div class="right_col" role="main">
     <div class="row">
       <div class="col-md-12">
@@ -17,7 +25,7 @@
           <section class="content-header">
             <h1>Listado de Servicios</h1>
             <ol class="breadcrumb">
-              <li><a href="inicio.php"><i class="fa fa-home"></i> Home</a></li>
+              <li><a href="../home/"><i class="fa fa-home"></i> Home</a></li>
               <li>Expediente</li>
               <li>Servicio</li>
               <li class="active">Listado de Servicios</li>
@@ -128,10 +136,10 @@
         echo "<tr class=\"warning\">
          <td>$data[0]</td>
          <td align='center'>
-          <button type='button' class='btn btn-link' data-toggle='modal' data-target='#TipoServicio'><img src='img/detalles.png' border=0 title='Detalles' style='width: 40px; font-size:20px' title='Detalles'></button>
+          <button type='button' class='btn btn-link' data-toggle='modal' data-target='#TipoServicio'><img src='../img/detalles.png' border=0 title='Detalles' style='width: 40px; font-size:20px' title='Detalles'></button>
           </td>
          <td align='center'>
-          <button type='button' class='btn btn-link' data-toggle='modal' data-target='#DescripcionServicio'><img src='img/detalles.png' border=0 title='Detalles' style='width: 40px; font-size:20px' title='Detalles'></button>
+          <button type='button' class='btn btn-link' data-toggle='modal' data-target='#DescripcionServicio'><img src='../img/detalles.png' border=0 title='Detalles' style='width: 40px; font-size:20px' title='Detalles'></button>
           </td>
          <td>$data[cliente]</td>
          <td>$data[precio]</td>
@@ -139,12 +147,12 @@
          <td>
           </a>
 
-          <a href='ModyServicio.php?id=$data[0]'><img src='img/editar.png' border=0 title='Modificar' style='width: 40px; font-size:20px' title='Modificar'></a>
+          <a href='ModyServicio.php?id=$data[0]'><img src='../img/editar.png' border=0 title='Modificar' style='width: 40px; font-size:20px' title='Modificar'></a>
 
 
           <a href=# onclick=\"javascript:if(window.confirm('¿Desea eliminar el equipo $data[0]?q=$q'))
           {location.replace('$_SERVER[PHP_SELF]?action=del&id=$data[0]&q=$q')}\">
-          <img src='img/eliminar.png' border=0 title='Eliminar' style='width: 40px; font-size:20px' title='Eliminar'></a>
+          <img src='../img/eliminar.png' border=0 title='Eliminar' style='width: 40px; font-size:20px' title='Eliminar'></a>
    </td>
 
         </tr> ";
@@ -164,11 +172,11 @@
 
 </div>
 
-<?php include 'includes/footer.php' ?>
+<?php include '../includes/footer.php' ?>
 
 </div>
 </div>
-<?php include 'includes/script.php' ?>
+<?php include '../includes/script.php' ?>
 
 </body>
 </html>

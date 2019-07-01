@@ -1,15 +1,21 @@
-<?php include('conectar.php') ?>
-<?php include('modal/ModalMascota.php');?>
+<?php 
+session_start();
+if (!$_SESSION['acceso']) {
+  header("Location:../login/");
+}
+ ?>
+<?php include('../conectar.php') ?>
+<?php include('../modal/ModalMascota.php');?>
 <!DOCTYPE html>
 <html>
 <head>
   <title> | Clinica Veterinaria | Registrar Cliente</title>
 
-  <?php include 'includes/head.php' ?>
+  <?php include '../includes/head.php' ?>
 </head>
 <body class="nav-md">
-  <?php include 'includes/nav.php' ?>
-  <?php include 'includes/cerrarSesion.php' ?>
+  <?php include '../includes/nav.php' ?>
+  <?php include '../includes/cerrarSesion.php' ?>
   <div class="right_col" role="main">
     <div class="row">
       <div class="col-md-12">
@@ -17,7 +23,7 @@
           <section class="content-header">
             <h1>Nuevo Cliente</h1>
             <ol class="breadcrumb">
-              <li><a href="inicio.php"><i class="fa fa-home"></i> Home</a></li>
+              <li><a href="../home/"><i class="fa fa-home"></i> Home</a></li>
               <li>Clientes</li>
               <li>Cliente</li>
               <li class="active">Nuevo Cliente</li>
@@ -73,7 +79,7 @@
                   <?php
                   $consulta_mascota=mysqli_query($link,"SELECT * FROM mascota ORDER BY idmascota ASC ");
 
-                   echo " <select  class=\"form-control\" id=\"mascota\" title=\"Has clic para desplegar\" name=\"mascota\" >";
+                   echo " <select  class=\"form-control js-example-basic-single\" id=\"mascota\" title=\"Has clic para desplegar\" name=\"mascota\" >";
                    echo "<option value=''>Seleccione..</option>";
 
                   while($fila=mysqli_fetch_array($consulta_mascota)){
@@ -92,7 +98,7 @@
                   <div class="col-md-6 col-md-offset-3">
                    <div class="col-md-6 col-md-offset-3">
                       <button type="submit" class="btn btn-success">Cancelar</button>
-                      <button id="registrar" type="submit" class="btn btn-primary">Registrar</button>
+                      <button id="registrar" type="submit" name="submit" class="btn btn-primary">Registrar</button>
                     </div>
                   </div>
                 </div>
@@ -105,15 +111,15 @@
       </div>
     </div>
   
-  <?php include 'includes/footer.php' ?>
-  <?php include 'includes/script.php' ?>
-  <script type="text/javascript" src="js/frm.reg.cliente.js"></script>
+  <?php include '../includes/footer.php' ?>
+  <?php include '../includes/script.php' ?>
+  <script type="text/javascript" src="../js/frm.reg.cliente.js"></script>
   
 </body>
 </html>
 
 <?php
- if ($_POST) {
+ if (isset($_POST['submit'])) {
      $nombre=$_POST["nombre"];
      $apellido=$_POST["apellido"];
      $direccion=$_POST["direccion"];

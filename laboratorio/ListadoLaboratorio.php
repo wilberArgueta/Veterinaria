@@ -1,6 +1,12 @@
-<?php include 'conectar.php' ?>
-<?php include('modal/ModalLaboratorio.php');?>
-<?php include('modal/ModalDetalleLaboratorio.php');?>
+<?php 
+session_start();
+if (!$_SESSION['acceso']) {
+  header("Location:../login/");
+}
+ ?>
+<?php include '../conectar.php' ?>
+<?php include('../modal/ModalLaboratorio.php');?>
+<?php include('../modal/ModalDetalleLaboratorio.php');?>
 
 <!DOCTYPE html>
 <html>
@@ -9,7 +15,8 @@
   <?php include 'includes/head.php' ?>
 </head>
 <body class="nav-md">
-  <?php include 'includes/nav.php' ?>
+  <?php include '../includes/nav.php' ?>
+  <?php include '../includes/cerrarSesion.php' ?>
   <div class="right_col" role="main">
     <div class="row">
       <div class="col-md-12">
@@ -17,7 +24,7 @@
           <section class="content-header">
             <h1>Listado de Laboratorios</h1>
             <ol class="breadcrumb">
-              <li><a href="inicio.php"><i class="fa fa-home"></i> Home</a></li>
+              <li><a href="../home/"><i class="fa fa-home"></i> Home</a></li>
               <li>Contactos</li>
               <li>Laboratorio</li>
               <li class="active">Listado de Laboratorios</li>
@@ -132,17 +139,17 @@
              <td>$data[telefono]</td>
              <td>$data[correo]</td>
              <td align='center'>
-                 <button type='button' class='btn btn-link' data-toggle='modal' data-target='#DetalleLaboratorio'><img src='img/detalles.png' border=0 title='Detalles' style='width: 40px; font-size:20px' title='Detalles'></button>
+                 <button type='button' class='btn btn-link' data-toggle='modal' data-target='#DetalleLaboratorio'><img src='../img/detalles.png' border=0 title='Detalles' style='width: 40px; font-size:20px' title='Detalles'></button>
                  </td>
 
              <td>
 
-              <a href='ModyLaboratorio.php?id=$data[0]'><img src='img/editar.png' border=0 title='Modificar' style='width: 40px; font-size:20px' title='Modificar'></a>
+              <a href='ModyLaboratorio.php?id=$data[0]'><img src='../img/editar.png' border=0 title='Modificar' style='width: 40px; font-size:20px' title='Modificar'></a>
 
 
               <a href=# onclick=\"javascript:if(window.confirm('¿Desea eliminar el usuario $data[0]?q=$q'))
               {location.replace('$_SERVER[PHP_SELF]?action=del&id=$data[0]&q=$q')}\">
-              <img src='img/eliminar.png' border=0 title='Eliminar' style='width: 40px; font-size:20px' title='Eliminar'></a>
+              <img src='../img/eliminar.png' border=0 title='Eliminar' style='width: 40px; font-size:20px' title='Eliminar'></a>
        </td>
 
             </tr>	";

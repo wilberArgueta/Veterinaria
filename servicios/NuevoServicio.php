@@ -1,15 +1,21 @@
-<?php include 'conectar.php' ?>
-<?php include('modal/Modalcliente.php');?>
+<?php 
+session_start();
+if (!$_SESSION['acceso']) {
+  header("Location:../login/");
+}
+ ?>
+<?php include '../conectar.php' ?>
+<?php include('../modal/Modalcliente.php');?>
 <!DOCTYPE html>
 <html>
 <head>
   <title> | Clinica Veterinaria | Registrar Servicio</title>
-  <?php include 'includes/head.php' ?>
+  <?php include '../includes/head.php' ?>
 </head>
 
   <body class="nav-md">
-  <?php include 'includes/nav.php' ?>
-  <?php include 'includes/cerrarSesion.php' ?>
+  <?php include '../includes/nav.php' ?>
+  <?php include '../includes/cerrarSesion.php' ?>
 
               <div class="right_col" role="main">
                 <div class="row">
@@ -18,7 +24,7 @@
                       <section class="content-header">
                        <h1>Nuevo Servicio</h1>
                         <ol class="breadcrumb">
-                          <li><a href="inicio.php"><i class="fa fa-home"></i> Home</a></li>
+                          <li><a href="../home/"><i class="fa fa-home"></i> Home</a></li>
                           <li>Expediente</li>
                           <li>Servicio</li>
                           <li class="active">Nuevo Servicio</li>
@@ -57,7 +63,7 @@
                                 <?php
                                 $consulta_mascota=mysqli_query($link,"SELECT * FROM cliente ORDER BY idcliente ASC ");
 
-                                 echo " <select  class=\"form-control\" id=\"idcliente\" title=\"Has clic para desplegar\" name=\"idcliente\" >";
+                                 echo " <select  class=\"form-control js-example-basic-single\" id=\"idcliente\" title=\"Has clic para desplegar\" name=\"idcliente\" >";
                                  echo "<option value=''>Seleccione..</option>";
 
                                 while($fila=mysqli_fetch_array($consulta_mascota)){
@@ -87,7 +93,7 @@
                         <div class="form-group">
                           <div class="col-md-6 col-md-offset-3">
                             <button type="submit" class="btn btn-success">Cancelar</button>
-                            <button id="registrar" type="submit" class="btn btn-primary">Registrar</button>
+                            <button id="registrar" name="submit" type="submit" class="btn btn-primary">Registrar</button>
                           </div>
                         </div>
                       </form>
@@ -98,14 +104,14 @@
 
           </div>
         </div>
-      <?php include 'includes/footer.php' ?>
-    <?php include 'includes/script.php' ?>
-    <script type="text/javascript" src="js/frm.reg.servicio.js"></script>
+      <?php include '../includes/footer.php' ?>
+    <?php include '../includes/script.php' ?>
+    <script type="text/javascript" src="../js/frm.reg.servicio.js"></script>
   </body>
 </html>
 
 <?php 
-if ($_POST) {
+if (isset($_POST['submit'])) {
   $tipo_servicio=$_POST["tipo_servicio"];
   $descripcion=$_POST["descripcion"];
   $idcliente=$_POST["idcliente"];
@@ -118,20 +124,26 @@ if ($_POST) {
     $insertar=mysqli_query($link, "INSERT INTO servicios(id_servicio,tipo_servicio,descripcion,idcliente,precio) values ('','$tipo_servicio','$descripcion','$idcliente','$precio')");
     if ($insertar) {
       echo "<script>
-        location.replace('ListadoServicios.php?q=$tipo_servicio&info=add');
-      </script>";
-    } else {
-      echo "<script>
-      alert('Error al insertar');
+        location.replace('../servicios/ListadoServicios.php?q=$tipo_servicio&info=add');
       </script>";
     }
-  } else {
-    echo "<script>
-    alert('El servicio ya existe');
-    </script>";
-    mysqli_close($link);
-  }
-
+    else {
+             echo "<script>
+                 swal(
+              'Oops...',
+               'Error al insertar!',
+               'error'
+             )</script>";
+         }
+     } else {
+         echo "<script>
+           swal(
+               'Oops...',
+               'El registro ya existe!',
+               'error'
+               )</script>";
+         mysqli_close($link);
+     }
 }
  ?>
 

@@ -1,7 +1,13 @@
+<?php 
+session_start();
+if (!$_SESSION['acceso']) {
+  header("Location:../login/");
+}
+ ?>
 <?php
 if($_GET)
 {
- include("conectar.php");
+ include("../conectar.php");
  $id=$_GET["id"];
  $sql=mysqli_query($link,"SELECT * FROM servicios WHERE id_servicio='$id'");
  $row=mysqli_fetch_array($sql);
@@ -25,12 +31,12 @@ if($_GET)
 <html>
 <head>
   <title> | Clinica Veterinaria | Modificar Servicio</title>
-  <?php include 'includes/head.php' ?>
+  <?php include '../includes/head.php' ?>
 </head>
 
   <body class="nav-md">
-  <?php include 'includes/nav.php' ?>
-  <?php include 'includes/cerrarSesion.php' ?>
+  <?php include '../includes/nav.php' ?>
+  <?php include '../includes/cerrarSesion.php' ?>
 
               <div class="right_col" role="main">
                 <div class="row">
@@ -39,7 +45,7 @@ if($_GET)
                       <section class="content-header">
                        <h1>Modificar Servicio</h1>
                         <ol class="breadcrumb">
-                          <li><a href="inicio.php"><i class="fa fa-home"></i> Home</a></li>
+                          <li><a href="../home/"><i class="fa fa-home"></i> Home</a></li>
                           <li>Expediente</li>
                           <li>Servicio</li>
                           <li class="active">Modificar Servicio</li>
@@ -79,7 +85,7 @@ if($_GET)
                   include ('conectar.php');
                   $consulta_cliente= mysqli_query($link, "SELECT * FROM cliente");
                   echo "<div class=\"col-md-6 col-sm-6 col-xs-12\">";
-                  echo "<select class=\"form-control col-md-7 col-xs-12\" id=\"idcliente\" name=\"idcliente\" >";
+                  echo "<select class=\"form-control js-example-basic-single col-md-7 col-xs-12\" id=\"idcliente\" name=\"idcliente\" >";
                   while ($fila= mysqli_fetch_array($consulta_cliente)) {
                     if ($tipo==$fila['idcliente']) {
                     echo "<option value='".$fila['idcliente']."' selected>".$fila['nombre']."</option>";
@@ -109,7 +115,7 @@ if($_GET)
                         <div class="form-group">
                           <div class="col-md-6 col-md-offset-3">
                             <button type="submit" class="btn btn-success">Cancelar</button>
-                            <button id="registrar" type="submit" class="btn btn-primary">Registrar</button>
+                            <button id="registrar" name="submit" type="submit" class="btn btn-primary">Registrar</button>
                           </div>
                         </div>
                       </form>
@@ -120,14 +126,14 @@ if($_GET)
 
           </div>
         </div>
-      <?php include 'includes/footer.php' ?>
-    <?php include 'includes/script.php' ?>
-    <script type="text/javascript" src="js/frm.reg.servicio.js"></script>
+      <?php include '../includes/footer.php' ?>
+    <?php include '../includes/script.php' ?>
+    <script type="text/javascript" src="../js/frm.reg.servicio.js"></script>
   </body>
 </html>
 </html>
 <?php
- if ($_POST) {
+ if (isset($_POST['submit'])) {
    $tipo_servicio=$_POST["tipo_servicio"];
    $descripcion=$_POST["descripcion"];
    $idcliente=$_POST["idcliente"];
@@ -138,13 +144,19 @@ if($_GET)
      if($update)
      {
       echo "<script>
-     location.replace('ListadoConsultas.php?q=$tipo_servicio&info=modificar');
+     location.replace('../servicios/ListadoServicios.php?q=$tipo_servicio&info=modificar');
             </script>";
 
      }
      else
      {
-       echo "<script>alert('Error al actualizar el registro');</script>";
+       
+       echo "<script>
+                 swal(
+              'Oops...',
+               'Error al actualizar el registro!',
+               'error'
+             )</script>"; 
      }
 
   }

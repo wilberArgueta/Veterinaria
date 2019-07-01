@@ -22,7 +22,7 @@
         <table class="page_header" >
                 <tr>
                   <td align=right style="width: 10%; color: #444444;" >
-                      <img style="width: 10%;" src="./img/logo2.jpg">
+                      <img style="width: 10%;" src="../img/logo2.jpg">
                   </td>
                 </tr>
                 <tr>
@@ -77,7 +77,7 @@
     </table>
 
 <?php
-    include('conectar.php');
+    include('../conectar.php');
     $sql= "SELECT servicios.id_servicio,servicios.tipo_servicio,servicios.descripcion,servicios.precio,cliente.nombre AS cliente FROM servicios INNER JOIN cliente ON servicios.idcliente = cliente.idcliente WHERE cliente.nombre";
 
     $query=mysqli_query($link, $sql);

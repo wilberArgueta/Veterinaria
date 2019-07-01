@@ -1,12 +1,18 @@
-<?php include 'conectar.php' ?>
+<?php 
+session_start();
+if (!$_SESSION['acceso']) {
+  header("Location:../login/");
+}
+ ?>
+<?php include '../conectar.php' ?>
 <!DOCTYPE html>
 <html>
 <head>
   <title> | Clinica Veterinaria | Listado de Productos Materiales</title>
-  <?php include 'includes/head.php' ?>
+  <?php include '../includes/head.php' ?>
 </head>
 <body class="nav-md">
-  <?php include 'includes/nav.php' ?>
+  <?php include '../includes/nav.php' ?>
   <div class="right_col" role="main">
     <div class="row">
       <div class="col-md-12">
@@ -14,7 +20,7 @@
           <section class="content-header">
             <h1>Listado de Productos Materiales</h1>
             <ol class="breadcrumb">
-              <li><a href="inicio.php"><i class="fa fa-home"></i> Home</a></li>
+              <li><a href="../home/"><i class="fa fa-home"></i> Home</a></li>
               <li>Insumos</li>
               <li>Materiales</li>
               <li class="active">Listado de productos materiales</li>
@@ -133,7 +139,7 @@ FROM productos  as p INNER JOIN categoria as c ON(p.idcategoria=c.idcategoria) I
              <td>$data[0]</td>
              <td>$data[cod_interno]</td>
              <td>$data[producto]</td>
-             <td align='center'><a href='#'><img src='img/detalles.png' border=0 title='Detalles' style='width: 40px; font-size:20px' title='Detalles'></td>
+             <td align='center'><a href='#'><img src='../img/detalles.png' border=0 title='Detalles' style='width: 40px; font-size:20px' title='Detalles'></td>
              <td>$data[categoria]</td>
              <td>$data[proveedor]</td>
              <td>$data[cantidad]</td>
@@ -142,12 +148,12 @@ FROM productos  as p INNER JOIN categoria as c ON(p.idcategoria=c.idcategoria) I
              <td>
               </a>
 
-              <a href='ModyMaterial.php?id=$data[0]'><img src='img/editar.png' border=0 title='Modificar' style='width: 40px; font-size:20px' title='Modificar'></a>
+              <a href='ModyMaterial.php?id=$data[0]'><img src='../img/editar.png' border=0 title='Modificar' style='width: 40px; font-size:20px' title='Modificar'></a>
 
 
               <a href=# onclick=\"javascript:if(window.confirm('¿Desea eliminar el usuario $data[0]?q=$q'))
               {location.replace('$_SERVER[PHP_SELF]?action=del&id=$data[0]&q=$q')}\">
-              <img src='img/eliminar.png' border=0 title='Eliminar' style='width: 40px; font-size:20px' title='Eliminar'></a>
+              <img src='../img/eliminar.png' border=0 title='Eliminar' style='width: 40px; font-size:20px' title='Eliminar'></a>
        </td>
 
             </tr>	";
@@ -167,11 +173,11 @@ FROM productos  as p INNER JOIN categoria as c ON(p.idcategoria=c.idcategoria) I
 </div>
 
 </div>
-<?php include 'includes/footer.php' ?>
+<?php include '../includes/footer.php' ?>
 
 </div>
 </div>
-<?php include 'includes/script.php' ?>
+<?php include '../includes/script.php' ?>
 
 </body>
 </html>

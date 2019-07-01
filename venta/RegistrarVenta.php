@@ -1,13 +1,20 @@
-<?php include 'conectar.php' ?>
+<?php 
+session_start();
+if (!$_SESSION['acceso']) {
+  header("Location:../login/");
+}
+ ?>
+<?php include '../conectar.php' ?>
 
 <!DOCTYPE html>
 <html>
 <head>
   <title> | Clinica Veterinaria | Registro de Venta</title>
-  <?php include 'includes/head.php' ?>
+  <?php include '../includes/head.php' ?>
 </head>
 <body class="nav-md">
-  <?php include 'includes/nav.php' ?>
+  <?php include '../includes/nav.php' ?>
+   <?php include '../includes/cerrarSesion.php' ?>
   <div class="right_col" role="main">
     <div class="row">
       <div class="col-md-12">
@@ -63,13 +70,13 @@
                       include ('conectar.php');
                       $consulta_cliente= mysqli_query($link, "SELECT * FROM cliente");
                       echo "<div class=\"col-md-6 col-sm-6 col-xs-12\">";
-                      echo "<select class=\"form-control col-md-7 col-xs-12\" id=\"idcliente\" name=\"idcliente\">";  
+                      echo "<select class=\"form-control js-example-basic-single col-md-7 col-xs-12\" id=\"idcliente\" name=\"idcliente\">";  
                       echo "<option value=''>Seleccione</option>";
                       while ($fila= mysqli_fetch_array($consulta_cliente)) {
                         if ($tipo==$fila['idcliente']) {
-                        echo "<option value='".$fila['idcliente']."' selected>".$fila['nombre']."</option>";
+                        echo "<option value='".$fila['idcliente']."' selected>".$fila['nombre'].$fila['apellido']."</option>";
                         }
-                        echo "<option value='".$fila['idcliente']."'>".$fila['nombre']."</option>";
+                        echo "<option value='".$fila['idcliente']."'>".$fila['nombre']..$fila['apellido']."</option>";
                       }
                       echo "  </select>";
                       echo "  </div>";
@@ -162,11 +169,11 @@
 
       </div>
     </div>
-    <?php include 'includes/footer.php' ?>
+    <?php include '../includes/footer.php' ?>
 
     </div>
   </div>
-  <?php include 'includes/script.php' ?>
+  <?php include '../includes/script.php' ?>
 
 </body>
 </html>
@@ -201,7 +208,7 @@
     <tbody>
      <?php 
 
-     include 'conectar.php';
+     include '../conectar.php';
 
      $query= mysqli_query($link, "SELECT p.idproducto, p.cod_interno as cod_interno, p.nombre as producto, p.descripcion as descripcion, p.cantidad as cantidad,c.nombre
       AS categoria, pv.nombre as proveedor, st.idStock_movimiento as idStock_movimiento,dt.presentacion as presentacion,dt.valor as valor, dt.precio_compra 

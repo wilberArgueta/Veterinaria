@@ -9,7 +9,7 @@ if (!$_SESSION['acceso']) {
   <head>
     <title> Panel Administrador | Veterinaria Univo</title>
    <?php include '../includes/head.php' ?>
-   <?php include '../includes/fullcalendar.php'; ?>
+   <?php include '../includes/fullcalendar.php'?>
   </head>
 
  
@@ -21,8 +21,12 @@ if (!$_SESSION['acceso']) {
     <?php include '../includes/footer.php' ?>
     
     <?php include '../includes/script.php' ?>
-   <?php include '../includes/calendarscript.php'; ?>
+   <?php include '../includes/calendarscript.php' ?>
    
   </body>
 </html>
 
+<<<<<<< HEAD
+=======
+
+>>>>>>> origin/master

@@ -1,13 +1,19 @@
-<?php include 'conectar.php' ?>
+<?php 
+session_start();
+if (!$_SESSION['acceso']) {
+  header("Location:../login/");
+}
+ ?>
+<?php include '../conectar.php' ?>
 <!DOCTYPE html>
 <html>
 <head>
   <title> | Clinica Veterinaria | Registrar Laboratorio</title>
-  <?php include 'includes/head.php' ?>
+  <?php include '../includes/head.php' ?>
 </head>
 <body class="nav-md">
-  <?php include 'includes/nav.php' ?>
-  <?php include 'includes/cerrarSesion.php' ?>
+  <?php include '../includes/nav.php' ?>
+  <?php include '../includes/cerrarSesion.php' ?>
   <div class="right_col" role="main">
     <div class="row">
       <div class="col-md-12">
@@ -15,7 +21,7 @@
           <section class="content-header">
             <h1>Nuevo Laboratorio</h1>
             <ol class="breadcrumb">
-              <li><a href="inicio.php"><i class="fa fa-home"></i> Home</a></li>
+              <li><a href="../home/"><i class="fa fa-home"></i> Home</a></li>
               <li>Contactos</li>
               <li>Laboratorio</li>
               <li class="active">Nuevo Laboratorio</li>
@@ -77,7 +83,7 @@
               <div class="form-group">
                 <div class="col-md-6 col-md-offset-3">
                   <button type="submit" class="btn btn-success">Cancelar</button>
-                  <button id="registrar" type="submit" class="btn btn-primary">Registrar</button>
+                  <button id="registrar" type="submit" name="submit" class="btn btn-primary">Registrar</button>
                 </div>
               </div>
             </form>
@@ -88,14 +94,14 @@
 
     </div>
   </div>
-  <?php include 'includes/footer.php' ?>
-  <?php include 'includes/script.php' ?>
-<script type="text/javascript" src="js/frm.reg.laboratorio.js"></script>
+  <?php include '../includes/footer.php' ?>
+  <?php include '../includes/script.php' ?>
+<script type="text/javascript" src="../js/frm.reg.laboratorio.js"></script>
 
 </body>
 </html>
 <?php
- if ($_POST) {
+ if (isset($_POST['submit'])) {
      $nombre=$_POST["nombre"];
      $direccion=$_POST["direccion"];
      $telefono=$_POST["telefono"];
@@ -112,10 +118,20 @@
                location.replace('ListadoLaboratorio.php?q=$nombre&info=add');
               </script>";
          } else {
-             echo "<script>alert('Error al insertar');</script>";
+             echo "<script>
+                 swal(
+              'Oops...',
+               'Error al insertar!',
+               'error'
+             )</script>";
          }
      } else {
-         echo "<script>alert('El laboratorio ya existe');</script>";
+         echo "<script>
+           swal(
+               'Oops...',
+               'El registro ya existe!',
+               'error'
+               )</script>";
          mysqli_close($link);
      }
  }

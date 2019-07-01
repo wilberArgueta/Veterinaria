@@ -1,4 +1,5 @@
-<?php include 'conectar.php' ?>
+<?php include '../conectar.php' ?>
+ <?php include '../includes/head.php' ?>
 
 <div class="modal fade" id="ModalAgregarProveedor" tabindex="-1" role="dialog">
   <div class="modal-dialog">
@@ -68,7 +69,7 @@
 	      <div class="modal-footer">
 	        <button type="button" class="btn btn-default" data-dismiss="modal">Cerrar</button>
 	        
-	        <button type="submit" class="btn btn-primary" id="createBrandBtn" data-loading-text="Loading..." autocomplete="off">Agregar</button>
+	        <button type="submit" name="submit" class="btn btn-primary" id="createBrandBtn" data-loading-text="Loading..." autocomplete="off">Agregar</button>
 	      </div>
 	      <!-- /modal-footer -->
      	</form>
@@ -78,15 +79,15 @@
   </div>
   <!-- /modal-dailog -->
 </div>
-
-<script src="js/frm.reg.proveedores.js"></script>
+ <?php include '../includes/script.php' ?>
+<script src="../js/frm.reg.proveedores.js"></script>
 <!-- / add modal -->
 
 
 
 
 <?php
- if ($_POST) {
+ if isset(($_POST['submit'])) {
      $nombre=$_POST["nombre"];
      $direccion=$_POST["direccion"];
      $telefono=$_POST["telefono"];
@@ -101,13 +102,23 @@
          $insertar=mysqli_query($link,"INSERT INTO proveedor (idproveedor,nombre,direccion,telefono,correo,contacto,observacion) values('','$nombre','$direccion','$telefono','$correo','$contacto','$observacion')");
          if ($insertar) {
              echo "<script>
-               location.replace('listadoProveedores.php?q=$nombre&info=add');
+               location.replace('../proveedor/listadoProveedores.php?q=$nombre&info=add');
               </script>";
-         } else {
-             echo "<script>alert('Error al insertar');</script>";
+         }else {
+             echo "<script>
+                 swal(
+              'Oops...',
+               'Error al insertar!',
+               'error'
+             )</script>";
          }
      } else {
-         echo "<script>alert('El proveedor ya existe');</script>";
+         echo "<script>
+           swal(
+               'Oops...',
+               'El registro ya existe!',
+               'error'
+               )</script>";
          mysqli_close($link);
      }
  }

@@ -1,13 +1,20 @@
-<?php include('conectar.php') ?>
+<?php 
+session_start();
+if (!$_SESSION['acceso']) {
+  header("Location:../login/");
+}
+ ?>
+
+<?php include('../conectar.php') ?>
 <!DOCTYPE html>
 <html>
 <head>
   <title> | Clinica Veterinaria | Registrar Material</title>
-  <?php include 'includes/head.php' ?>
+  <?php include '../includes/head.php' ?>
 </head>
 <body class="nav-md">
-  <?php include 'includes/nav.php' ?>
-  <?php include 'includes/cerrarSesion.php' ?>
+  <?php include '../includes/nav.php' ?>
+  <?php include '../includes/cerrarSesion.php' ?>
   <div class="right_col" role="main">
     <div class="row">
       <div class="col-md-12">
@@ -15,7 +22,7 @@
           <section class="content-header">
             <h1>Nuevo Producto Material</h1>
             <ol class="breadcrumb">
-              <li><a href="inicio.php"><i class="fa fa-home"></i> Home</a></li>
+              <li><a href="../home/"><i class="fa fa-home"></i> Home</a></li>
               <li>Insumos</li>
               <li>Materiales</li>
               <li class="active">Nuevo producto material</li>
@@ -67,7 +74,7 @@
     									include ('conectar.php');
                       $consulta_categoria= mysqli_query($link, "SELECT * FROM categoria");
     									echo "<div class=\"col-md-6 col-sm-6 col-xs-12\">";
-    									echo "<select class=\"form-control col-md-7 col-xs-12\" id=\"categoria\" name=\"categoria\" >";
+    									echo "<select class=\"form-control js-example-basic-single col-md-7 col-xs-12\" id=\"categoria\" name=\"categoria\" >";
                       while ($fila= mysqli_fetch_array($consulta_categoria)) {
     										echo "<option value='".$fila['idcategoria']."'>".$fila['nombre']."</option>";
     									}
@@ -87,10 +94,10 @@
                   <label class="control-label col-md-3 col-sm-3 col-xs-12" for="id_proveedor">Proveedor</label>
 
                     <?php
-    									include ('conectar.php');
+    									include ('../conectar.php');
                       $consulta_proveedor= mysqli_query($link, "SELECT * FROM proveedor");
     									echo "<div class=\"col-md-6 col-sm-6 col-xs-12\">";
-    									echo "<select class=\"form-control col-md-7 col-xs-12\" id=\"proveedor\" name=\"proveedor\" >";
+    									echo "<select class=\"form-control js-example-basic-single col-md-7 col-xs-12\" id=\"proveedor\" name=\"proveedor\" >";
                       while ($fila= mysqli_fetch_array($consulta_proveedor)) {
                     
     										echo "<option value='".$fila['idproveedor']."'>".$fila['nombre']."</option>";
@@ -131,7 +138,7 @@
                 <div class="form-group">
                   <div class="col-md-6 col-md-offset-3">
                     <button type="submit" class="btn btn-success">Cancelar</button>
-                    <button id="registrar" type="submit" class="btn btn-primary">Registrar</button>
+                    <button id="registrar" type="submit" name="submit" class="btn btn-primary">Registrar</button>
                   </div>
                 </div>
               </form>
@@ -142,13 +149,13 @@
 
       </div>
     </div>
-    <?php include 'includes/footer.php' ?>
-  <?php include 'includes/script.php' ?>
-  <script type="text/javascript" src="js/frm.reg.material.js"></script>
+    <?php include '../includes/footer.php' ?>
+  <?php include '../includes/script.php' ?>
+  <script type="text/javascript" src="../js/frm.reg.material.js"></script>
 </body>
 </html>
 <?php
-if ($_POST) {
+if (isset($_POST['submit'])){
     $codigoInterno=$_POST["codigointerno"];
     $nombre=$_POST["nombre"];
     $descripcion=$_POST["descripcion"];
@@ -177,15 +184,29 @@ if ($insertar1) {
            }
           if ($insertar3) {
             echo "<script>
-                location.replace('ListadoMateriales.php');
+                location.replace('../material/ListadoMateriales.php');
                </script>";
           }}
           else {
-             echo "<script>alert('Error al insertar');</script>";
+            
+             echo "<script>
+                 swal(
+              'Oops...',
+               'Error al insertar!',
+               'error'
+             )</script>";
          }
      } else {
-         echo "<script>alert('El producto ya existe');</script>";
+         
+          echo "<script>
+           swal(
+               'Oops...',
+               'El Material ya existe!',
+               'error'
+               )</script>";
+
          mysqli_close($link);
      }
  }
 ?>
+ 

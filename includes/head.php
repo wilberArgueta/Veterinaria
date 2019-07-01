@@ -9,16 +9,12 @@
     <link rel="stylesheet" type="text/css" href="../css/vendors/nprogress/">
     <link rel="stylesheet" type="text/css" href="../css/vendors/bootstrap-daterangepicker/daterangepicker.css">
     <link rel="stylesheet" type="text/css" href="../css/build/css/custom.min.css">
-    <link href="../css/vendors/select2/dist/css/select2.min.css" rel="stylesheet" />
     <link rel="stylesheet" type="text/css" href="../css/estilo_validar.css">
-    <script src="../css/vendors/bootstrap/dist/js/bootstrap.min.js"></script>
-    <script src="../css/vendors/select2/dist/js/select2.min.js"></script>
+    
+     <link href="../css/vendors/select2/dist/css/select2.min.css" rel="stylesheet" />
+
+      <link rel="stylesheet" type="text/css" href="../css/datatables.min.css">
    
 
-    <script type="text/javascript">
-    $(document).ready(function() {
-    $('.js-example-basic-single').select2({placeholder:"Seleccione"});
-    });
-    </script>
 
     

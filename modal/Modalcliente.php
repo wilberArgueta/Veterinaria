@@ -1,10 +1,10 @@
-<?php include 'conectar.php' ?>
-
+<?php include '../conectar.php' ?>
+  <?php include '../includes/head.php' ?>
 <div class="modal fade" id="ModalAgregarCliente" tabindex="-1" role="dialog">
   <div class="modal-dialog">
     <div class="modal-content">
     	
-    	<form class="form-horizontal" id="frm_registrolaboratorio" method="POST">
+    	<form class="form-horizontal" id="frm_registrocliente" method="POST">
 	      <div class="modal-header">
 	        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
 	        <h4 class="modal-title"><i class="fa fa-plus"></i> Agregar cliente</h4>
@@ -47,15 +47,15 @@
 	        </div> <!-- /form-group-->	
 
 	       <div class="form-group">
-	        	<label for="brandStatus" class="col-sm-3 control-label">Estado: </label>
+	        	<label for="brandStatus" class="col-sm-3 control-label">Mascota: </label>
 	        	<label class="col-sm-1 control-label">: </label>
 
 	        	<?php
-                  include ('conectar.php');
-                  $consulta_tipo_equipo= mysqli_query($link, "SELECT * FROM mascota");
+                  include ('../conectar.php');
+                  $consulta_mascota= mysqli_query($link, "SELECT * FROM mascota");
                   echo "<div class=\"col-sm-8\">";
-                  echo "<select class=\"form-control\" id=\"mascota\" name=\"mascota\" \"required\">";
-                  while ($fila= mysqli_fetch_array($consulta_tipo_equipo)) {
+                  echo "<select class=\"form-control js-example-basic-single \" id=\"mascota\" name=\"mascota\" >";
+                  while ($fila= mysqli_fetch_array($consulta_mascota)) {
                     if ($tipo==$fila['idmascota']) {
                     echo "<option value='".$fila['idmascota']."' selected>".$fila['nombre']."</option>";
                     }
@@ -84,30 +84,25 @@
   </div>
   <!-- /modal-dailog -->
 </div>
-
-<script type="text/javascript" src="js/frm.reg.mascota.js"></script>
+ <?php include '../includes/script.php' ?>
+<script type="text/javascript" src="../js/frm.reg.cliente.js"></script>
 
 <!-- / add modal -->
 
-
-
-
 <?php
- if ($_POST) {
-     $expediente=$_POST["expedienteMascota"];
-     $nombremascota=$_POST["nombremascota"];
-     $raza=$_POST["raza"];
-     $edad=$_POST["edadMascota"];
-     $peso=$_POST["peso"];
-     $talla=$_POST["talla"];
-     $genero=$_POST["genero"];
+ if (isset($_POST['submit'])) {
+     $nombre=$_POST["nombre"];
+     $apellido=$_POST["apellido"];
+     $direccion=$_POST["direccion"];
+     $telefono=$_POST["telefono"];
+     $mascota=$_POST["mascota"];
 
+     $update=mysqli_query($link, "UPDATE cliente SET nombre='$nombre',apellido='$apellido',direccion='$direccion',telefono= $telefono,idmascota='$mascota' WHERE idcliente='$id'");
 
-     $update=mysqli_query($link, "UPDATE mascota SET expediente= '$expediente',nombre='$nombremascota',raza='$raza',edad='$edad',peso='$peso',talla='$talla',genero='$genero' WHERE idmascota='$id'");
      if($update)
      {
       echo "<script>
-     location.replace('ListadoMascota.php?q=$nombremascota&info=modificar');
+     location.replace('../cliente/ListadoCliente.php?q=$nombre&info=modificar');
             </script>";
 
      }

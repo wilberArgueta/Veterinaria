@@ -5,5 +5,5 @@
 </style>
 
 <!-- fullCalendar 2.2.5-->
-    <link rel="stylesheet" href="assests/plugins/fullcalendar/fullcalendar.min.css">
-    <link rel="stylesheet" href="assests/plugins/fullcalendar/fullcalendar.print.css" media="print">
+    <link rel="stylesheet" href="../assests/plugins/fullcalendar/fullcalendar.min.css">
+    <link rel="stylesheet" href="../assests/plugins/fullcalendar/fullcalendar.print.css" media="print">
