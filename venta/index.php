@@ -1,11 +1,19 @@
+<?php
+session_start();
+if (!$_SESSION['acceso']) {
+    header("Location:../login/");
+}
+include "../conectar.php";
+?>
+
 <!DOCTYPE html>
 <html>
 <head>
   <title> | Clinica Veterinaria | Listado de Ventas</title>
-  <?php include 'includes/head.php' ?>
+  <?php include '../includes/head.php'?>
 </head>
 <body class="nav-md">
-  <?php include 'includes/nav.php' ?>
+  <?php include '../includes/nav.php'?>
   <div class="right_col" role="main">
     <div class="row">
       <div class="col-md-12">
@@ -13,7 +21,7 @@
           <section class="content-header">
             <h1>Listado de Ventas</h1>
             <ol class="breadcrumb">
-              <li><a href="inicio.php"><i class="fa fa-home"></i> Home</a></li>
+              <li><a href="../home/inicio.php"><i class="fa fa-home"></i> Home</a></li>
               <li>Ventas</li>
               <li class="active">Listado de Ventas</li>
             </ol>
@@ -42,7 +50,7 @@
         </div>
       </div>
     </div>
-    
+
     <div class="row">
       <div class="col-md-12 col-sm-12 col-xs-12">
         <div class="x_panel">
@@ -50,9 +58,11 @@
             <div class="title_left">
               <div class="col-md-5 col-sm-5 col-xs-12 form-group pull-left top_search">
                 <div class="input-group">
-                  <button type="button" class="btn btn-dark" style="width: 210px; ">
+                 <a href="nuevo.php">
+                 <button type="button" class="btn btn-dark" style="width: 210px; ">
                       <i class="fa fa-plus-square-o" style="font-size:20px">   Nueva Venta</i>
-                  </button>                
+                  </button>
+                 </a>
                 </div>
               </div>
             </div>
@@ -98,7 +108,7 @@
 
 
         </table>
-                    
+
             </div>
 
 
@@ -108,11 +118,11 @@
 </div>
 
 </div>
-<?php include 'includes/footer.php' ?>
-      
+<?php include '../includes/footer.php'?>
+
 </div>
 </div>
-<?php include 'includes/script.php' ?>
-  
+<?php include '../includes/script.php'?>
+
 </body>
 </html>

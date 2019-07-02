@@ -1,20 +1,20 @@
-<?php 
+<?php
 session_start();
 if (!$_SESSION['acceso']) {
-  header("Location:../login/");
+    header("Location:../login/");
 }
- ?>
-<?php include ('../conectar.php') ?>
+include '../conectar.php';
+?>
 <!DOCTYPE html>
 <html>
 <head>
   <title> | Clinica Veterinaria | Registrar Mascota</title>
 
-  <?php include '../includes/head.php' ?>
+  <?php include '../includes/head.php'?>
 </head>
 <body class="nav-md">
-  <?php include '../includes/nav.php' ?>
-  <?php include '../includes/cerrarSesion.php' ?>
+  <?php include '../includes/nav.php'?>
+  <?php include '../includes/cerrarSesion.php'?>
   <div class="right_col" role="main">
     <div class="row">
       <div class="col-md-12">
@@ -30,7 +30,7 @@ if (!$_SESSION['acceso']) {
           </section>
         </div>
       </div>
-  </div> 
+  </div>
 
     <div class="">
       <div class="row">
@@ -87,8 +87,8 @@ if (!$_SESSION['acceso']) {
                   <span class="fa fa-paw form-control-feedback right" aria-hidden="true"></span>
                 </div>
               </div>
-            
-              
+
+
               <div class="form-group">
                 <label class="control-label col-md-3 col-sm-3 col-xs-12">Genero</label>
                 <div class="col-md-6 col-sm-6 col-xs-12">
@@ -103,9 +103,9 @@ if (!$_SESSION['acceso']) {
                 </div>
               </div>
 
-              
 
-            
+
+
               <div class="ln_solid"></div>
                 <div class="form-group">
                   <div class="form-group">
@@ -124,51 +124,59 @@ if (!$_SESSION['acceso']) {
       </div>
     </div>
 
-   
-    <?php include '../includes/footer.php' ?>
-    <?php include '../includes/script.php' ?>
-   
+
+<?php
+include '../includes/footer.php';
+include '../includes/script.php';
+?>
+
+
   <script src="../js/frm.reg.mascota.js"></script>
 
 </body>
 </html>
 
 <?php
- if (isset($_POST['submit'])) {
-     $expediente=$_POST["expedienteMascota"];
-     $nombremascota=$_POST["nombremascota"];
-     $raza=$_POST["raza"];
-     $edad=$_POST["edadMascota"];
-     $peso=$_POST["peso"];
-     $talla=$_POST["talla"];
-     $genero=$_POST["genero"];
-    
+if (isset($_POST['submit'])) {
+    $expediente = $_POST["expedienteMascota"];
+    $nombremascota = $_POST["nombremascota"];
+    $raza = $_POST["raza"];
+    $edad = $_POST["edadMascota"];
+    $peso = $_POST["peso"];
+    $talla = $_POST["talla"];
+    $genero = $_POST["genero"];
 
-     $sql_comprueba_mascota="SELECT nombre FROM mascota where nombre='$nombremascota'";
-     $ejecuta_sql_mascota=mysqli_query($link,$sql_comprueba_mascota);
-     $comprueba_mascota=mysqli_num_rows($ejecuta_sql_mascota);
-     if ($comprueba_mascota==0) {
-         $insertar=mysqli_query($link,"INSERT INTO mascota (idmascota,expediente,nombre,raza,edad,peso,talla,genero) values('','$expediente','$nombremascota','$raza','$edad','$peso','$talla','$genero')");
-         if ($insertar) {
-             echo "<script>
-                   location.replace('../mascota/ListadoMascota.php?q=$nombremascota&info=add');
+    $sql_comprueba_mascota = "SELECT nombre FROM mascota where nombre='$nombremascota'";
+    $ejecuta_sql_mascota = mysqli_query($link, $sql_comprueba_mascota);
+    $comprueba_mascota = mysqli_num_rows($ejecuta_sql_mascota);
+    try {
+        if ($comprueba_mascota == 0) {
+            $query = "INSERT INTO mascota (expediente,nombre,raza,edad,peso,talla,genero)
+      values('$expediente','$nombremascota','$raza','$edad','$peso','$talla','$genero')";
+            $insertar = mysqli_query($link, $query);
+            if ($insertar) {
+                echo "<script>
+                   location.replace('../mascota/index.php?q=$nombremascota&info=add');
               </script>";
-         } else {
-             echo "<script>
+            } else {
+                echo "<script>
                  swal(
               'Oops...',
                'Error al insertar!',
                'error'
              )</script>";
-         }
-     } else {
-         echo "<script>
+            }
+        } else {
+            echo "<script>
            swal(
                'Oops...',
                'El registro ya existe!',
                'error'
                )</script>";
-         mysqli_close($link);
-     }
- }
- ?>
+            mysqli_close($link);
+        }
+    } catch (\Throwable $th) {
+        echo $th->getMessage();
+    }
+}
+?>

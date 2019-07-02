@@ -1,21 +1,21 @@
-<?php 
+<?php
 session_start();
 if (!$_SESSION['acceso']) {
-  header("Location:../login/");
+    header("Location:../login/");
 }
- ?>
-<?php include '../conectar.php' ?>
-<?php include('../modal/ModalLaboratorio.php');?>
+?>
+<?php include '../conectar.php'?>
+<?php include '../modal/ModalLaboratorio.php';?>
 <!DOCTYPE html>
 <html>
 <head>
 	<title> | Clinica Veterinaria | Registrar Examen</title>
-  <?php include '../includes/head.php' ?>
+  <?php include '../includes/head.php'?>
 </head>
 
   <body class="nav-md">
-  <?php include '../includes/nav.php' ?>
-    <?php include '../includes/cerrarSesion.php' ?>
+  <?php include '../includes/nav.php'?>
+    <?php include '../includes/cerrarSesion.php'?>
 
               <div class="right_col" role="main">
                 <div class="row">
@@ -61,22 +61,22 @@ if (!$_SESSION['acceso']) {
                             <label class="control-label col-md-3 col-sm-3 col-xs-12" for="idlaboratorio">Laboratorio</label>
                             <div class="col-md-6 col-sm-6 col-xs-12">
                               <?php
-                              $consulta_laboratorio=mysqli_query($link,"SELECT * FROM laboratorio");
+$consulta_laboratorio = mysqli_query($link, "SELECT * FROM laboratorio");
 
-                               echo " <select  class=\"form-control js-example-basic-single\" id=\"idlaboratorio\" title=\"Has clic para desplegar\" name=\"idlaboratorio\" >";
-                               echo "<option value=''>Seleccione..</option>";
+echo " <select  class=\"form-control js-example-basic-single\" id=\"idlaboratorio\" title=\"Has clic para desplegar\" name=\"idlaboratorio\" >";
+echo "<option value=''>Seleccione..</option>";
 
-                              while($fila=mysqli_fetch_array($consulta_laboratorio)){
-                                   echo "<option value='".$fila['idlaboratorio']."'>".$fila['nombre']."</option>";
-                               }
-                               echo "  </select>";
-                               ?>
+while ($fila = mysqli_fetch_array($consulta_laboratorio)) {
+    echo "<option value='" . $fila['idlaboratorio'] . "'>" . $fila['nombre'] . "</option>";
+}
+echo "  </select>";
+?>
                             </div>
 
                            <button class="btn btn-primary button1" data-toggle="modal" data-target="#ModalAgregarLaboratorio"> <i class="glyphicon glyphicon-plus-sign"></i> Agregar laboratorio </button>
                           </div>
 
-                          
+
 														<div class="item form-group">
 															<label class="control-label col-md-3 col-sm-3 col-xs-12" for="fecha_examen">Fecha de Examen</label>
 															<div class="col-md-6 col-sm-6 col-xs-12">
@@ -113,50 +113,50 @@ if (!$_SESSION['acceso']) {
 
           </div>
         </div>
-      <?php include '../includes/footer.php' ?>
+      <?php include '../includes/footer.php'?>
       </div>
     </div>
 
-    <?php include '../includes/script.php' ?>
+    <?php include '../includes/script.php'?>
     <script type="text/javascript" src="../js/frm.reg.examen.js"></script>
   </body>
 </html>
 
 <?php
- if (isset($_POST['submit'])) {
-     $tipo_examen=$_POST["tipo_examen"];
-     $descripcion=$_POST["descripcion"];
-     $idlaboratorio=$_POST["idlaboratorio"];
-     $fecha_examen=$_POST["fecha_examen"];
-     $precio=$_POST["precio"];
-     
-     
+if (isset($_POST['submit'])) {
+    $tipo_examen = $_POST["tipo_examen"];
+    $descripcion = $_POST["descripcion"];
+    $idlaboratorio = $_POST["idlaboratorio"];
+    $fecha_examen = $_POST["fecha_examen"];
+    $precio = $_POST["precio"];
 
-     $sql_comprueba_examen="SELECT tipo_examen FROM examen where tipo_examen='$tipo_examen'";
-     $ejecuta_sql_examen=mysqli_query($link,$sql_comprueba_examen);
-     $comprueba_examen=mysqli_num_rows($ejecuta_sql_examen);
-     if ($comprueba_examen==0) {
-         $insertar=mysqli_query($link,"INSERT INTO examen (   idexamen,tipo_examen,descripcion,idlaboratorio,fecha_examen,precio) values('','$tipo_examen','$descripcion','$idlaboratorio','$fecha_examen','$precio')");
-         if ($insertar) {
-             echo "<script>
-                   location.replace('../examen/ListadoExamenes.php?q=$tipo_examen&info=add');
+    $sql_comprueba_examen = "SELECT tipo_examen FROM examen where tipo_examen='$tipo_examen'";
+    $ejecuta_sql_examen = mysqli_query($link, $sql_comprueba_examen);
+    $comprueba_examen = mysqli_num_rows($ejecuta_sql_examen);
+    if ($comprueba_examen == 0) {
+        $query = "INSERT INTO examen (tipo_examen,descripcion,idlaboratorio,fecha_examen,precio)
+       values('$tipo_examen','$descripcion','$idlaboratorio','$fecha_examen','$precio')";
+        $insertar = mysqli_query($link, $query);
+        if ($insertar) {
+            echo "<script>
+                   location.replace('../examen/index.php?q=$tipo_examen&info=add');
               </script>";
-         } else {
-             echo "<script>
+        } else {
+            echo "<script>
                  swal(
               'Oops...',
                'Error al insertar!',
                'error'
              )</script>";
-         }
-     } else {
-         echo "<script>
+        }
+    } else {
+        echo "<script>
            swal(
                'Oops...',
                'El registro ya existe!',
                'error'
                )</script>";
-         mysqli_close($link);
-     }
- }
- ?>
+        mysqli_close($link);
+    }
+}
+?>
