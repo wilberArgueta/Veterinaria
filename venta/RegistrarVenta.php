@@ -74,9 +74,9 @@ if (!$_SESSION['acceso']) {
                       echo "<option value=''>Seleccione</option>";
                       while ($fila= mysqli_fetch_array($consulta_cliente)) {
                         if ($tipo==$fila['idcliente']) {
-                        echo "<option value='".$fila['idcliente']."' selected>".$fila['nombre'].$fila['apellido']."</option>";
+                        echo "<option value=\"".$fila['idcliente']."\" selected>".$fila['nombre'].$fila['apellido']."</option>";
                         }
-                        echo "<option value='".$fila['idcliente']."'>".$fila['nombre']..$fila['apellido']."</option>";
+                        echo "<option value=\"".$fila['idcliente']."\">".$fila['nombre'].$fila['apellido']."</option>";
                       }
                       echo "  </select>";
                       echo "  </div>";
