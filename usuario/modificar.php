@@ -133,7 +133,7 @@ if($_GET)
               <div class="ln_solid"></div>
                 <div class="form-group">
                   <div class="col-md-6 col-md-offset-3">
-                    <button type="submit" class="btn btn-success">Cancelar</button>
+                    <button type="submit" class="btn btn-success" onclick=" ">Cancelar</button>
                      <input class="btn btn-md btn-primary" id="submit" type="submit" name="submit" value="Registrar">
                   </div>
                 </div>

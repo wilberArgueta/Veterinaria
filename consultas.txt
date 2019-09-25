@@ -33,3 +33,6 @@ SELECT p.idproducto, p.cod_interno, p.nombre, p.descripcion, p.porcentaje_gananc
 FROM productos  as p INNER JOIN categoria as c ON(p.idcategoria=c.idcategoria) INNER JOIN presentacion as ps
 ON(p.id_presentacion=ps.id_presentacion) INNER JOIN stock_movimiento as st ON(p.idStock_movimiento = st.idStock_movimiento)
 INNER JOIN proveedor as pv ON(st.idproveedor=pv.idproveedor)
+
+
+SELECT p.cod_interno as cod_interno,p.nombre as producto,p.descripcion as descripcion,c.nombre as categoria,p.cantidad,pv.nombre as proveedor, dt.iddetalle_producto as iddetalle_producto,dt.presentacion as presentacion,dt.valor as valor,dt.precio_compra as precio_compra,dt.precio_venta as precio_venta ,dt.fecha_vencimiento as fecha_vencimiento FROM  productos as p  INNER JOIN categoria as c ON (p.idcategoria=c.idcategoria) INNER JOIN stock_movimiento AS st ON (st.idproducto =p.idproducto) INNER JOIN proveedor as pv ON (st.idproveedor=pv.idproveedor) INNER JOIN detalle_producto AS dt ON (st.idStock_movimiento =dt.idStock_movimiento)

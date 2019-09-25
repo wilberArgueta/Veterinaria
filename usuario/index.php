@@ -208,8 +208,8 @@ if (isset($_GET["q"])) {
               <td>
                 <a href='modificar.php?id=$data[0]'><img src='../img/editar.png' border=0 title='Modificar' style='width: 40px; font-size:20px' title='Modificar'></a>
 
-                <a href=# onclick=\"javascript:if(window.confirm('¿Desea eliminar el usuario $data[0]?q=$q'))
-                {location.replace('$_SERVER[PHP_SELF]?action=del&id=$data[0]&q=$q')}\">
+                <a href=# onclick=\"javascript:if(window.confirm('¿Desea eliminar el usuario $data[0]'))
+                {location.replace('$_SERVER[PHP_SELF]?action=del&id=$data[0]')}\">
                 <img src='../img/eliminar.png' border=0 title='Eliminar' style='width: 40px; font-size:20px' title='Eliminar'></a>
               </td>
         </tr> ";

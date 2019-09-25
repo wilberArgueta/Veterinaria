@@ -1,7 +1,7 @@
 <?php
 $host="localhost";
-$user="pruebas";
-$pass="123";
+$user="vane";
+$pass="12345678";
 $db="veterinaria";
 
 $link=mysqli_connect($host,$user,$pass,$db);

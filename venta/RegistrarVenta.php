@@ -22,7 +22,7 @@ if (!$_SESSION['acceso']) {
           <section class="content-header">
             <h1>Nueva Venta</h1>
             <ol class="breadcrumb">
-              <li><a href="inicio.php"><i class="fa fa-home"></i> Home</a></li>
+              <li><a href="../home/"><i class="fa fa-home"></i> Home</a></li>
               <li>Ventas</li>
               <li class="active">Nueva Venta</li>
             </ol>
@@ -42,7 +42,7 @@ if (!$_SESSION['acceso']) {
 
 
               <div class="item form-group">
-                            <label class="control-label col-md-3 col-sm-3 col-xs-12" for="fecha_ingreso">Fecha de la consulta</label>
+                            <label class="control-label col-md-3 col-sm-3 col-xs-12" for="fecha_ingreso0">Fecha de Venta</label>
                             <div class="col-md-6 col-sm-6 col-xs-12">
                                 <div class='input-group date' id='myDatepicker2'>
                                   <input type='date' class="form-control" name="fecha" id="fecha" />
@@ -67,22 +67,22 @@ if (!$_SESSION['acceso']) {
                     <label class="control-label col-md-3 col-sm-3 col-xs-12" for="idcliente">Cliente</label>
 
                     <?php
-                      include ('conectar.php');
+                      include ('../conectar.php');
                       $consulta_cliente= mysqli_query($link, "SELECT * FROM cliente");
                       echo "<div class=\"col-md-6 col-sm-6 col-xs-12\">";
-                      echo "<select class=\"form-control js-example-basic-single col-md-7 col-xs-12\" id=\"idcliente\" name=\"idcliente\">";  
+                      echo "<select class=\"form-control js-example-basic-single col-md-6 col-xs-12\" id=\"idcliente\" name=\"idcliente\">";  
                       echo "<option value=''>Seleccione</option>";
                       while ($fila= mysqli_fetch_array($consulta_cliente)) {
                         if ($tipo==$fila['idcliente']) {
                         echo "<option value='".$fila['idcliente']."' selected>".$fila['nombre'].$fila['apellido']."</option>";
                         }
-                        echo "<option value='".$fila['idcliente']."'>".$fila['nombre']..$fila['apellido']."</option>";
+                        echo "<option value='".$fila['idcliente']."'>".$fila['nombre'].$fila['apellido']."</option>";
                       }
                       echo "  </select>";
                       echo "  </div>";
                     ?>
 
-                    <a href="#">
+                    <a href="../cliente/NuevoCliente.php">
                       <button type="button" class="btn btn-secondary" title="Agregar Cliente">
                         <i class="fa fa-plus"></i>
                       </button> 
@@ -199,7 +199,7 @@ if (!$_SESSION['acceso']) {
         <th>Código</th>
         <th>Poductos</th>
         <th>Descripcion</th>
-        <th>Categoria</th>
+      
         <th>Existencia</th>
         <th>Agregar</th>
       </tr>
@@ -226,7 +226,7 @@ if (!$_SESSION['acceso']) {
   <td>$data[cod_interno]</td>
   <td>$data[producto]</td>
   <td>$data[descripcion]</td>
-  <td>$data[categoria]</td>
+  
   <td>$data[cantidad]</td>
   <td><button type=\"button\" class=\"agregarProducto btn btn-success glyphicon glyphicon-plus-sign\" value=\" <tr><td>$data[cod_interno]</td>
                                             <td> $data[producto]</td>
@@ -274,3 +274,78 @@ if (!$_SESSION['acceso']) {
 
 } );
 </script>
+
+<?php
+if (isset($_POST['submit'])) {
+  $carnet = $_POST["carnet"];
+  $nombre = $_POST["nombre"];
+  $descripcion = $_POST["descripcion"];
+  $producto=$_POST['idProductos'];
+  $cantidad=$_POST['cantidad'];
+  
+  $sql_comprueba_botiquin = "SELECT nombre FROM botiquin where nombre='$nombre'";
+  $ejecuta_sql_botiquin = mysqli_query($link, $sql_comprueba_botiquin);
+  $comprueba_botiquin = mysqli_num_rows($ejecuta_sql_botiquin);
+  try {
+    if ($comprueba_botiquin == 0) {
+      $query = "INSERT INTO botiquin (cod_estudiante,nombre_estudiante,descripcion)
+      values('$carnet','$nombre','$descripcion')";
+      
+      $insertar = mysqli_query($link, $query);
+      if ($insertar) {
+
+    $query1= "SELECT MAX(id_botiquin) AS id FROM botiquin WHERE nombre_estudiante= '$nombre'";
+     $datos = @mysqli_query($link, $query1);
+     while($data = mysqli_fetch_array($datos)){
+       $id_botiquin=$data['id'];
+     }
+
+    
+
+      $contador=0;
+     for ($i=0; $i < sizeof($producto); $i++) { 
+
+       
+       $consulta= "INSERT INTO detalle_botiquin (idproducto,cantidad,idbotiquin) VALUES ('$producto[$i]','$cantidad[$i]','$id_botiquin')";
+        $insertar = mysqli_query($link, $consulta);
+        if ($insertar) {
+          $contador++;
+        }
+            }
+
+            if ($contador==sizeof($producto))
+            {
+              
+
+        echo "<script>
+              swal(
+              'Exito...',
+              'Datos insertados con exito!',
+              'success'
+            )
+              location.replace('../botiquin/ListadoBotiquin.php?q=$nombre&info=add');
+              </script>";
+        }
+      } else {
+        echo "<script>
+        swal(
+        'Oops...',
+        'Error al insertar!',
+        'error'
+      )</script>";
+    }
+  } else {
+    echo "<script>
+    swal(
+    'Oops...',
+    'El registro ya existe!',
+    'error'
+  )</script>";
+  mysqli_close($link);
+}
+} catch (\Throwable $th) {
+  echo $th->getMessage();
+}
+}
+
+?>

@@ -8,7 +8,7 @@
 </head>
 <body class="nav-md">
   <?php include '../includes/nav.php' ?>
-  <?php include '..includes/cerrarSesion.php' ?>
+  <?php include '../includes/cerrarSesion.php' ?>
   <div class="right_col" role="main">
     <div class="row">
       <div class="col-md-12">

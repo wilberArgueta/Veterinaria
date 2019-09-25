@@ -1,4 +1,4 @@
-<?php 
+  <?php 
 session_start();
 if (!$_SESSION['acceso']) {
   header("Location:../login/");
@@ -9,8 +9,7 @@ if($_GET)
 {
  include("../conectar.php");
  $id=$_GET["id"];
- $sql=mysqli_query($link,"SELECT p.idproducto, p.cod_interno as cod_interno, p.nombre as producto, p.descripcion as descripcion, p.cantidad as cantidad,c.nombre AS categoria, pv.nombre as proveedor,m.idmaterial as idmaterial,m.precio_venta as precio_venta, st.idStock_movimiento as idStock_movimiento
-FROM productos  as p INNER JOIN categoria as c ON(p.idcategoria=c.idcategoria) INNER JOIN stock_movimiento as st ON (p.idproducto =st.idproducto) INNER JOIN proveedor as pv ON (st.idproveedor= pv.idproveedor )INNER JOIN material as m ON (st.idStock_movimiento=m.idstockMovimiento) WHERE p.idproducto='$id'");
+ $sql=mysqli_query($link,"SELECT p.cod_interno as cod_interno,p.nombre as producto,p.descripcion as descripcion,c.nombre as categoria,p.cantidad,pv.nombre as proveedor, dt.iddetalle_producto as iddetalle_producto,dt.presentacion as presentacion,dt.valor as valor,dt.precio_compra as precio_compra,dt.precio_venta as precio_venta ,dt.fecha_vencimiento as fecha_vencimiento FROM  productos as p  INNER JOIN categoria as c ON (p.idcategoria=c.idcategoria) INNER JOIN stock_movimiento AS st ON (st.idproducto =p.idproducto) INNER JOIN proveedor as pv ON (st.idproveedor=pv.idproveedor) INNER JOIN detalle_producto AS dt ON (st.idStock_movimiento =dt.idStock_movimiento) WHERE p.idproducto='$id'");
 
  $row=mysqli_fetch_array($sql);
  $idStock_movimiento=$row["idStock_movimiento"];
@@ -100,7 +99,7 @@ FROM productos  as p INNER JOIN categoria as c ON(p.idcategoria=c.idcategoria) I
                   <label class="control-label col-md-3 col-sm-3 col-xs-12" for="id_categoria">Categoria del Producto</label>
 
                     <?php
-                      include ('conectar.php');
+                      include ('../conectar.php');
                       $consulta_categoria= mysqli_query($link, "SELECT * FROM categoria");
                       echo "<div class=\"col-md-6 col-sm-6 col-xs-12\">";
                       echo "<select class=\"form-control js-example-basic-single col-md-7 col-xs-12\" id=\"categoria\" name=\"categoria\" >";
@@ -114,11 +113,7 @@ FROM productos  as p INNER JOIN categoria as c ON(p.idcategoria=c.idcategoria) I
                       echo "  </div>";
                     ?>
 
-                    <a href="#">
-                  <button type="button" class="btn btn-light" style="width: 220px; ">
-                    <i class="fa fa-plus"> Agregar nueva categoria</i>
-                  </button> 
-                </a>
+                
 
               </div>
 
@@ -140,11 +135,7 @@ FROM productos  as p INNER JOIN categoria as c ON(p.idcategoria=c.idcategoria) I
                       echo "  </div>";
                     ?>
 
-                    <a href="#">
-                  <button type="button" class="btn btn-light" style="width: 220px; ">
-                    <i class="fa fa-plus"> Agregar nuevo proveedor</i>
-                  </button> 
-                </a>
+                  <button class="btn btn-primary button1" data-toggle="modal" data-target="#ModalAgregarProveedor"> <i class="glyphicon glyphicon-plus-sign"></i> Agregar proveedor </button>
               </div>
 
                

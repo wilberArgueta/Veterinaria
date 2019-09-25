@@ -173,55 +173,7 @@ if (isset($_GET["q"])) {
         echo "</table></center><br></br>";
 
     }
-} else {
-    $query = @mysqli_query($link, "SELECT * FROM proveedor");
-    echo "<br><div class=\"alert alert alert-info\" role=\"alert\">
-
-                    Listado de proveedores.
-                   </div>";
-    echo "<center>
-  <div class=\"table-responsive\">
-<table class=\"table table-bordered table-hover\" >
- <tr>
-   <td>ID Proveedor</td>
-   <td>Nombre</td>
-   <td>Dirección</td>
-    <td>Teléfono </td>
-   <td>Correo</td>
-   <td>contacto</td>
-   <td>Observación</td>
-    <td>Acciones</td>
-
- </tr>";
-
-    while ($data = mysqli_fetch_array($query)) {
-
-        echo "<tr class=\"warning\">
-    <td>$data[0]</td>
-    <td>$data[nombre]</td>
-    <td>$data[direccion]</td>
-    <td>$data[telefono]</td>
-    <td>$data[correo]</td>
-    <td>$data[contacto]</td>
-    <td align='center'>
-    <button type='button' class='btn btn-link' data-toggle='modal' data-target='#DetalleProveedor'><img src='../img/detalles.png' border=0 title='Detalles' style='width: 40px; font-size:20px' title='Detalles'></button>
-    </td>
-
-
-    <td>
-
-     <a href='modificar.php?id=$data[0]'><img src='../img/editar.png' border=0 title='Modificar' style='width: 40px; font-size:20px' title='Modificar'></a>
-
-
-     <a href=# onclick=\"javascript:if(window.confirm('¿Desea eliminar el usuario $data[0]?q=$q'))
-     {location.replace('$_SERVER[PHP_SELF]?action=del&id=$data[0]&q=$q')}\">
-     <img src='../img/eliminar.png' border=0 title='Eliminar' style='width: 40px; font-size:20px' title='Eliminar'></a>
-</td>
-
-   </tr>	";
-    }
-    echo "</table></center><br></br>";
-}
+} 
 ?>
 
         </div>

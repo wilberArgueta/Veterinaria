@@ -51,6 +51,7 @@ if (!$_SESSION['acceso']) {
 
               </form><br><br>
 
+              <!--  
               
 
               <form  role="form" method="GET" action="view_report_servicioCliente.php" class="form-horizontal form-label-left">
@@ -77,7 +78,7 @@ if (!$_SESSION['acceso']) {
 
 
               </form><br><br>
-
+-->
             </div>
           </div>
         </div>

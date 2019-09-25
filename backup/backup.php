@@ -1,6 +1,6 @@
  <?php
 
-include("conectar.php");
+include("../conectar.php");
 if(isset($_POST['crear'])){
   $target_path = getcwd();
   $now = str_replace(":", "", date("Y-m-d H:i"));
@@ -49,12 +49,12 @@ if($_FILES){
 <head>
   <title> | Clinica Veterinaria | Respaldo de datos</title>
 
-  <?php include 'includes/head.php' ?>
+  <?php include '../includes/head.php' ?>
 
 </head>
 <body class="nav-md">
-  <?php include 'includes/nav.php' ?>
-  <?php include 'includes/cerrarSesion.php' ?>
+  <?php include '../includes/nav.php' ?>
+  <?php include '../includes/cerrarSesion.php' ?>
   <div class="right_col" role="main">
     <div class="row">
       <div class="col-md-12">
@@ -62,7 +62,7 @@ if($_FILES){
           <section class="content-header">
             <h1>Respaldo de datos</h1>
             <ol class="breadcrumb">
-              <li><a href="inicio.php"><i class="fa fa-home"></i> Home</a></li>
+              <li><a href="../home/"><i class="fa fa-home"></i> Home</a></li>
               <li>/ Respaldo</li>
               <li class="active">Respaldo de datos</li>
             </ol>
@@ -111,8 +111,8 @@ if($_FILES){
 
       </div>
     </div>
-    <?php include 'includes/footer.php' ?>
-  <?php include 'includes/script.php' ?>
+    <?php include '../includes/footer.php' ?>
+  <?php include '../includes/script.php' ?>
   
 
 </body>

@@ -1,9 +1,10 @@
 <?php
     ob_start();
     
- 
+    $fecha1= $_GET['fecha1'];
     
-    include(dirname(__FILE__)."/report_detail_consulta.php");
+	
+    include(dirname(__FILE__)."/report_detail_examenFecha.php");
     
     $content = ob_get_clean();
 
@@ -15,7 +16,7 @@
         $html2pdf->pdf->SetDisplayMode('fullpage');
 //      $html2pdf->pdf->SetProtection(array('print'), 'spipu');
         $html2pdf->writeHTML($content, isset($_GET['vuehtml']));
-        $html2pdf->Output('reporte_consulta.pdf');
+        $html2pdf->Output('reporte_examenFecha.pdf');
     }
     catch(HTML2PDF_exception $e) {
         echo $e;

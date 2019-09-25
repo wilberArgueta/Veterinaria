@@ -6,6 +6,7 @@ if (!$_SESSION['acceso']) {
  ?>
 
 <?php include('../conectar.php') ?>
+<?php include('../modal/ModalProveedor.php');?>
 <!DOCTYPE html>
 <html>
 <head>
@@ -71,7 +72,7 @@ if (!$_SESSION['acceso']) {
                   <label class="control-label col-md-3 col-sm-3 col-xs-12" for="id_categoria">Categoria del Producto</label>
 
                     <?php
-    									include ('conectar.php');
+    									include ('../conectar.php');
                       $consulta_categoria= mysqli_query($link, "SELECT * FROM categoria");
     									echo "<div class=\"col-md-6 col-sm-6 col-xs-12\">";
     									echo "<select class=\"form-control js-example-basic-single col-md-7 col-xs-12\" id=\"categoria\" name=\"categoria\" >";
@@ -82,12 +83,7 @@ if (!$_SESSION['acceso']) {
     									echo "	</div>";
                     ?>
 
-                    <a href="#">
-                  <button type="button" class="btn btn-light" style="width: 220px; ">
-                    <i class="fa fa-plus"> Agregar nueva categoria</i>
-                  </button> 
-                </a>
-
+                    
               </div>
 
               <div class="form-group">
@@ -106,11 +102,7 @@ if (!$_SESSION['acceso']) {
     									echo "	</div>";
                     ?>
 
-                    <a href="#">
-                  <button type="button" class="btn btn-light" style="width: 220px; ">
-                    <i class="fa fa-plus"> Agregar nuevo proveedor</i>
-                  </button> 
-                </a>
+                <button class="btn btn-primary button1" data-toggle="modal" data-target="#ModalAgregarProveedor"> <i class="glyphicon glyphicon-plus-sign"></i> Agregar proveedor </button>
               </div>
 
                

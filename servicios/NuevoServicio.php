@@ -5,7 +5,7 @@ if (!$_SESSION['acceso']) {
 }
  ?>
 <?php include '../conectar.php' ?>
-<?php include('../modal/Modalcliente.php');?>
+<?//php include('../modal/Modalcliente.php');//?>
 <!DOCTYPE html>
 <html>
 <head>
@@ -72,8 +72,10 @@ if (!$_SESSION['acceso']) {
                                  echo "  </select>";
                                  ?>
                               </div>
+<!--  
+                              
                               <button class="btn btn-primary button1" data-toggle="modal" data-target="#ModalAgregarCliente"> <i class="glyphicon glyphicon-plus-sign"></i> Agregar cliente </button>
-
+-->
                             </div>
 
                           

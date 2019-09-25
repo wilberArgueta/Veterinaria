@@ -1,6 +1,6 @@
 <!-- fullCalendar 2.2.5 -->
-<script src="../assests/plugins/moment/moment.min.js"></script>
-<script src="../assests/plugins/fullcalendar/fullcalendar.js"></script>
+<script src="assests/plugins/moment/moment.min.js"></script>
+<script src="assests/plugins/fullcalendar/fullcalendar.js"></script>
 
 
 <script type="text/javascript">

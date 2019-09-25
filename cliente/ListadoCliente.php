@@ -140,7 +140,7 @@ if (!$_SESSION['acceso']) {
          <td>$data[mascota]</td>
 
          <td>
-          </a>
+        
 
           <a href='ModyCliente.php?id=$data[0]'><img src='../img/editar.png' border=0 title='Modificar' style='width: 40px; font-size:20px' title='Modificar'></a>
 

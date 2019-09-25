@@ -5,6 +5,7 @@ if (!$_SESSION['acceso']) {
 }
  ?>
 <?php include '../conectar.php' ?>
+<?php include('../modal/ModalMaterial.php');?>
 <!DOCTYPE html>
 <html>
 <head>
@@ -61,11 +62,7 @@ if (!$_SESSION['acceso']) {
             <div class="title_left">
               <div class="col-md-5 col-sm-5 col-xs-12 form-group pull-left top_search">
                 <div class="input-group">
-                  <a href="NuevoMaterial.php">
-                    <button type="button" class="btn btn-dark" style="width: 300px; ">
-                      <i class="fa fa-plus-square-o" style="font-size:20px">    Nuevo producto material</i>
-                    </button>
-                  </a>
+                  <button class="btn btn-primary button1" data-toggle="modal" data-target="#ModalAgregarMaterial"> <i class="glyphicon glyphicon-plus-sign"></i> Agregar nuevo producto </button>
                 </div>
               </div>
             </div><br><br><br>

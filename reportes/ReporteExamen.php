@@ -51,6 +51,58 @@ if (!$_SESSION['acceso']) {
 
               </form><br><br>
 
+              <form  role="form" method="GET" action="view_report_examenFecha.php" class="form-horizontal form-label-left">
+
+                <div class="item form-group">
+                  <label class="control-label col-md-3 col-sm-3 col-xs-12" for="telefono">Reporte por Fecha</label> 
+
+                <div class="col-md-6 col-sm-6 col-xs-12">
+                  <div class='input-group date' id='myDatepicker2'>
+                    <input type='date' class=" form-control datepicker" data-date-format="yyyy-mm-dd" name="fecha1" id="fecha1" placeholder="Introduce la fecha de inicio" />
+                      <span class="input-group-addon">
+                        <span class="glyphicon glyphicon-calendar"></span>
+                      </span>
+                  </div><br>
+                  <div class="col-md-6 col-sm-6 col-xs-12">
+                    <button type="submit" class="btn btn-primary" style="width: 200px; height: 30px; font-size: 10pt; border-radius: 15px 15px 15px 15px;"><i class="fa fa-print"></i>     Generar reporte</button>
+                  </div>
+                </div>
+                
+                </div>
+              </form><br><br>
+
+              <form  role="form" method="GET" action="view_report_examenClienteFecha.php" class="form-horizontal form-label-left">
+
+                <div class="item form-group">
+                  <label class="control-label col-md-3 col-sm-3 col-xs-12" for="telefono">Reporte por Fecha</label> 
+                  <div class="col-md-6 col-sm-6 col-xs-12">
+                    <?php
+                      $consulta_laboratorio=mysqli_query($link,"SELECT * FROM laboratorio ORDER BY idlaboratorio ASC ");
+                      echo "<option value=''>Seleccione un laboratorio</option>";
+                      echo " <select  class=\"form-control js-example-basic-single \" id=\"idlaboratorio\" title=\"Has clic para desplegar\" name=\"idlaboratorio\" >";
+                      while($fila=mysqli_fetch_array($consulta_laboratorio)){
+                        echo "<option value='".$fila['idlaboratorio']."'>".$fila['nombre']."</option>";
+                      }
+                      echo "  </select><br>";
+                    ?> 
+<br>
+                    <div class='input-group date' id='myDatepicker2'>
+                      <input type='date' class=" form-control datepicker" data-date-format="yyyy-mm-dd" name="fecha1" id="fecha1" placeholder="Introduce la fecha de inicio" />
+                        <span class="input-group-addon">
+                          <span class="glyphicon glyphicon-calendar"></span>
+                        </span>
+                    </div><br>
+                    <div class="col-md-6 col-sm-6 col-xs-12">
+                      <button type="submit" class="btn btn-primary" style="width: 200px; height: 30px; font-size: 10pt; border-radius: 15px 15px 15px 15px;"><i class="fa fa-print"></i>     Generar reporte</button>
+                    </div>
+                  </div>
+                </div><br>
+
+
+              </form><br><br>
+              <!-- 
+
+              <!--  
               
 
               <form  role="form" method="GET" action="view_report_examenCliente.php" class="form-horizontal form-label-left">
@@ -77,7 +129,7 @@ if (!$_SESSION['acceso']) {
 
 
               </form><br><br>
-
+-->
             </div>
           </div>
         </div>

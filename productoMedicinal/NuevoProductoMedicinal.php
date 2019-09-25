@@ -57,11 +57,7 @@ if (!$_SESSION['acceso']) {
                     <span class="fa fa-shopping-cart form-control-feedback right" aria-hidden="true"></span>
                   </div>
 
-                  <a href="#">
-                  <button type="button" class="btn btn-light" style="width: 220px; ">
-                    <i class="fa fa-plus"> Agregar nuevo producto</i>
-                  </button>
-                </a>
+               
                 </div>
 
                 <div class="item form-group">
@@ -84,7 +80,7 @@ if (!$_SESSION['acceso']) {
                   <label class="control-label col-md-3 col-sm-3 col-xs-12" for="id_categoria">Categoria del Producto</label>
 
                     <?php
-    									include ('conectar.php');
+    									include ('../conectar.php');
                       $consulta_categoria= mysqli_query($link, "SELECT * FROM categoria");
     									echo "<div class=\"col-md-6 col-sm-6 col-xs-12\">";
     									echo "<select class=\"form-control js-example-basic-single col-md-7 col-xs-12\" id=\"categoria\" name=\"categoria\" >";
@@ -107,7 +103,7 @@ if (!$_SESSION['acceso']) {
                   <label class="control-label col-md-3 col-sm-3 col-xs-12" for="id_proveedor">Proveedor</label>
 
                     <?php
-    									include ('conectar.php');
+    									include ('../conectar.php');
                       $consulta_proveedor= mysqli_query($link, "SELECT * FROM proveedor");
     									echo "<div class=\"col-md-6 col-sm-6 col-xs-12\">";
     									echo "<select class=\"form-control js-example-basic-single col-md-7 col-xs-12\" id=\"proveedor\" name=\"proveedor\" >";
@@ -179,7 +175,7 @@ if (!$_SESSION['acceso']) {
                 <div class="form-group">
                   <div class="col-md-6 col-md-offset-3">-
                     <button type="submit" class="btn btn-success">Cancelar</button>
-                    <button id="registrar" type="submit" class="btn btn-primary">Registrar</button>
+                    <button id="registrar" type="submit" name="submit" class="btn btn-primary">Registrar</button>
                   </div>
                 </div>
               </form>
@@ -231,10 +227,10 @@ if (!$_SESSION['acceso']) {
 
        if ($insertar1) {
 
-          //echo "<script>alert('insertar1');</script>";
+          echo "<script>alert('insertar1');</script>";
 
           if ($insertar2) {
-            //echo "<script>alert('insertar2');</script>";
+            echo "<script>alert('insertar2');</script>";
          
           if ($insertar3) {
              echo "<script>

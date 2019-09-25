@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: localhost
--- Tiempo de generación: 30-06-2019 a las 09:32:49
+-- Tiempo de generación: 05-07-2019 a las 22:10:18
 -- Versión del servidor: 10.1.26-MariaDB-0+deb9u1
 -- Versión de PHP: 7.0.33-0+deb9u3
 
@@ -32,9 +32,8 @@ CREATE TABLE `botiquin` (
   `id_botiquin` int(11) NOT NULL,
   `cod_estudiante` varchar(50) COLLATE utf8_spanish_ci NOT NULL,
   `nombre_estudiante` varchar(50) COLLATE utf8_spanish_ci NOT NULL,
-  `idproducto` int(11) NOT NULL,
-  `cantidad` decimal(10,0) NOT NULL,
-  `descripcion` varchar(100) COLLATE utf8_spanish_ci NOT NULL
+  `descripcion` varchar(100) COLLATE utf8_spanish_ci NOT NULL,
+  `fecha` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_spanish_ci;
 
 -- --------------------------------------------------------
@@ -58,9 +57,6 @@ INSERT INTO `categoria` (`idcategoria`, `nombre`) VALUES
 (3, 'Equipo General'),
 (4, 'Medicinal'),
 (5, 'Botiquin');
-
--- --------------------------------------------------------
-
 --
 -- Estructura de tabla para la tabla `cliente`
 --
@@ -73,13 +69,6 @@ CREATE TABLE `cliente` (
   `telefono` varchar(8) COLLATE utf8_spanish_ci NOT NULL,
   `idmascota` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_spanish_ci;
-
---
--- Volcado de datos para la tabla `cliente`
---
-
-INSERT INTO `cliente` (`idcliente`, `nombre`, `apellido`, `direccion`, `telefono`, `idmascota`) VALUES
-(1, 'Edwin', 'Orantes', 'Alegria', '28374010', 1);
 
 -- --------------------------------------------------------
 
@@ -100,6 +89,18 @@ CREATE TABLE `consulta` (
 -- --------------------------------------------------------
 
 --
+-- Estructura de tabla para la tabla `detalle_botiquin`
+--
+
+CREATE TABLE `detalle_botiquin` (
+  `idproducto` int(11) NOT NULL,
+  `cantidad` int(11) NOT NULL,
+  `idbotiquin` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+-- --------------------------------------------------------
+
+--
 -- Estructura de tabla para la tabla `detalle_producto`
 --
 
@@ -112,14 +113,6 @@ CREATE TABLE `detalle_producto` (
   `precio_venta` float NOT NULL,
   `fecha_vencimiento` date NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_spanish_ci;
-
---
--- Volcado de datos para la tabla `detalle_producto`
---
-
-INSERT INTO `detalle_producto` (`iddetalle_producto`, `idStock_movimiento`, `presentacion`, `valor`, `precio_compra`, `precio_venta`, `fecha_vencimiento`) VALUES
-(1, 5, '', '', 3, 5, '2020-03-12'),
-(2, 14, 'unidades', '', 3, 3.4, '2020-03-29');
 
 -- --------------------------------------------------------
 
@@ -184,13 +177,6 @@ CREATE TABLE `mascota` (
   `genero` varchar(50) COLLATE utf8_spanish_ci NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_spanish_ci;
 
---
--- Volcado de datos para la tabla `mascota`
---
-
-INSERT INTO `mascota` (`idmascota`, `expediente`, `nombre`, `raza`, `edad`, `peso`, `talla`, `genero`) VALUES
-(1, '', 'Chester', 'Pequiñez', 0, 25, 100, 'Macho');
-
 -- --------------------------------------------------------
 
 --
@@ -202,14 +188,6 @@ CREATE TABLE `material` (
   `idstockMovimiento` int(11) NOT NULL,
   `precio_venta` float NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
-
---
--- Volcado de datos para la tabla `material`
---
-
-INSERT INTO `material` (`idmaterial`, `idstockMovimiento`, `precio_venta`) VALUES
-(1, 6, 3.5),
-(2, 13, 4.5);
 
 -- --------------------------------------------------------
 
@@ -226,27 +204,6 @@ CREATE TABLE `productos` (
   `cantidad` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_spanish_ci;
 
---
--- Volcado de datos para la tabla `productos`
---
-
-INSERT INTO `productos` (`idproducto`, `cod_interno`, `nombre`, `descripcion`, `idcategoria`, `cantidad`) VALUES
-(1, '23445', 'prueba', 'prueba 2', 3, 12),
-(2, 'fh67', 'vgh', 'sddgbhn', 2, 1),
-(3, '5efgg', 'fdd', 'ssbsbnm', 1, 2),
-(4, 'df456', 'dcggghgj', 'vfbjj', 1, 23),
-(5, 'ghvv', '86', 'dghj', 1, 4),
-(6, 'HG9877', 'ES OTRA PRUEBA', 'YES', 1, 12),
-(7, '983hjhq', 'bonito', 'alisndfg', 1, 5),
-(8, 'HG49302', 'mi produvto', 'nuvo product', 4, 3),
-(9, '566', 'dgjk', 'k,ll', 4, 5),
-(10, 'kl9865', 'hdgskal', 'jsllaa', 4, 3),
-(11, 'jhdjkjdjdkdk', 'jkhjdjkdjlksk', 'msdjdlkjskj', 4, 3),
-(12, 'VR98376', 'lo q sea', 'cualquier cosa', 4, 20),
-(13, 'jhgfdlkjp', 'hsklalls', 'svbxx', 4, 9),
-(14, '1245436', 'mouse', 'Es un raton', 1, 2),
-(15, '353267', 'prueba23', 'es ybaksdgd', 4, 2);
-
 -- --------------------------------------------------------
 
 --
@@ -262,15 +219,6 @@ CREATE TABLE `proveedor` (
   `contacto` varchar(50) COLLATE utf8_spanish_ci NOT NULL,
   `observacion` varchar(100) COLLATE utf8_spanish_ci NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_spanish_ci;
-
---
--- Volcado de datos para la tabla `proveedor`
---
-
-INSERT INTO `proveedor` (`idproveedor`, `nombre`, `direccion`, `telefono`, `correo`, `contacto`, `observacion`) VALUES
-(1, 'Materiales S.A. de C.V.', 'San Salvador', '26620918', 'materiales@gmail.com', 'Elias Pineda', 'ninguna'),
-(2, 'Productos S.A. de C.V.', 'Bo. Nuevo', '38922022', 'productos@gmail.com', 'Marcos Larin', 'ninguna'),
-(3, 'Prueba2', 'MI casa', '28934452', 'prueba@gmail.com', 'Fany', 'esta es una prueba');
 
 -- --------------------------------------------------------
 
@@ -314,25 +262,6 @@ CREATE TABLE `stock_movimiento` (
   `fecha_movimiento` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_spanish_ci;
 
---
--- Volcado de datos para la tabla `stock_movimiento`
---
-
-INSERT INTO `stock_movimiento` (`idStock_movimiento`, `idproducto`, `idproveedor`, `cantidad`, `fecha_movimiento`) VALUES
-(1, 2, 1, '1', '2019-05-18 22:32:18'),
-(2, 3, 1, '2', '2019-05-18 22:48:34'),
-(3, 4, 1, '23', '2019-05-18 22:53:11'),
-(4, 5, 1, '4', '2019-05-18 22:54:25'),
-(5, 6, 1, '12', '2019-05-18 22:57:16'),
-(6, 7, 1, '5', '2019-05-18 23:06:00'),
-(8, 9, 2, '5', '2019-05-19 23:43:26'),
-(9, 10, 2, '3', '2019-05-19 23:53:21'),
-(10, 11, 2, '3', '2019-05-19 23:55:44'),
-(11, 12, 2, '20', '2019-05-20 00:10:32'),
-(12, 13, 2, '9', '2019-05-20 00:20:37'),
-(13, 14, 3, '2', '2019-06-15 17:55:24'),
-(14, 15, 3, '2', '2019-06-15 18:29:28');
-
 -- --------------------------------------------------------
 
 --
@@ -355,7 +284,7 @@ CREATE TABLE `usuario` (
 --
 
 INSERT INTO `usuario` (`idUsuario`, `nombreUsuario`, `nombre`, `apellido`, `telefono`, `direccion`, `clave`, `correo`) VALUES
-(1, 'U20160008', 'Vanessa', 'Rodriguez', '26398233', 'col. la presita', '21232f297a57a5a743894a0e4a801fc3', 'vane@gmail.com');
+(1, 'U20160008', 'Vanessa', 'Rodriguez', '26398233', 'col. la presita', '77e2edcc9b40441200e31dc57dbb8829', 'vane@gmail.com');
 
 -- --------------------------------------------------------
 
@@ -377,8 +306,7 @@ CREATE TABLE `venta` (
 -- Indices de la tabla `botiquin`
 --
 ALTER TABLE `botiquin`
-  ADD PRIMARY KEY (`id_botiquin`),
-  ADD KEY `idproducto` (`idproducto`);
+  ADD PRIMARY KEY (`id_botiquin`);
 
 --
 -- Indices de la tabla `categoria`
@@ -399,6 +327,13 @@ ALTER TABLE `cliente`
 ALTER TABLE `consulta`
   ADD PRIMARY KEY (`idconsulta`),
   ADD KEY `idcliente` (`idcliente`);
+
+--
+-- Indices de la tabla `detalle_botiquin`
+--
+ALTER TABLE `detalle_botiquin`
+  ADD KEY `idbotiquin` (`idbotiquin`),
+  ADD KEY `idproducto` (`idproducto`);
 
 --
 -- Indices de la tabla `detalle_producto`
@@ -498,7 +433,7 @@ ALTER TABLE `venta`
 -- AUTO_INCREMENT de la tabla `botiquin`
 --
 ALTER TABLE `botiquin`
-  MODIFY `id_botiquin` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id_botiquin` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=26;
 
 --
 -- AUTO_INCREMENT de la tabla `categoria`
@@ -522,7 +457,7 @@ ALTER TABLE `consulta`
 -- AUTO_INCREMENT de la tabla `detalle_producto`
 --
 ALTER TABLE `detalle_producto`
-  MODIFY `iddetalle_producto` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `iddetalle_producto` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT de la tabla `detalle_venta`
@@ -552,7 +487,7 @@ ALTER TABLE `mascota`
 -- AUTO_INCREMENT de la tabla `material`
 --
 ALTER TABLE `material`
-  MODIFY `idmaterial` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `idmaterial` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT de la tabla `productos`
@@ -564,7 +499,7 @@ ALTER TABLE `productos`
 -- AUTO_INCREMENT de la tabla `proveedor`
 --
 ALTER TABLE `proveedor`
-  MODIFY `idproveedor` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `idproveedor` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT de la tabla `servicios`
@@ -582,7 +517,7 @@ ALTER TABLE `stock`
 -- AUTO_INCREMENT de la tabla `stock_movimiento`
 --
 ALTER TABLE `stock_movimiento`
-  MODIFY `idStock_movimiento` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=15;
+  MODIFY `idStock_movimiento` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
 
 --
 -- AUTO_INCREMENT de la tabla `usuario`
@@ -601,12 +536,6 @@ ALTER TABLE `venta`
 --
 
 --
--- Filtros para la tabla `botiquin`
---
-ALTER TABLE `botiquin`
-  ADD CONSTRAINT `botiquin_ibfk_1` FOREIGN KEY (`idproducto`) REFERENCES `productos` (`idproducto`) ON DELETE CASCADE ON UPDATE CASCADE;
-
---
 -- Filtros para la tabla `cliente`
 --
 ALTER TABLE `cliente`
@@ -617,6 +546,13 @@ ALTER TABLE `cliente`
 --
 ALTER TABLE `consulta`
   ADD CONSTRAINT `consulta_ibfk_1` FOREIGN KEY (`idcliente`) REFERENCES `cliente` (`idcliente`) ON DELETE CASCADE ON UPDATE CASCADE;
+
+--
+-- Filtros para la tabla `detalle_botiquin`
+--
+ALTER TABLE `detalle_botiquin`
+  ADD CONSTRAINT `detalle_botiquin_ibfk_1` FOREIGN KEY (`idbotiquin`) REFERENCES `botiquin` (`id_botiquin`) ON DELETE CASCADE ON UPDATE CASCADE,
+  ADD CONSTRAINT `detalle_botiquin_ibfk_2` FOREIGN KEY (`idproducto`) REFERENCES `productos` (`idproducto`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
 -- Filtros para la tabla `detalle_producto`

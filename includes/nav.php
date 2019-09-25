@@ -400,7 +400,7 @@
                 </a>
                 <ul class="nav child_menu">
                   <li>
-                    <a href="../ReporteUsuarios.php">
+                    <a href="../reportes/ReporteUsuarios.php">
                       <i class="fa fa-user"></i>
                       <b>Reporte de Usuarios</b>
                     </a>

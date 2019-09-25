@@ -88,7 +88,7 @@ if (!$_SESSION['acceso']) {
       if(isset($_GET["q"])){
 
     $q = $_GET["q"];
-    $query = @mysqli_query($link,"SELECT servicios.id_servicio,servicios.tipo_servicio,servicios.descripcion,servicios.precio,servicios.porcentaje_ganancia, cliente.nombre AS cliente FROM servicios INNER JOIN cliente ON servicios.idcliente = cliente.idcliente WHERE servicios.id_servicio LIKE '%$q%' OR servicios.tipo_servicio LIKE '%$q%' order by id_servicio");
+    $query = @mysqli_query($link,"SELECT servicios.id_servicio,servicios.tipo_servicio,servicios.descripcion,servicios.precio, cliente.nombre AS cliente FROM servicios INNER JOIN cliente ON servicios.idcliente = cliente.idcliente WHERE servicios.id_servicio LIKE '%$q%' OR servicios.tipo_servicio LIKE '%$q%' order by id_servicio");
     if(!@mysqli_num_rows($query)){
       echo "<br><div class=\"alert alert alert-danger\" role=\"alert\">
              <strong>Error</strong>

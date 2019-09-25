@@ -65,7 +65,7 @@ if (!$_SESSION['acceso']) {
               </div>
 
               <div class="item form-group">
-                <label class="control-label col-md-3 col-sm-3 col-xs-12" for="telefono">Telefono</label>
+                <label class="control-label ceol-md-3 col-sm-3 col-xs-12" for="telefono">Telefono</label>
                 <div class="col-md-6 col-sm-6 col-xs-12">
                   <input type="text" id="telefono" name="telefono" class="form-control" data-inputmask="'mask' : '9999-9999'">
                   <span class="fa fa-phone form-control-feedback right" aria-hidden="true"></span>

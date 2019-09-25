@@ -85,7 +85,7 @@ if (!$_SESSION['acceso']) {
                       }
                       echo "  </select><br>";
                     ?> 
-
+<br>
                     <div class='input-group date' id='myDatepicker2'>
                       <input type='date' class=" form-control datepicker" data-date-format="yyyy-mm-dd" name="fecha1" id="fecha1" placeholder="Introduce la fecha de inicio" />
                         <span class="input-group-addon">
@@ -100,6 +100,7 @@ if (!$_SESSION['acceso']) {
 
 
               </form><br><br>
+              <!-- 
 
               <form  role="form" method="GET" action="view_report_consultaClientes.php" class="form-horizontal form-label-left">
 
@@ -125,7 +126,8 @@ if (!$_SESSION['acceso']) {
 
 
               </form><br><br>
-
+ -->
+              
             </div>
           </div>
         </div>

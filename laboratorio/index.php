@@ -225,11 +225,11 @@ if (isset($_GET["q"])) {
   </div>
 
   </div>
-  <?php include 'includes/footer.php'?>
+  <?php include '../includes/footer.php'?>
 
   </div>
   </div>
-  <?php include 'includes/script.php'?>
+  <?php include '../includes/script.php'?>
 
 </body>
 
