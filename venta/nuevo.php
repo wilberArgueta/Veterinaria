@@ -1,20 +1,20 @@
-<?php 
+<?php
 session_start();
 if (!$_SESSION['acceso']) {
-  header("Location:../login/");
+    header("Location:../login/");
 }
- ?>
-<?php include '../conectar.php' ?>
+?>
+<?php include '../conectar.php'?>
 
 <!DOCTYPE html>
 <html>
 <head>
   <title> | Clinica Veterinaria | Registro de Venta</title>
-  <?php include '../includes/head.php' ?>
+  <?php include '../includes/head.php'?>
 </head>
 <body class="nav-md">
-  <?php include '../includes/nav.php' ?>
-   <?php include '../includes/cerrarSesion.php' ?>
+  <?php include '../includes/nav.php'?>
+   <?php include '../includes/cerrarSesion.php'?>
   <div class="right_col" role="main">
     <div class="row">
       <div class="col-md-12">
@@ -67,6 +67,7 @@ if (!$_SESSION['acceso']) {
                     <label class="control-label col-md-3 col-sm-3 col-xs-12" for="idcliente">Cliente</label>
 
                     <?php
+<<<<<<< HEAD:venta/RegistrarVenta.php
                       include ('../conectar.php');
                       $consulta_cliente= mysqli_query($link, "SELECT * FROM cliente");
                       echo "<div class=\"col-md-6 col-sm-6 col-xs-12\">";
@@ -81,22 +82,38 @@ if (!$_SESSION['acceso']) {
                       echo "  </select>";
                       echo "  </div>";
                     ?>
+=======
+
+$consulta_cliente = mysqli_query($link, "SELECT * FROM cliente");
+echo "<div class=\"col-md-6 col-sm-6 col-xs-12\">";
+echo "<select class=\"form-control js-example-basic-single col-md-7 col-xs-12\" id=\"idcliente\" name=\"idcliente\">";
+echo "<option value=''>Seleccione</option>";
+while ($fila = mysqli_fetch_array($consulta_cliente)) {
+    if ($tipo == $fila['idcliente']) {
+        echo "<option value=\"" . $fila['idcliente'] . "\" selected>" . $fila['nombre'] . $fila['apellido'] . "</option>";
+    }
+    echo "<option value=\"" . $fila['idcliente'] . "\">" . $fila['nombre'] . $fila['apellido'] . "</option>";
+}
+echo "  </select>";
+echo "  </div>";
+?>
+>>>>>>> origin/master:venta/nuevo.php
 
                     <a href="../cliente/NuevoCliente.php">
                       <button type="button" class="btn btn-secondary" title="Agregar Cliente">
                         <i class="fa fa-plus"></i>
-                      </button> 
+                      </button>
                     </a>
                 </div><br>
-              
 
-            
+
+
 
               <div class="item form-group">
                 <div class="col-md-6 col-sm-6 col-xs-12">
                   <button type="button" style="width: 150px; margin-left: 600px;" class="btn btn-warning" data-toggle='modal' data-target='#productos'>
                   <b>INGRESAR</b>
-                </button> 
+                </button>
                 </div>
               </div>
 <br>
@@ -114,9 +131,9 @@ if (!$_SESSION['acceso']) {
                   <th scope="col">Acción</th>
                 </tr>
               </thead>
-              
+
             </table><br>
-            
+
             <div class="item form-group">
               <label class="control-label col-md-3 col-sm-3 col-xs-12" for="suma">Suma</label>
               <div class="col-md-6 col-sm-6 col-xs-12">
@@ -125,7 +142,7 @@ if (!$_SESSION['acceso']) {
               </div>
             </div>
 
-            
+
 
               <div class="item form-group">
                 <label class="control-label col-md-3 col-sm-3 col-xs-12" for="subtotal">Subtotal</label>
@@ -134,7 +151,7 @@ if (!$_SESSION['acceso']) {
                   <span class="fa fa-usd form-control-feedback right" aria-hidden="true"></span>
                 </div>
               </div>
-        
+
 
             <div class="item form-group">
               <label class="control-label col-md-3 col-sm-3 col-xs-12" for="iva">% IVA</label>
@@ -152,7 +169,7 @@ if (!$_SESSION['acceso']) {
                 </div>
               </div>
 
-           
+
 
                 <div class="ln_solid"></div>
                 <div class="form-group">
@@ -169,11 +186,11 @@ if (!$_SESSION['acceso']) {
 
       </div>
     </div>
-    <?php include '../includes/footer.php' ?>
+    <?php include '../includes/footer.php'?>
 
     </div>
   </div>
-  <?php include '../includes/script.php' ?>
+  <?php include '../includes/script.php'?>
 
 </body>
 </html>
@@ -195,7 +212,7 @@ if (!$_SESSION['acceso']) {
     <table class="display" id="tabla">
     <thead>
       <tr>
-  
+
         <th>Código</th>
         <th>Poductos</th>
         <th>Descripcion</th>
@@ -206,21 +223,19 @@ if (!$_SESSION['acceso']) {
     </thead>
 
     <tbody>
-     <?php 
+     <?php
 
-     include '../conectar.php';
+include '../conectar.php';
 
-     $query= mysqli_query($link, "SELECT p.idproducto, p.cod_interno as cod_interno, p.nombre as producto, p.descripcion as descripcion, p.cantidad as cantidad,c.nombre
-      AS categoria, pv.nombre as proveedor, st.idStock_movimiento as idStock_movimiento,dt.presentacion as presentacion,dt.valor as valor, dt.precio_compra 
+$query = mysqli_query($link, "SELECT p.idproducto, p.cod_interno as cod_interno, p.nombre as producto, p.descripcion as descripcion, p.cantidad as cantidad,c.nombre
+      AS categoria, pv.nombre as proveedor, st.idStock_movimiento as idStock_movimiento,dt.presentacion as presentacion,dt.valor as valor, dt.precio_compra
       as precio_compra, dt.precio_venta as precio_venta, dt.fecha_vencimiento as fecha_vencimiento FROM productos as p INNER JOIN categoria as c
        ON(p.idcategoria=c.idcategoria) INNER JOIN stock_movimiento as st ON (p.idproducto =st.idproducto) INNER JOIN proveedor as pv ON (st.idproveedor= pv.idproveedor )
        INNER JOIN detalle_producto as dt ON (dt.idStock_movimiento=st.idStock_movimiento)");
 
-     
-      while($data = mysqli_fetch_array($query)){
-       
+while ($data = mysqli_fetch_array($query)) {
 
-     echo " 
+    echo "
 <tr>
 
   <td>$data[cod_interno]</td>
@@ -235,7 +250,7 @@ if (!$_SESSION['acceso']) {
                                            <td> $data[precio_venta]</td>
                                             <td> </td>
                                             <td> <button type='button' class='btn btn-danger' >Eliminar</button></td>
-                                            
+
                                             </tr>\"></button>
 
 
@@ -246,7 +261,7 @@ if (!$_SESSION['acceso']) {
 ";
 }?>
     </tbody>
-      
+
     </table>
 
 

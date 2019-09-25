@@ -1,21 +1,22 @@
-<?php 
+<?php
 session_start();
 if (!$_SESSION['acceso']) {
-  header("Location:../login/");
+    header("Location:../login/");
 }
- ?>
-<?php include '../conectar.php' ?>
-<?php include('../modal/Modalcliente.php');?>
+include '../conectar.php';
+include '../modal/Modalcliente.php';
+?>
+
 <!DOCTYPE html>
 <html>
 <head>
   <title> | Clinica Veterinaria | Registrar Consulta</title>
-  <?php include '../includes/head.php' ?>
+  <?php include '../includes/head.php'?>
 </head>
 
   <body class="nav-md">
-  <?php include '../includes/nav.php' ?>
-  <?php include '../includes/cerrarSesion.php' ?>
+  <?php include '../includes/nav.php'?>
+  <?php include '../includes/cerrarSesion.php'?>
 
               <div class="right_col" role="main">
                 <div class="row">
@@ -45,18 +46,18 @@ if (!$_SESSION['acceso']) {
                               <label class="control-label col-md-3 col-sm-3 col-xs-12" for="idcliente">Cliente</label>
                               <div class="col-md-6 col-sm-6 col-xs-12">
                               <?php
-                                $consulta_cliente=mysqli_query($link,"SELECT * FROM cliente ORDER BY idcliente ASC ");
+$consulta_cliente = mysqli_query($link, "SELECT * FROM cliente ORDER BY idcliente ASC ");
 
-                                 echo " <select  class=\"form-control js-example-basic-single\" id=\"idcliente\" title=\"Has clic para desplegar\" name=\"idcliente\" >";
-                                 echo "<option value=''>Seleccione..</option>";
+echo " <select  class=\"form-control js-example-basic-single\" id=\"idcliente\" title=\"Has clic para desplegar\" name=\"idcliente\" >";
+echo "<option value=''>Seleccione..</option>";
 
-                                while($fila=mysqli_fetch_array($consulta_cliente)){
-                                     echo "<option value='".$fila['idcliente']."'>".$fila['nombre'].$fila['apellido']."</option>";
-                                 }
-                                 echo "  </select>";
-                              ?>
-    
-                               
+while ($fila = mysqli_fetch_array($consulta_cliente)) {
+    echo "<option value='" . $fila['idcliente'] . "'>" . $fila['nombre'] ." ". $fila['apellido'] . "</option>";
+}
+echo "  </select>";
+?>
+
+
                                 </div>
 
                                 <button class="btn btn-primary button1" data-toggle="modal" data-target="#ModalAgregarCliente"> <i class="glyphicon glyphicon-plus-sign"></i> Agregar cliente </button>
@@ -94,7 +95,7 @@ if (!$_SESSION['acceso']) {
                                 </div>
                               </div>
                             </div>
-                            
+
 
                           <div class="item form-group">
                             <label class="control-label col-md-3 col-sm-3 col-xs-12" for="precio">Precio</label>
@@ -103,7 +104,7 @@ if (!$_SESSION['acceso']) {
                               <span class="fa fa-usd form-control-feedback right" aria-hidden="true"></span>
                             </div>
                           </div>
-                       
+
 
                         <div class="ln_solid"></div>
                         <div class="form-group">
@@ -122,52 +123,54 @@ if (!$_SESSION['acceso']) {
 
           </div>
         </div>
-      <?php include '../includes/footer.php' ?>
+      <?php include '../includes/footer.php'?>
       </div>
     </div>
 
-    <?php include '../includes/script.php' ?>
+    <?php include '../includes/script.php'?>
     <script type="text/javascript" src="../js/frm.reg.consulta.js"></script>
   </body>
 </html>
 
 <?php
- if (isset($_POST['submit'])) {
-     $idcliente=$_POST["idcliente"];
-     $descripcion=$_POST["descripcion"];
-     $c_fisiologica=$_POST["c_fisiologica"];
-     $tratamiento=$_POST["tratamiento"];
-      $fecha_ingreso=$_POST["fecha_ingreso"];
-     $precio=$_POST["precio"];
+if (isset($_POST['submit'])) {
+    $idcliente = $_POST["idcliente"];
+    $descripcion = $_POST["descripcion"];
+    $c_fisiologica = $_POST["c_fisiologica"];
+    $tratamiento = $_POST["tratamiento"];
+    $fecha_ingreso = $_POST["fecha_ingreso"];
+    $precio = $_POST["precio"];
 
-     $sql_comprueba_consulta="SELECT idcliente FROM consulta where idcliente='$idcliente'";
-     $ejecuta_sql_consulta=mysqli_query($link,$sql_comprueba_consulta);
-     $comprueba_consulta=mysqli_num_rows($ejecuta_sql_consulta);
-     if ($comprueba_consulta==0) {
-         $insertar=mysqli_query($link,"INSERT INTO consulta (idconsulta,idcliente,descripcion,c_fisiologica,tratamiento,fecha_ingreso,precio) values('','$idcliente','$descripcion','$c_fisiologica','$tratamiento','$fecha_ingreso','$precio')");
-         if ($insertar) {
-             echo "<script>
-               location.replace('ListadoConsultas.php?q=$idcliente&info=add');
+    $sql_comprueba_consulta = "SELECT idcliente FROM consulta where idcliente='$idcliente'";
+    $ejecuta_sql_consulta = mysqli_query($link, $sql_comprueba_consulta);
+    $comprueba_consulta = mysqli_num_rows($ejecuta_sql_consulta);
+    if ($comprueba_consulta == 0) {
+      $query =  "INSERT INTO consulta (idcliente,descripcion,c_fisiologica,tratamiento,fecha_ingreso,precio)
+       values('$idcliente','$descripcion','$c_fisiologica','$tratamiento','$fecha_ingreso','$precio')";
+        $insertar = mysqli_query($link, $query);
+        if ($insertar) {
+            echo "<script>
+               location.replace('index.php?q=$idcliente&info=add');
               </script>";
-         } else {
-             echo "<script>
+        } else {
+            echo "<script>
                  swal(
               'Oops...',
                'Error al insertar!',
                'error'
              )</script>";
-         }
-     } else {
-         echo "<script>
+        }
+    } else {
+        echo "<script>
            swal(
                'Oops...',
                'El registro ya existe!',
                'error'
                )</script>";
-         mysqli_close($link);
-     }
- }
- ?>
+        mysqli_close($link);
+    }
+}
+?>
 
 
 

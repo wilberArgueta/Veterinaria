@@ -125,14 +125,14 @@
                     </a>
                     <ul class="nav child_menu">
                       <li>
-                        <a href="../mascota/NuevaMascota.php">
+                        <a href="../mascota/nuevo.php">
                           <i class="fa fa-plus"></i>
                           <b> Nueva Mascota</b>
                         </a>
                       </li>
 
                       <li>
-                        <a href="../mascota/ListadoMascota.php?q=">
+                        <a href="../mascota/">
                           <i class="fa fa-list"></i>
                           <b> Listado de Mascotas</b>
                         </a>
@@ -149,13 +149,13 @@
                     </a>
                     <ul class="nav child_menu">
                       <li>
-                        <a href="../cliente/NuevoCliente.php">
+                        <a href="../cliente/nuevo.php">
                           <i class="fa fa-plus"></i>
                           <b> Nuevo Cliente</b>
                         </a>
                       </li>
                       <li>
-                        <a href="../cliente/ListadoCliente.php?q=">
+                        <a href="../cliente/">
                           <i class="fa fa-list"></i>
                           <b> Listado de Clientes</b>
                         </a>
@@ -183,13 +183,13 @@
                     </a>
                     <ul class="nav child_menu">
                       <li>
-                        <a href="../consulta/RegistrarConsulta.php">
+                        <a href="../consulta/nuevo.php">
                           <i class="fa fa-plus"></i>
                           <b> Nuevo Consulta</b>
                         </a>
                       </li>
                       <li>
-                        <a href="../consulta/ListadoConsultas.php?q=">
+                        <a href="../consulta/">
                           <i class="fa fa-list"></i>
                           <b> Listado de Consultas</b>
                         </a>
@@ -205,13 +205,13 @@
                     </a>
                     <ul class="nav child_menu">
                       <li>
-                        <a href="../examen/RegistrarExamen.php">
+                        <a href="../examen/nuevo.php">
                           <i class="fa fa-plus"></i>
                           <b> Nuevo Examen</b>
                         </a>
                       </li>
                       <li>
-                        <a href="../examen/ListadoExamenes.php?q=">
+                        <a href="../examen/">
                           <i class="fa fa-list"></i>
                           <b> Listado de Examenes</b>
                         </a>
@@ -227,13 +227,13 @@
                     </a>
                     <ul class="nav child_menu">
                       <li>
-                        <a href="../servicio/NuevoServicio.php">
+                        <a href="../servicios/nuevo.php">
                           <i class="fa fa-plus"></i>
                           <b> Nuevo Servicio</b>
                         </a>
                       </li>
                       <li>
-                        <a href="../servicio/ListadoServicios.php?q=">
+                        <a href="../servicios/">
                           <i class="fa fa-list"></i>
                           <b> Listado de Servicios</b>
                         </a>
@@ -345,13 +345,13 @@
                 </a>
                 <ul class="nav child_menu">
                   <li>
-                    <a href="../venta/RegistrarVenta.php">
+                    <a href="../venta/nuevo.php">
                       <i class="fa fa-plus"></i>
                       <b> Nueva Venta</b>
                     </a>
                   </li>
                   <li>
-                    <a href="../venta/ListadoVentas.php">
+                    <a href="../venta/index.php">
                       <i class="fa fa-list"></i>
                       <b> Listado de Ventas</b>
                     </a>

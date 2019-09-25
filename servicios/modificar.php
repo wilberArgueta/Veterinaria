@@ -1,29 +1,25 @@
-<?php 
+<?php
 session_start();
 if (!$_SESSION['acceso']) {
-  header("Location:../login/");
+    header("Location:../login/");
 }
- ?>
+?>
 <?php
-if($_GET)
-{
- include("../conectar.php");
- $id=$_GET["id"];
- $sql=mysqli_query($link,"SELECT * FROM servicios WHERE id_servicio='$id'");
- $row=mysqli_fetch_array($sql);
- $tipo_servicio=$row["tipo_servicio"];
- $descripcion=$row["descripcion"];
- $idcliente=$row["idcliente"];
- $precio=$row["precio"];
- 
+if (isset($_GET)) {
+    include "../conectar.php";
+    $id = $_GET["id"];
+    $sql = mysqli_query($link, "SELECT * FROM servicios WHERE id_servicio='$id'");
+    $row = mysqli_fetch_array($sql);
+    $tipo_servicio = $row["tipo_servicio"];
+    $descripcion = $row["descripcion"];
+    $idcliente = $row["idcliente"];
+    $precio = $row["precio"];
 
- }
- else
- {
-  $tipo_servicio="";
- echo "<br><div class=\"alert alert alert-danger\" role=\"alert\">
+} else {
+    $tipo_servicio = "";
+    echo "<br><div class=\"alert alert alert-danger\" role=\"alert\">
  <strong>Error</strong> No se han enviado variables</div>";
- }
+}
 
 ?>
 
@@ -31,12 +27,12 @@ if($_GET)
 <html>
 <head>
   <title> | Clinica Veterinaria | Modificar Servicio</title>
-  <?php include '../includes/head.php' ?>
+  <?php include '../includes/head.php'?>
 </head>
 
   <body class="nav-md">
-  <?php include '../includes/nav.php' ?>
-  <?php include '../includes/cerrarSesion.php' ?>
+  <?php include '../includes/nav.php'?>
+  <?php include '../includes/cerrarSesion.php'?>
 
               <div class="right_col" role="main">
                 <div class="row">
@@ -82,6 +78,7 @@ if($_GET)
                 <label class="control-label col-md-3 col-sm-3 col-xs-12" for="idcliente">Cliente</label>
 
                 <?php
+<<<<<<< HEAD:servicios/ModyServicio.php
                   include ('../conectar.php');
                   $consulta_cliente= mysqli_query($link, "SELECT * FROM cliente");
                   echo "<div class=\"col-md-6 col-sm-6 col-xs-12\">";
@@ -95,10 +92,24 @@ if($_GET)
                   echo "  </select>";
                   echo "  </div>";
                 ?>
+=======
+$consulta_cliente = mysqli_query($link, "SELECT * FROM cliente");
+echo "<div class=\"col-md-6 col-sm-6 col-xs-12\">";
+echo "<select class=\"form-control js-example-basic-single col-md-7 col-xs-12\" id=\"idcliente\" name=\"idcliente\" >";
+while ($fila = mysqli_fetch_array($consulta_cliente)) {
+    if ($tipo == $fila['idcliente']) {
+        echo "<option value='" . $fila['idcliente'] . "' selected>" . $fila['nombre'] . "</option>";
+    }
+    echo "<option value='" . $fila['idcliente'] . "'>" . $fila['nombre'] . "</option>";
+}
+echo "  </select>";
+echo "  </div>";
+?>
+>>>>>>> origin/master:servicios/modificar.php
 
 
               </div>
-                          
+
 
                             <div class="item form-group">
                               <label class="control-label col-md-3 col-sm-3 col-xs-12" for="precio">Precio</label>
@@ -126,38 +137,34 @@ if($_GET)
 
           </div>
         </div>
-      <?php include '../includes/footer.php' ?>
-    <?php include '../includes/script.php' ?>
+      <?php include '../includes/footer.php'?>
+    <?php include '../includes/script.php'?>
     <script type="text/javascript" src="../js/frm.reg.servicio.js"></script>
   </body>
 </html>
 </html>
 <?php
- if (isset($_POST['submit'])) {
-   $tipo_servicio=$_POST["tipo_servicio"];
-   $descripcion=$_POST["descripcion"];
-   $idcliente=$_POST["idcliente"];
-   $precio=$_POST["precio"];
+if (isset($_POST['submit'])) {
+    $tipo_servicio = $_POST["tipo_servicio"];
+    $descripcion = $_POST["descripcion"];
+    $idcliente = $_POST["idcliente"];
+    $precio = $_POST["precio"];
 
-
-     $update=mysqli_query($link, "UPDATE servicios SET tipo_servicio='$tipo_servicio',descripcion='$descripcion',idcliente='$idcliente',precio='$precio' WHERE id_servicio='$id'");
-     if($update)
-     {
-      echo "<script>
-     location.replace('../servicios/ListadoServicios.php?q=$tipo_servicio&info=modificar');
+    $update = mysqli_query($link, "UPDATE servicios SET tipo_servicio='$tipo_servicio',descripcion='$descripcion',idcliente='$idcliente',precio='$precio' WHERE id_servicio='$id'");
+    if ($update) {
+        echo "<script>
+     location.replace('../servicios/index.php?q=$tipo_servicio&info=modificar');
             </script>";
 
-     }
-     else
-     {
-       
-       echo "<script>
+    } else {
+
+        echo "<script>
                  swal(
               'Oops...',
                'Error al actualizar el registro!',
                'error'
-             )</script>"; 
-     }
+             )</script>";
+    }
 
-  }
-  ?>
+}
+?>

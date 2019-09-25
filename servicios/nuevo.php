@@ -1,21 +1,26 @@
-<?php 
+<?php
 session_start();
 if (!$_SESSION['acceso']) {
-  header("Location:../login/");
+    header("Location:../login/");
 }
+<<<<<<< HEAD:servicios/NuevoServicio.php
  ?>
 <?php include '../conectar.php' ?>
 <?//php include('../modal/Modalcliente.php');//?>
+=======
+?>
+<?php include '../conectar.php'?>
+>>>>>>> origin/master:servicios/nuevo.php
 <!DOCTYPE html>
 <html>
 <head>
   <title> | Clinica Veterinaria | Registrar Servicio</title>
-  <?php include '../includes/head.php' ?>
+  <?php include '../includes/head.php'?>
 </head>
 
   <body class="nav-md">
-  <?php include '../includes/nav.php' ?>
-  <?php include '../includes/cerrarSesion.php' ?>
+  <?php include '../includes/nav.php'?>
+  <?php include '../includes/cerrarSesion.php'?>
 
               <div class="right_col" role="main">
                 <div class="row">
@@ -61,24 +66,29 @@ if (!$_SESSION['acceso']) {
                               <label class="control-label col-md-3 col-sm-3 col-xs-12" for="idcliente">Cliente</label>
                               <div class="col-md-6 col-sm-6 col-xs-12">
                                 <?php
-                                $consulta_mascota=mysqli_query($link,"SELECT * FROM cliente ORDER BY idcliente ASC ");
+$consulta_mascota = mysqli_query($link, "SELECT * FROM cliente ORDER BY idcliente ASC ");
 
-                                 echo " <select  class=\"form-control js-example-basic-single\" id=\"idcliente\" title=\"Has clic para desplegar\" name=\"idcliente\" >";
-                                 echo "<option value=''>Seleccione..</option>";
+echo " <select  class=\"form-control js-example-basic-single\" id=\"idcliente\" title=\"Has clic para desplegar\" name=\"idcliente\" >";
+echo "<option value=''>Seleccione..</option>";
 
-                                while($fila=mysqli_fetch_array($consulta_mascota)){
-                                     echo "<option value='".$fila['idcliente']."'>".$fila['nombre']."</option>";
-                                 }
-                                 echo "  </select>";
-                                 ?>
+while ($fila = mysqli_fetch_array($consulta_mascota)) {
+    echo "<option value='" . $fila['idcliente'] . "'>" . $fila['nombre'] . "</option>";
+}
+echo "  </select>";
+?>
                               </div>
+<<<<<<< HEAD:servicios/NuevoServicio.php
 <!--  
                               
                               <button class="btn btn-primary button1" data-toggle="modal" data-target="#ModalAgregarCliente"> <i class="glyphicon glyphicon-plus-sign"></i> Agregar cliente </button>
 -->
+=======
+
+
+>>>>>>> origin/master:servicios/nuevo.php
                             </div>
 
-                          
+
 
                             <div class="item form-group">
                               <label class="control-label col-md-3 col-sm-3 col-xs-12" for="precio">Precio</label>
@@ -88,7 +98,7 @@ if (!$_SESSION['acceso']) {
                               </div>
                              </div>
 
-                          
+
 
 
                         <div class="ln_solid"></div>
@@ -106,48 +116,53 @@ if (!$_SESSION['acceso']) {
 
           </div>
         </div>
-      <?php include '../includes/footer.php' ?>
-    <?php include '../includes/script.php' ?>
+      <?php include '../includes/footer.php'?>
+    <?php include '../includes/script.php'?>
     <script type="text/javascript" src="../js/frm.reg.servicio.js"></script>
   </body>
 </html>
 
-<?php 
+<?php
 if (isset($_POST['submit'])) {
-  $tipo_servicio=$_POST["tipo_servicio"];
-  $descripcion=$_POST["descripcion"];
-  $idcliente=$_POST["idcliente"];
-  $precio=$_POST["precio"];
+    $tipo_servicio = $_POST["tipo_servicio"];
+    $descripcion = $_POST["descripcion"];
+    $idcliente = $_POST["idcliente"];
+    $precio = $_POST["precio"];
 
-  $sql_comprueba_servicio="SELECT tipo_servicio FROM servicios where tipo_servicio='$tipo_servicio'";
-  $ejecuta_sql_servicio=mysqli_query($link,$sql_comprueba_servicio);
-  $comprueba_servicio=mysqli_num_rows($ejecuta_sql_servicio);
-  if ($comprueba_servicio==0) {
-    $insertar=mysqli_query($link, "INSERT INTO servicios(id_servicio,tipo_servicio,descripcion,idcliente,precio) values ('','$tipo_servicio','$descripcion','$idcliente','$precio')");
-    if ($insertar) {
-      echo "<script>
-        location.replace('../servicios/ListadoServicios.php?q=$tipo_servicio&info=add');
-      </script>";
-    }
-    else {
-             echo "<script>
-                 swal(
-              'Oops...',
-               'Error al insertar!',
-               'error'
+    $sql_comprueba_servicio = "SELECT tipo_servicio FROM servicios where tipo_servicio='$tipo_servicio'";
+    $ejecuta_sql_servicio = mysqli_query($link, $sql_comprueba_servicio);
+    $comprueba_servicio = mysqli_num_rows($ejecuta_sql_servicio);
+    try {
+        if ($comprueba_servicio == 0) {
+            $query = "INSERT INTO servicios(tipo_servicio,descripcion,idcliente,precio)
+  values ('$tipo_servicio','$descripcion','$idcliente','$precio')";
+            $insertar = mysqli_query($link, $query);
+            if ($insertar) {
+                echo "<script>
+      location.replace('../servicios/index.php?q=$tipo_servicio&info=add');
+    </script>";
+            } else {
+                echo "<script>
+               swal(
+            'Oops...',
+             'Error al insertar!',
+             'error'
+           )</script>";
+            }
+        } else {
+            echo "<script>
+         swal(
+             'Oops...',
+             'El registro ya existe!',
+             'error'
              )</script>";
-         }
-     } else {
-         echo "<script>
-           swal(
-               'Oops...',
-               'El registro ya existe!',
-               'error'
-               )</script>";
-         mysqli_close($link);
-     }
+            mysqli_close($link);
+        }
+    } catch (\Throwable $th) {
+        throw $th;
+    }
 }
- ?>
+?>
 
 
 

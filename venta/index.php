@@ -1,3 +1,4 @@
+<<<<<<< HEAD:venta/ListadoVentas.php
 <?php 
 session_start();
 if (!$_SESSION['acceso']) {
@@ -5,14 +6,31 @@ if (!$_SESSION['acceso']) {
 }
  ?>
  <?php include '../conectar.php'; ?>
+=======
+<?php
+session_start();
+if (!$_SESSION['acceso']) {
+    header("Location:../login/");
+}
+include "../conectar.php";
+?>
+
+>>>>>>> origin/master:venta/index.php
 <!DOCTYPE html>
 <html>
 <head>
   <title> | Clinica Veterinaria | Listado de Ventas</title>
+<<<<<<< HEAD:venta/ListadoVentas.php
   <?php include '../includes/head.php' ?>
 </head>
 <body class="nav-md">
   <?php include '../includes/nav.php' ?>
+=======
+  <?php include '../includes/head.php'?>
+</head>
+<body class="nav-md">
+  <?php include '../includes/nav.php'?>
+>>>>>>> origin/master:venta/index.php
   <div class="right_col" role="main">
     <div class="row">
       <div class="col-md-12">
@@ -20,7 +38,11 @@ if (!$_SESSION['acceso']) {
           <section class="content-header">
             <h1>Listado de Ventas</h1>
             <ol class="breadcrumb">
+<<<<<<< HEAD:venta/ListadoVentas.php
               <li><a href="../home/"><i class="fa fa-home"></i> Home</a></li>
+=======
+              <li><a href="../home/inicio.php"><i class="fa fa-home"></i> Home</a></li>
+>>>>>>> origin/master:venta/index.php
               <li>Ventas</li>
               <li class="active">Listado de Ventas</li>
             </ol>
@@ -52,6 +74,7 @@ if (!$_SESSION['acceso']) {
             </div>
           </div>
         </div>
+<<<<<<< HEAD:venta/ListadoVentas.php
         </form>
   
 
@@ -153,6 +176,70 @@ if (!$_SESSION['acceso']) {
         }
        }
        ?>
+=======
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="col-md-12 col-sm-12 col-xs-12">
+        <div class="x_panel">
+          <br>
+            <div class="title_left">
+              <div class="col-md-5 col-sm-5 col-xs-12 form-group pull-left top_search">
+                <div class="input-group">
+                 <a href="nuevo.php">
+                 <button type="button" class="btn btn-dark" style="width: 210px; ">
+                      <i class="fa fa-plus-square-o" style="font-size:20px">   Nueva Venta</i>
+                  </button>
+                 </a>
+                </div>
+              </div>
+            </div>
+          <div class="x_content">
+            <div class="table-responsive">
+            <table id="datatable" class="table table-striped jambo_table bulk_action">
+            <thead>
+            <tr class="headings">
+              <th class="column-title">ID</th>
+              <th class="column-title">CODIGO INTERNO</th>
+              <th class="column-title">CLIENTE</th>
+              <th class="column-title">PRODUCTO</th>
+              <th class="column-title">CANTIDAD</th>
+              <th class="column-title">FECHA DE VENTA</th>
+              <th class="column-title">SUBTOTAL</th>
+              <th class="column-title">IVA</th>
+              <th class="column-title">TOTAL</th>
+              <th class="column-title no-link last"><span class="nobr">ACCIÓN</span></th>
+            </tr>
+          </thead>
+
+          <tbody>
+            <tr class="even pointer">
+              <td class=" "></td>
+              <td class=" "></td>
+              <td class=" "></td>
+              <td class=" "></td>
+              <td class=" "></td>
+              <td class=" "></td>
+              <td class=" "></td>
+              <td class=" "></td>
+              <td class=" "></td>
+              <td class="" style="text-align: center;">
+                <button type="button" class="btn btn-warning" style="width: 40px; font-size:20px" title="Modificar" data-toggle="tooltip" data-placement="left">
+                  <i class="fa fa-edit" aria-hidden="true"></i>
+                </button>
+                <button type="button" class="btn btn-danger" style="width: 40px; font-size:20px" data-toggle="tooltip" data-placement="right" title="Eliminar">
+                  <i class="fa fa-trash" aria-hidden="true"></i>
+                </button>
+              </td>
+            </tr>
+          </tbody>
+
+
+        </table>
+
+            </div>
+>>>>>>> origin/master:venta/index.php
 
 
       </div>
@@ -161,11 +248,19 @@ if (!$_SESSION['acceso']) {
 </div>
 
 </div>
+<<<<<<< HEAD:venta/ListadoVentas.php
 <?php include '../includes/footer.php' ?>
 
 </div>
 </div>
 <?php include '../includes/script.php' ?>
+=======
+<?php include '../includes/footer.php'?>
+
+</div>
+</div>
+<?php include '../includes/script.php'?>
+>>>>>>> origin/master:venta/index.php
 
 </body>
 </html>

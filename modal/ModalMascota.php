@@ -110,7 +110,7 @@
      if($update)
      {
       echo "<script>
-     location.replace('../cliente/NuevoCliente.php');
+     location.replace('../cliente/nuevo.php');
             </script>";
 
      }
